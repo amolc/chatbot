@@ -21,12 +21,9 @@ app.use(bodyParser.raw({ limit: '50mb' }));
 
 var mailparser = require('./mailparser.js');
 
-
-app.get('/api/gethi',mailparser.gethi);
-
-app.post('/api/sendmail',mailparser.sendmail);
-
 //app.post('/api/apicall',mailparser.apicall);
-app.post('/api/apicall',mailparser.apicall);
+// app.get('/api/gethi',mailparser.gethi);
+// app.post('/api/sendmail',mailparser.sendmail);
+
 
 module.exports = app;

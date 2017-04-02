@@ -72,7 +72,7 @@ exports.sendmail = function(req,res){
 };
 
  exports.apicall = function(req,res){
-
+  console.log("We are in the apicall");
   console.log(req.body);
 
   var options = {
@@ -108,5 +108,5 @@ function send_mail(usermail, mailmatter, mailmessage) {
       }
       //jsonp(response);
   });
-  
+
 };

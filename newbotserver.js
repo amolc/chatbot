@@ -17,28 +17,37 @@
           console.log('socket id is :',socket.id);
 
         socket.on('apicall', function(data){
-              console.log(data);
-              msg = '';
+              var route = {};
+              route.whereto = '' ;
+              route.fromwhere = '' ;
+              route.startdate = '' ;
+              route.whichplane = '' ;
+              
+
               /*001 - Need to add intelligence here */
               if(data.label=="whereto"){
+                route.whereto = data.msg ;
                 var response = {};
                 response.sessionId = data.sessionId ;
                 response.nextlabel = "fromwhere" ;
                 response.msg = "From Where?";
               }
               else if(data.label=="fromwhere"){
+                route.fromwhere = data.msg ;
                 var response = {};
                 response.sessionId = data.sessionId ;
-                response.nextlabel = "whichtype" ;
+                response.nextlabel = "startdate" ;
                 response.msg = "When would you like to start?";
               }
-              else if(data.label=="whichtype"){
+              else if(data.label=="startdate"){
+                route.startdate = data.msg ;
                 var response = {};
                 response.sessionId = data.sessionId ;
-                response.nextlabel = "return" ;
+                response.nextlabel = "whichplane" ;
                 response.msg = "Which Plane would you like to choose?";
               }
-              else if(data.label=="return"){
+              else if(data.label=="whichplane"){
+                route.whichplane = data.msg ;
                 var response = {};
                 response.sessionId = data.sessionId ;
                 response.nextlabel = "returnboolen" ;
@@ -47,10 +56,12 @@
               else if(data.label=="returnboolen"){
                 var response = {};
                 if(data.msg=="no"){
+                  route.returnboolen = data.msg ;
                   response.sessionId = data.sessionId ;
                   response.nextlabel = "summary" ;
                   response.msg = "Great,give us a moment we are calculating the fare.";
                 }else{
+                  route.returnboolen = data.msg ;
                   response.sessionId = data.sessionId ;
                   response.nextlabel = "returndate" ;
                   response.msg = "What date?";
@@ -58,20 +69,37 @@
 
               }
               else if(data.label=="returndate"){
+                route.returndate = data.msg ;
+                var response = {};
+                response.sessionId = data.sessionId ;
+                response.nextlabel = "email" ;
+                response.msg = "Your email address please, our quote is on the way.";
+              }
+              else if(data.label=="email"){
+                route.email = data.msg ;
                 var response = {};
                 response.sessionId = data.sessionId ;
                 response.nextlabel = "summary" ;
-                response.msg = "Your email address please, our quote is on the way.";
+                response.msg = "We should email you a quote soon.";
+              }
+              else if(data.label=="summary"){
+
+                var response = {};
+                response.sessionId = data.sessionId ;
+                response.nextlabel = "summary" ;
+                response.msg = "Thank You";
               }
               else {
                 var response = {};
+                route.returndate = data.msg ;
                 response.sessionId = data.sessionId ;
                 response.nextlabel = "last" ;
-                response.msg = "I guess, let me get a human to talk with you";
+                response.msg = route ;
               }
-
               io.sockets.connected[socket.id].emit('getresponse',response);
+              console.log(route);
           });
+
         io.on('disconnect', function () {
           console.log('A user disconnected');
           });

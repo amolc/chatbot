@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#btn-chat').on('click', function(event) {        
+    $('#btn-chat').on('click', function() {        
          $('.chat').toggle();
     });
 });

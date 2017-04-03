@@ -60,7 +60,7 @@
   }
 
   $('.message-submit').click(function() {
-    insertMessage();
+    alert("insertMessage");
   });
 
   $("#chatinput").keypress(function(event) {

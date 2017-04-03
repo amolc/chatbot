@@ -3,10 +3,9 @@
 Chat
 --------------------*/
 .chat {
-
 position: absolute;
     top: 55%;
-    left: 86.5%;
+    left: 86%;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);

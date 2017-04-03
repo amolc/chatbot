@@ -110,7 +110,33 @@
     data.label = store.get('label') ;
     data.msg = msg;
     /* Let's store the sessionid and count in localstorage */
+    if(data.label=="whereto"){
+    store.set('whereto',msg)
+    }
+    else if(data.label=="fromwhere"){
+    store.set('fromwhere',msg)
+    }
+    else if(data.label=="startdate"){
+    store.set('startdate',msg)
+    }
+    else if(data.label=="whichplane"){
+    store.set('whichplane',msg)
+    }
+    else if(data.label=="returnboolen"){
+    store.set('returnboolen',msg)
+    }
+    else if(data.label=="email"){
+    store.set('email',msg);
+    data.whereto = store.get('whereto');
+    data.fromwhere = store.get('fromwhere');
+    data.startdate = store.get('startdate');
+    data.whichplane = store.get('whichplane');
+    data.returnboolen = store.get('returnboolen');
+    data.email = store.get('email');
+    }
     socket.emit('apicall', data);
   }
+
+
 
 });

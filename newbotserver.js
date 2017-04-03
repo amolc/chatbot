@@ -82,16 +82,19 @@
               else if(data.label=="email"){
                 console.log(data);
                 var agentemail = "ceo@80startups.com";
-                var subject ="New Lead - Flight Booking" ;
-                var mailbody = "Hello,</br><p>Following are mentioned details of your journey: </p>"
-                                  +"</br><p> To: "+data.whereto+"</p>"
-                                  +"</br><p> From : "+data.fromwhere+"</p>"
-                                  +"</br><p> Departure date: "+data.startdate+"</p>"
-                                  +"</br><p> At time: "+data.starttime+"</p>"
-                                  +"</br><p> Flight Type: "+data.whichplane+"</p>"
+                var officeremail = "david@genacom.com";
+
+                var subject ="New Client Lead - Private Jet Booking" ;
+                var mailbody = "Hello,</br><p>Flight Booking Quote is requested : </p>"
+                                  +"</br><p><b>To:</b> "+data.whereto+"</p>"
+                                  +"</br><p><b> From :</b> "+data.fromwhere+"</p>"
+                                  +"</br><p><b> Departure date:</b> "+data.startdate+"</p>"
+                                  +"</br><p><b> At time:</b> "+data.starttime+"</p>"
+                                  +"</br><p><b> Flight Type:</b> "+data.whichplane+"</p>"
                                   +"Thanks, Chatbot";
 
                 send_mail(agentemail,subject,mailbody);
+                send_mail(officeremail,subject,mailbody);
 
                 var response = {};
                 response.sessionId = data.sessionId ;

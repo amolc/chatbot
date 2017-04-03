@@ -60,7 +60,7 @@
   }
 
   $('.message-submit').click(function() {
-    alert("insertMessage");
+      insertMessage();
   });
 
   $("#chatinput").keypress(function(event) {
@@ -119,6 +119,9 @@
     else if(data.label=="startdate"){
     store.set('startdate',msg)
     }
+    else if(data.label=="starttime"){
+    store.set('starttime',msg)
+    }
     else if(data.label=="whichplane"){
     store.set('whichplane',msg)
     }
@@ -130,6 +133,7 @@
     data.whereto = store.get('whereto');
     data.fromwhere = store.get('fromwhere');
     data.startdate = store.get('startdate');
+    data.starttime = store.get('starttime');
     data.whichplane = store.get('whichplane');
     data.returnboolen = store.get('returnboolen');
     data.email = store.get('email');

@@ -5,6 +5,7 @@
         var connect = require('connect');
         var serveStatic = require('serve-static');
         var bodyParser = require('body-parser');
+        var nodemailer = require('nodemailer');
 
         var serverport = 2001;
         var web = connect();
@@ -13,6 +14,8 @@
         http.listen(serverport, function(){
           console.log('listening on *:'+serverport);
         });
+
+
         io.on('connection', function(socket){
           console.log('socket id is :',socket.id);
 
@@ -34,6 +37,13 @@
                 response.msg = "When would you like to start?";
               }
               else if(data.label=="startdate"){
+
+                var response = {};
+                response.sessionId = data.sessionId ;
+                response.nextlabel = "starttime" ;
+                response.msg = "Whats the best time you would prefer?";
+              }
+              else if(data.label=="starttime"){
 
                 var response = {};
                 response.sessionId = data.sessionId ;
@@ -70,6 +80,19 @@
                 response.msg = "Can I get your email?";
               }
               else if(data.label=="email"){
+                console.log(data);
+                var agentemail = "ceo@80startups.com";
+                var subject ="New Lead - Flight Booking" ;
+                var mailbody = "Hello,</br><p>Following are mentioned details of your journey: </p>"
+                                  +"</br><p> To: "+data.whereto+"</p>"
+                                  +"</br><p> From : "+data.fromwhere+"</p>"
+                                  +"</br><p> Departure date: "+data.startdate+"</p>"
+                                  +"</br><p> At time: "+data.starttime+"</p>"
+                                  +"</br><p> Flight Type: "+data.whichplane+"</p>"
+                                  +"Thanks, Chatbot";
+
+                send_mail(agentemail,subject,mailbody);
+
                 var response = {};
                 response.sessionId = data.sessionId ;
                 response.nextlabel = "summary" ;
@@ -96,4 +119,34 @@
         io.on('disconnect', function () {
           console.log('A user disconnected');
           });
+
+
+          var transporter = nodemailer.createTransport({
+              host : 'in-v3.mailjet.com',
+              port: '587',
+              auth: {
+                user: '66ca4479851e0bd9cedc629bdff36ee6',
+                pass: 'a3ec60f55a89f7fab98891e86818c8db'
+              }
+            });
+          function send_mail(usermail, subject,mailbody) {
+            var mailOptions = {
+                from: '<operations@80startups.com>', // sender address
+                to: usermail, // list of receivers
+                subject: subject, // Subject line
+                html: mailbody // html body
+            };
+
+
+            transporter.sendMail(mailOptions, function(error, info) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log('Message sent: ' + info.response);
+                }
+                //jsonp(response);
+            });
+          };
+
+
         });

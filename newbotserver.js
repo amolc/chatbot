@@ -82,7 +82,7 @@
               else if(data.label=="email"){
                 console.log(data);
                 var agentemail = "ceo@80startups.com";
-                var officeremail = "david@genacom.com";
+                var officeremail = "naim.jeem@80startups.com";
 
                 var subject ="New Client Lead - Private Jet Booking" ;
                 var mailbody = "Hello,</br><p>Flight Booking Quote is requested : </p>"

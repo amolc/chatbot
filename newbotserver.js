@@ -7,14 +7,37 @@
         var bodyParser = require('body-parser');
         var nodemailer = require('nodemailer');
 
+        var GooglePlaces = require('node-googleplaces');
+        var assert = require("assert");
+
         var serverport = 2001;
         var web = connect();
+
+        var GOOGLE_PLACES_API_KEY = "AIzaSyCBEc0eXgs0pXlPRuP4zPzQTi60-AzHpAc";
+        var GOOGLE_PLACES_OUTPUT_FORMAT = "json";
+        var Places = new GooglePlaces(GOOGLE_PLACES_API_KEY);
+
+
         web.use(serveStatic('web'));
         app.use('/',web);
         http.listen(serverport, function(){
           console.log('listening on *:'+serverport);
         });
 
+
+/*  GooglePlaceAPI
+
+    var placeAutocomplete = new PlaceAutocomplete(config.apiKey, config.outputFormat);
+
+    var parameters = {
+        input: 'sydney lyr'
+    };
+    placeAutocomplete(parameters, function (error, response) {
+        if (error) throw error;
+            assert.equal(response.status, "OK", "Place autocomplete request response status is OK");
+    });
+
+*/
 
         io.on('connection', function(socket){
           console.log('socket id is :',socket.id);
@@ -23,7 +46,13 @@
 
               console.log(data);
               /*001 - Need to add intelligence here */
+
               if(data.label=="whereto"){
+
+                  Places.nearbySearch(data.msg, (err, res) => {
+                      console.log(res.msg);
+                    });
+
                 var response = {};
                 response.sessionId = data.sessionId ;
                 response.nextlabel = "fromwhere" ;

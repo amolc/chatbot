@@ -6,38 +6,62 @@
         var serveStatic = require('serve-static');
         var bodyParser = require('body-parser');
         var nodemailer = require('nodemailer');
-
-        var GooglePlaces = require('node-googleplaces');
-        var assert = require("assert");
-
         var serverport = 2001;
         var web = connect();
-
-        var GOOGLE_PLACES_API_KEY = "AIzaSyCBEc0eXgs0pXlPRuP4zPzQTi60-AzHpAc";
-        var GOOGLE_PLACES_OUTPUT_FORMAT = "json";
-        var Places = new GooglePlaces(GOOGLE_PLACES_API_KEY);
-
-
         web.use(serveStatic('web'));
         app.use('/',web);
         http.listen(serverport, function(){
           console.log('listening on *:'+serverport);
         });
 
+      //  var google_api_key = "AIzaSyCBEc0eXgs0pXlPRuP4zPzQTi60-AzHpAc";
+          var google_api_key =   "AIzaSyCbQ_Hk3eqc7UB-fqKqYqUDFtjDjDBe2V8" ;
+        var google_output_format = "json";
 
-/*  GooglePlaceAPI
+        var TextSearch = require("./api/TextSearch.js");
 
-    var placeAutocomplete = new PlaceAutocomplete(config.apiKey, config.outputFormat);
+        var textSearch = new TextSearch(google_api_key, google_output_format);
 
-    var parameters = {
-        input: 'sydney lyr'
-    };
-    placeAutocomplete(parameters, function (error, response) {
-        if (error) throw error;
-            assert.equal(response.status, "OK", "Place autocomplete request response status is OK");
-    });
+        var parameters = {
+            query: "airports in singapore"
+        };
 
-*/
+        textSearch(parameters, function (error, response) {
+            console.log(response);
+          //  console.log(response.results[0].geometry);
+            // if (error) throw error;
+            // assert.notEqual(response.results.length, 0, "Text search must not return 0 results");
+            if(response.results.length==0){
+              console.log("No Airport Found");
+            }
+            else{
+
+              var airports = {}, airportsnames = [];
+
+              for(var index = 0; index < response.results.length; index++) {
+                    //  airportsnames[index] = "name: "+response.results[index].name;
+                       airportsnames.push({name:response.results[index].name});
+                      console.log(response.results[index].name);
+                  }
+            }
+
+            var jsonairports = JSON.parse(JSON.stringify(airportsnames))
+             airports.results = jsonairports ;
+            console.log(airports);
+
+            /* Test json array */
+            // console.log(airports.results.length);
+            // for(var index = 0; index < airports.results.length; index++) {
+            //         console.log(airports.results[index].name);
+            //     }
+        });
+
+
+
+
+
+
+
 
         io.on('connection', function(socket){
           console.log('socket id is :',socket.id);
@@ -49,9 +73,8 @@
 
               if(data.label=="whereto"){
 
-                  Places.nearbySearch(data.msg, (err, res) => {
-                      console.log(res.msg);
-                    });
+                var query = "airports in"+data.msg ;
+
 
                 var response = {};
                 response.sessionId = data.sessionId ;

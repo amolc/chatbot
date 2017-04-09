@@ -14,53 +14,11 @@
           console.log('listening on *:'+serverport);
         });
 
-      //  var google_api_key = "AIzaSyCBEc0eXgs0pXlPRuP4zPzQTi60-AzHpAc";
-          var google_api_key =   "AIzaSyCbQ_Hk3eqc7UB-fqKqYqUDFtjDjDBe2V8" ;
-        var google_output_format = "json";
+      var internalfunctions = require('./api/functions');
 
-        var TextSearch = require("./api/TextSearch.js");
-
-        var textSearch = new TextSearch(google_api_key, google_output_format);
-
-        var parameters = {
-            query: "airports in singapore"
-        };
-
-        textSearch(parameters, function (error, response) {
-            console.log(response);
-          //  console.log(response.results[0].geometry);
-            // if (error) throw error;
-            // assert.notEqual(response.results.length, 0, "Text search must not return 0 results");
-            if(response.results.length==0){
-              console.log("No Airport Found");
-            }
-            else{
-
-              var airports = {}, airportsnames = [];
-
-              for(var index = 0; index < response.results.length; index++) {
-                    //  airportsnames[index] = "name: "+response.results[index].name;
-                       airportsnames.push({name:response.results[index].name});
-                      console.log(response.results[index].name);
-                  }
-            }
-
-            var jsonairports = JSON.parse(JSON.stringify(airportsnames))
-             airports.results = jsonairports ;
-            console.log(airports);
-
-            /* Test json array */
-            // console.log(airports.results.length);
-            // for(var index = 0; index < airports.results.length; index++) {
-            //         console.log(airports.results[index].name);
-            //     }
-        });
-
-
-
-
-
-
+        var cityname = "mumbai" ;
+        var listp = internalfunctions.airportlist(cityname);
+        console.log(listp);
 
 
         io.on('connection', function(socket){

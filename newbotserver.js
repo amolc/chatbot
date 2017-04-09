@@ -16,10 +16,10 @@
 
       var internalfunctions = require('./api/functions');
 
-        var cityname = "mumbai" ;
-        var listp = internalfunctions.airportlist(cityname);
-        console.log(listp);
-
+        var cityname = "new york" ;
+        var airportlist = internalfunctions.airportlist(cityname);
+        console.log(airportlist);
+        //Bug-1 - We need to get the complete list of airports in response.
 
         io.on('connection', function(socket){
           console.log('socket id is :',socket.id);

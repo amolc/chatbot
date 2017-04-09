@@ -43,7 +43,7 @@
                var parameters = {
                    query: "private airports in"+cityname
                };
-               global.airship = {} ;
+               global.airship = '' ;
                 textSearch(parameters, function (error, response) {
                      //console.log(response);
                      if(response.results.length==0){
@@ -62,15 +62,16 @@
                      var jsonairports = JSON.parse(JSON.stringify(airportsnames))
                      airports.results = jsonairports ;
                      //console.log(airports);
-                     airship = airports;
-                    console.log(airship);
+                    airship = airports;
+                    //console.log(airship);
 
                  });
+                 var response = {};
+                 response.sessionId = data.sessionId ;
+                 response.nextlabel = "whereto" ;
+                 response.msg = airship ;
+                 console.log(response.msg);
 
-                var response = {};
-                response.sessionId = data.sessionId ;
-                response.nextlabel = "whereto" ;
-                response.msg = airship ;
               }
               else if(data.label=="fromwhere"){
 

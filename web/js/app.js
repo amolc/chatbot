@@ -86,12 +86,10 @@
 
   socket.on('getresponse',function(response){
         console.log(response);
-        console.log(response.nextlabel);
-        console.dir(response.msg);
         store.set('label',response.nextlabel);
         setTimeout(function() {
             $('.message.loading').remove();
-            $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+            $('<div class="message new">' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
             setDate();
             updateScrollbar();
           }, 100 + (Math.random() * 20) * 100);
@@ -114,6 +112,9 @@
     /* Let's store the sessionid and count in localstorage */
     if(data.label=="whereto"){
     store.set('whereto',msg)
+    }
+    else if(data.label=="null"){
+    store.set('fromwhere',msg)
     }
     else if(data.label=="fromwhere"){
     store.set('fromwhere',msg)

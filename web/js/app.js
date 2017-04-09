@@ -86,6 +86,8 @@
 
   socket.on('getresponse',function(response){
         console.log(response);
+        console.log(response.nextlabel);
+        console.dir(response.msg);
         store.set('label',response.nextlabel);
         setTimeout(function() {
             $('.message.loading').remove();

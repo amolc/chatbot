@@ -13,17 +13,10 @@
         http.listen(serverport, function(){
           console.log('listening on *:'+serverport);
         });
+
         var TextSearch = require("./api/TextSearch.js");
-      // var internalfunctions = require('./api/functions');
-      // var cityname = "new york" ;
-      // var airportlist = null;
-      // var assigningCallback = function(err, response){
-      //   airportlist = response;
-      //   console.log(airportlist);
-      // }
-      // internalfunctions.airportlist(cityname, assigningCallback);
-      //   console.log(airportlist);
-        //Bug-1 - We need to get the complete list of airports in response.
+       var ifunctions = require('./api/ifunctions');
+
 
         io.on('connection', function(socket){
           console.log('socket id is :',socket.id);
@@ -34,42 +27,13 @@
               /*001 - Need to add intelligence here */
 
               if(data.label=="whereto"){
-
                 var cityname = data.msg ;
-              //  var google_api_key =   "AIzaSyCbQ_Hk3eqc7UB-fqKqYqUDFtjDjDBe2V8" ;
-                var google_api_key = "AIzaSyBKDSx_T1NPT6POTrShPCed43ULC1mx9U8";
-                var google_output_format = "json";
-                var textSearch = new TextSearch(google_api_key, google_output_format);
-               var parameters = {
-                   query: "private airports in"+cityname
-               };
-               global.airship = '' ;
-                textSearch(parameters, function (error, response) {
-                     //console.log(response);
-                     if(response.results.length==0){
-                       console.log("No Airport Found");
-                     }
-                     else{
-                       var airports = {}, airportsnames = [];
-                       for(var index = 0; index < response.results.length; index++) {
-                               var srno = index+1 ;
-                                airportsnames.push({id:srno, name:response.results[index].name});
-                               //console.log(response.results[index].name);
-                          }
-                          airship = airports ;
-                     }
-
-                     var jsonairports = JSON.parse(JSON.stringify(airportsnames))
-                     airports.results = jsonairports ;
-                     //console.log(airports);
-                    airship = airports;
-                    //console.log(airship);
-
-                 });
+                var cityairports = ifunctions.airportlist(cityname)
+                //var cityairports = ifunctions.gethi();
                  var response = {};
                  response.sessionId = data.sessionId ;
                  response.nextlabel = "whereto" ;
-                 response.msg = airship ;
+                 response.msg = cityairports ;
                  console.log(response.msg);
 
               }

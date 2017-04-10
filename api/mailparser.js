@@ -110,3 +110,29 @@ function send_mail(usermail, mailmatter, mailmessage) {
   });
 
 };
+
+exports.airportsearch = function(req,res){
+ console.log("We are searching airports by city");
+ console.log(req);
+
+ //  var google_api_key =   "AIzaSyCbQ_Hk3eqc7UB-fqKqYqUDFtjDjDBe2V8" ;
+ var google_api_key = "AIzaSyBKDSx_T1NPT6POTrShPCed43ULC1mx9U8";
+ var google_output_format = "json";
+ var textSearch = new TextSearch(google_api_key, google_output_format);
+var parameters = {
+    query: "private airports in"+req
+};
+ var request = apiapp.textRequest(req.body.msg, options);
+
+ request.on('response', function(response) {
+     //console.log("hgghghghgjhgh", response);
+     res.jsonp(response);
+ });
+
+ request.on('error', function(error) {
+     //console.log("error",error);
+     res.jsonp(error);
+ });
+
+ request.end();
+};

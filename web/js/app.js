@@ -86,11 +86,10 @@
 
   socket.on('getresponse',function(response){
         console.log(response);
-        console.log(response.nextlabel);
-        console.dir(response.msg);
         store.set('label',response.nextlabel);
         setTimeout(function() {
             $('.message.loading').remove();
+
             var data = response.msg;
             console.log(data);
             for(var i=0; i<data.results.length; i++){
@@ -119,6 +118,9 @@
     /* Let's store the sessionid and count in localstorage */
     if(data.label=="whereto"){
     store.set('whereto',msg)
+    }
+    else if(data.label=="null"){
+    store.set('fromwhere',msg)
     }
     else if(data.label=="fromwhere"){
     store.set('fromwhere',msg)

@@ -7,7 +7,7 @@
     var HttpResponseProcessor = require("./HttpResponseProcessor.js");
     var validate = require("./validate.js");
 
-    module.exports = function (apiKey, outputFormat) {
+    module.exports = function (apiKey, outputFormat,response) {
         return function (parameters, callback) {
             validate.apiKey(apiKey);
             validate.outputFormat(outputFormat);
@@ -20,6 +20,11 @@
                 path: "/maps/api/place/textsearch/" + outputFormat + "?" + querystring.stringify(parameters)
             };
             var request = https.request(options, new HttpResponseProcessor(outputFormat === "json", callback));
+            //console.log(request);
+            request.on('response', function(response) {
+              //  console.log(response);
+
+            });
             request.on("error", function (error) {
                 callback(new Error(error));
             });

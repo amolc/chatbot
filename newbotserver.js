@@ -13,17 +13,10 @@
         http.listen(serverport, function(){
           console.log('listening on *:'+serverport);
         });
+
         var TextSearch = require("./api/TextSearch.js");
-      // var internalfunctions = require('./api/functions');
-      // var cityname = "new york" ;
-      // var airportlist = null;
-      // var assigningCallback = function(err, response){
-      //   airportlist = response;
-      //   console.log(airportlist);
-      // }
-      // internalfunctions.airportlist(cityname, assigningCallback);
-      //   console.log(airportlist);
-        //Bug-1 - We need to get the complete list of airports in response.
+       var ifunctions = require('./api/ifunctions');
+
 
         io.on('connection', function(socket){
           console.log('socket id is :',socket.id);
@@ -34,8 +27,8 @@
               /*001 - Need to add intelligence here */
 
               if(data.label=="whereto"){
-
                 var cityname = data.msg ;
+
               //  var google_api_key =   "AIzaSyCbQ_Hk3eqc7UB-fqKqYqUDFtjDjDBe2V8" ;
                 var google_api_key = "AIzaSyBKDSx_T1NPT6POTrShPCed43ULC1mx9U8";
                 var google_output_format = "json";
@@ -87,6 +80,7 @@ airship = { results:
                 response.nextlabel = "whereto" ;
                 response.msg = airship;
                 //response.msg = "From?";
+
               }
               else if(data.label=="fromwhere"){
 

@@ -61,6 +61,9 @@ io.on( 'connection', function ( socket ) {
       } );
 
     }
+
+    // Shahid:: you have to work like above for all below conditiosn
+
     // else if ( data.label == "starttime" ) {
 
     //   var response = {};

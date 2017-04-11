@@ -91,7 +91,12 @@
         store.set('label',response.nextlabel);
         setTimeout(function() {
             $('.message.loading').remove();
-            $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+            var data = response.msg;
+            console.log(data);
+            for(var i=0; i<data.results.length; i++){
+                $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + data.results[i].name + '</div>').appendTo($('.mCSB_container')).addClass('new');
+            }
+            
             setDate();
             updateScrollbar();
           }, 100 + (Math.random() * 20) * 100);

@@ -58,6 +58,9 @@
                           }
                           airship = airports ;
                      }
+                    
+
+
 
                      var jsonairports = JSON.parse(JSON.stringify(airportsnames))
                      airports.results = jsonairports ;
@@ -66,11 +69,24 @@
                     console.log(airship);
 
                  });
-
+                  
+airship = { results: 
+   [ 
+     { id: 1, name: 'Seletar Airport (XSP)' },
+     { id: 2, name: 'Jet Quay Pte. Ltd.' },
+     { id: 3, name: 'Changi Airport Singapore' },
+     { id: 4, name: 'SFI Manufacturing Private Limited' },
+     { id: 5, name: 'Changi Airport Terminal 1' },
+     { id: 6, name: 'Universal Aviation' },
+     { id: 7, name: 'Raffles Hospital' } 
+   ] 
+};                  
+                  
                 var response = {};
                 response.sessionId = data.sessionId ;
                 response.nextlabel = "whereto" ;
-                response.msg = airship ;
+                response.msg = airship;
+                //response.msg = "From?";
               }
               else if(data.label=="fromwhere"){
 

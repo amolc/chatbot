@@ -17,6 +17,42 @@
         var TextSearch = require("./api/TextSearch.js");
        var ifunctions = require('./api/ifunctions');
 
+       //  var google_api_key =   "AIzaSyCbQ_Hk3eqc7UB-fqKqYqUDFtjDjDBe2V8" ;
+         var google_api_key = "AIzaSyBKDSx_T1NPT6POTrShPCed43ULC1mx9U8";
+         var google_output_format = "json";
+         var textSearch = new TextSearch(google_api_key, google_output_format);
+        var parameters = {
+            query: "private airports in dubai"
+        };
+        global.airship = {} ;
+        //shahid - The issue is that we want to assign the response from Line:53 to the global variable.
+         textSearch(parameters, function (error, response) {
+              //console.log(response);
+              if(response.results.length==0){
+                console.log("No Airport Found");
+              }
+              else{
+                var airports = {}, airportsnames = [];
+                for(var index = 0; index < response.results.length; index++) {
+                        var srno = index+1 ;
+                         airportsnames.push({id:srno, name:response.results[index].name});
+                        //console.log(response.results[index].name);
+                   }
+                   airship = airports ;
+              }
+
+
+
+
+              var jsonairports = JSON.parse(JSON.stringify(airportsnames))
+              airports.results = jsonairports ;
+              //console.log(airports);
+              airship = airports;
+              console.log(airship);//this works 
+                });
+
+              console.log(airship);//shahid - this is coming as empty.We want to get the data.
+             //////////////code with the issue ends
 
         io.on('connection', function(socket){
           console.log('socket id is :',socket.id);
@@ -29,39 +65,10 @@
               if(data.label=="whereto"){
                 var cityname = data.msg ;
 
-              //  var google_api_key =   "AIzaSyCbQ_Hk3eqc7UB-fqKqYqUDFtjDjDBe2V8" ;
-                var google_api_key = "AIzaSyBKDSx_T1NPT6POTrShPCed43ULC1mx9U8";
-                var google_output_format = "json";
-                var textSearch = new TextSearch(google_api_key, google_output_format);
-               var parameters = {
-                   query: "private airports in"+cityname
-               };
-               global.airship = {} ;
-                textSearch(parameters, function (error, response) {
-                     //console.log(response);
-                     if(response.results.length==0){
-                       console.log("No Airport Found");
-                     }
-                     else{
-                       var airports = {}, airportsnames = [];
-                       for(var index = 0; index < response.results.length; index++) {
-                               var srno = index+1 ;
-                                airportsnames.push({id:srno, name:response.results[index].name});
-                               //console.log(response.results[index].name);
-                          }
-                          airship = airports ;
-                     }
 
 
 
 
-                     var jsonairports = JSON.parse(JSON.stringify(airportsnames))
-                     airports.results = jsonairports ;
-                     //console.log(airports);
-                     airship = airports;
-                    console.log(airship);
-
-                 });
 
 airship = { results:
    [

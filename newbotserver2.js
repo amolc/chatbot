@@ -27,28 +27,6 @@ var parameters = {
 };
 global.airship = {};
 //shahid - The issue is that we want to assign the response from Line:53 to the global variable.
-textSearch( parameters, function ( error, response ) {
-  //console.log(response);
-  if ( response.results.length == 0 ) {
-    console.log( "No Airport Found" );
-  }
-  else {
-    var airports = {}, airportsnames = [];
-    for ( var index = 0; index < response.results.length; index++ ) {
-      var srno = index + 1;
-      airportsnames.push( { id: srno, name: response.results[index].name } );
-      //console.log(response.results[index].name);
-    }
-    airship = airports;
-  }
-
-
-  var jsonairports = JSON.parse( JSON.stringify( airportsnames ) )
-  airports.results = jsonairports;
-  //console.log(airports);
-  airship = airports;
-  console.log( airship );//this works
-} );
 
 console.log( airship );//shahid - this is coming as empty.We want to get the data.
 //////////////code with the issue ends
@@ -58,7 +36,7 @@ io.on( 'connection', function ( socket ) {
 
   socket.on( 'apicall', function ( data ) {
 
-    console.log( data );
+    // console.log( data );
     /*001 - Need to add intelligence here */
 
     if ( data.label == "whereto" ) {
@@ -69,21 +47,32 @@ io.on( 'connection', function ( socket ) {
         query: "private airports in " + cityname
       };
 
+
+      //Shahid:: I moved this function inside if condition
       textSearch( parameters, function ( error, response ) {
 
-        airship = {
-          results:
-          [
-            { id: 1, name: 'Seletar Airport (XSP)' },
-            { id: 2, name: 'Jet Quay Pte. Ltd.' },
-            { id: 3, name: 'Changi Airport Singapore' },
-            { id: 4, name: 'SFI Manufacturing Private Limited' },
-            { id: 5, name: 'Changi Airport Terminal 1' },
-            { id: 6, name: 'Universal Aviation' },
-            { id: 7, name: 'Raffles Hospital' }
-          ]
-        };
+        airports = {};
 
+        //console.log(response);
+        if ( response.results.length == 0 ) {
+          console.log( "No Airport Found" );
+        }
+        else {
+          var airports = {}, airportsnames = [];
+          for ( var index = 0; index < response.results.length; index++ ) {
+            var srno = index + 1;
+            airportsnames.push( { id: srno, name: response.results[index].name } );
+            //console.log(response.results[index].name);
+          }
+          airship = airports;
+        }
+
+
+        var jsonairports = JSON.parse( JSON.stringify( airportsnames ) )
+        airports.results = jsonairports;
+        //console.log(airports);
+        airship = airports;
+        console.log( airship );//this works
 
         var response = {};
         response.sessionId = data.sessionId;
@@ -91,9 +80,11 @@ io.on( 'connection', function ( socket ) {
         response.msg = airship;
         //response.msg = "From?";
 
+        //Shahid:: I added this inside function
         io.sockets.connected[socket.id].emit( 'getresponse', response );
 
       } );
+
 
     }
     else if ( data.label == "fromwhere" ) {

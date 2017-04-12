@@ -103,6 +103,7 @@ io.on( 'connection', function ( socket ) {
       response.nextlabel = "startdate";
       response.msg = "When would you like to start?";
 
+      //Shahid:: added this in each condition
       io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
     else if ( data.label == "startdate" ) {
@@ -194,6 +195,8 @@ io.on( 'connection', function ( socket ) {
       response.sessionId = data.sessionId;
       response.nextlabel = "last";
       response.msg = route;
+
+      //Shahid:: this last line also moved inside else condition
       io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
 

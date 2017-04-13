@@ -17,15 +17,17 @@
         var TextSearch = require("./api/TextSearch.js");
        var ifunctions = require('./api/ifunctions');
 
+airportsnames = [];
 
         io.on('connection', function(socket){
           console.log('socket id is :',socket.id);
 
         socket.on('apicall', function(data){
 
+
               console.log(data);
               /*001 - Need to add intelligence here */
-
+               // var airports = {}, airportsnames = [];
               if(data.label=="whereto"){
                 var cityname = data.msg ;
 
@@ -36,49 +38,68 @@
                var parameters = {
                    query: "private airports in"+cityname
                };
-               global.airship = {} ;
+               //global.airship = {} ;
+                  //var airports = {};
+
+
                 textSearch(parameters, function (error, response) {
                      //console.log(response);
                      if(response.results.length==0){
                        console.log("No Airport Found");
                      }
                      else{
-                       var airports = {}, airportsnames = [];
-                       for(var index = 0; index < response.results.length; index++) {
-                               var srno = index+1 ;
-                                airportsnames.push({id:srno, name:response.results[index].name});
-                               //console.log(response.results[index].name);
-                          }
-                          airship = airports ;
+                        airportsnames = [];
+                            var airports = {};
+                               for(var index = 0; index < response.results.length; index++) {
+                                       var srno = index+1 ;
+                                        airportsnames.push({id:srno, name:response.results[index].name});
+                                       //console.log(response.results[index].name);
+                                  }
+                                  //airship = airports ;
+
+
                      }
                     
 
 
 
-                     var jsonairports = JSON.parse(JSON.stringify(airportsnames))
-                     airports.results = jsonairports ;
+                     var jsonairports = JSON.parse(JSON.stringify(airportsnames));
+                     airportsnames.results = jsonairports ;
+                    //air = jsonairports;
+                       // console.log(air);
                      //console.log(airports);
-                     airship = airports;
-                    console.log(airship);
+                     //airship = airports;
+                    //console.log(airship);
+                    //return airportsnames;
+
+                 //console.log(jsonairports);
 
                  });
                   
-airship = { results: 
-   [ 
-     { id: 1, name: 'Seletar Airport (XSP)' },
-     { id: 2, name: 'Jet Quay Pte. Ltd.' },
-     { id: 3, name: 'Changi Airport Singapore' },
-     { id: 4, name: 'SFI Manufacturing Private Limited' },
-     { id: 5, name: 'Changi Airport Terminal 1' },
-     { id: 6, name: 'Universal Aviation' },
-     { id: 7, name: 'Raffles Hospital' } 
-   ] 
-};                  
+console.log(airportsnames);
+
+
+               // console.log(jsonairports);
+                //console.log(airportsnames);
+                 // console.log(airports);
+
+
+//    airship = { results:
+//       [
+//         { id: 1, name: 'Seletar Airport (XSP)' },
+//         { id: 2, name: 'Jet Quay Pte. Ltd.' },
+//         { id: 3, name: 'Changi Airport Singapore' },
+//         { id: 4, name: 'SFI Manufacturing Private Limited' },
+//         { id: 5, name: 'Changi Airport Terminal 1' },
+//         { id: 6, name: 'Universal Aviation' },
+//         { id: 7, name: 'Raffles Hospital' }
+//       ]
+//    };
                   
                 var response = {};
                 response.sessionId = data.sessionId ;
                 response.nextlabel = "whereto" ;
-                response.msg = airship;
+                response.msg = airportsnames;
                 //response.msg = "From?";
 
               }

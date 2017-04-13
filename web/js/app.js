@@ -110,7 +110,7 @@
 //                        });
 //                    } );
                for(var i=0; i<response.msg.results.length; i++){
-                 $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>'+ response.msg.results.length + '. ' + response.msg.results[i].name + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                 $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>'+ response.msg.results[i].id + '. ' + response.msg.results[i].name + '</div>').appendTo($('.mCSB_container')).addClass('new');
 //                   $( function() {
 //                        //var availableAirports = response.msg.results[i].name;
 //                       var availableAirports = response.msg.results[i].name;

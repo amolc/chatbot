@@ -85,17 +85,36 @@
 
 
   socket.on('getresponse',function(response){
-        console.log(response);
-        store.set('label',response.nextlabel);
+
+        // console.log('response::', response);
+
+        // store.set('label',response.nextlabel);
+
         setTimeout(function() {
+
             $('.message.loading').remove();
 
-            var data = response.msg;
-            console.log(data);
-            for(var i=0; i<data.results.length; i++){
-                $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + data.results[i].name + '</div>').appendTo($('.mCSB_container')).addClass('new');
+            // var data = response.msg;
+
+            // console.log('data.results', data.results);
+
+            if( response.status == 'success' ){
+              console.log('success msg' , response.msg);
+              console.log('response length' , response.msg.results.length);
+               for(var i=0; i<response.msg.results.length; i++){
+                 $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg.results[i].name + '</div>').appendTo($('.mCSB_container')).addClass('new');
+               }
+
             }
-            
+            else{
+
+                $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+            }
+
+
+
+            // $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + data + '</div>').appendTo($('.mCSB_container')).addClass('new');
+
             setDate();
             updateScrollbar();
           }, 100 + (Math.random() * 20) * 100);

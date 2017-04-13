@@ -99,10 +99,25 @@
             // console.log('data.results', data.results);
 
             if( response.status == 'success' ){
-              console.log('success msg' , response.msg);
-              console.log('response length' , response.msg.results.length);
+              //console.log('success msg' , response.msg);
+              //console.log('response length' , response.msg.results.length);
+
+//                 $( function() {
+//                        //var availableAirports = response.msg.results[i].name;
+//                       var availableAirports = ['dhaka', 'mumbai', 'jeddah', 'singpore'];
+//                        $( ".place" ).autocomplete({
+//                         availableAirports
+//                        });
+//                    } );
                for(var i=0; i<response.msg.results.length; i++){
-                 $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg.results[i].name + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                 //$('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg.results[i].name + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                   $( function() {
+                        //var availableAirports = response.msg.results[i].name;
+                       var availableAirports = response.msg.results[i].name;
+                        $( ".place" ).autocomplete({
+                          source: availableAirports
+                        });
+                    } );
                }
 
             }

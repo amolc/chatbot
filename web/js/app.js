@@ -99,10 +99,11 @@
             // console.log('data.results', data.results);
 
             if( response.status == 'success' ){
-
-              for(var i=0; i<data.results.length; i++){
-                $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-              }
+              console.log('success msg' , response.msg);
+              console.log('response length' , response.msg.results.length);
+               for(var i=0; i<response.msg.results.length; i++){
+                 $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg.results[i].name + '</div>').appendTo($('.mCSB_container')).addClass('new');
+               }
 
             }
             else{

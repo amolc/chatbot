@@ -55,7 +55,7 @@ io.on( 'connection', function ( socket ) {
 
           var response = {};
           response.sessionId = data.sessionId;
-          response.nextlabel = "fromwhere";
+          response.nextlabel = "whereto";
           response.msg = "Something is wrong";
           io.sockets.connected[socket.id].emit( 'getresponse', response );
 
@@ -67,7 +67,7 @@ io.on( 'connection', function ( socket ) {
 
               var response = {};
               response.sessionId = data.sessionId;
-              response.nextlabel = "fromwhere";
+              response.nextlabel = "whereto";
               response.msg = "Sorry! No Airport Found";
               response.status = "error";
               io.sockets.connected[socket.id].emit( 'getresponse', response );
@@ -79,25 +79,23 @@ io.on( 'connection', function ( socket ) {
 
               var airports = {}, airportsnames = [];
 
-              // console.log( 'output', output );
+               //console.log( 'output', output );
 
               for ( var index = 0; index < output.results.length; index++ ) {
                 var srno = index + 1;
                 airportsnames.push( { id: srno, name: output.results[index].name } );
-              }
 
-              airship = airports;
+              }
               var jsonairports = JSON.parse( JSON.stringify( airportsnames ) )
               airports.results = jsonairports;
-              response.status = "success";
-              airship = airports;
-
+              //airports = JSON.parse(airports);
+              console.log('airport names',airports );
+              console.log(airports.results.length);
               var response = {};
               response.sessionId = data.sessionId;
-              response.nextlabel = "fromwhere";
-
-              response.msg = airship;
-
+              response.nextlabel = "whereto";
+              response.status = "success";
+              response.msg = airports;
               io.sockets.connected[socket.id].emit( 'getresponse', response );
 
             }

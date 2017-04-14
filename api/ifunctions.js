@@ -44,8 +44,8 @@ exports.privateairportfunc = function ( req, callback ) {
   };
 
 
-  parameters.key = "AIzaSyCbQ_Hk3eqc7UB-fqKqYqUDFtjDjDBe2V8";
-  //parameters.key = "AIzaSyBfRKuwq8c3ETUxdC7jMvhh3iN_x0SHRWQ";
+  //parameters.key = "AIzaSyCbQ_Hk3eqc7UB-fqKqYqUDFtjDjDBe2V8";
+  parameters.key = "AIzaSyBfRKuwq8c3ETUxdC7jMvhh3iN_x0SHRWQ";
   parameters.query = parameters.query || "airports";
   parameters.sensor = parameters.sensor || false;
   parameters.type = "airport";
@@ -91,22 +91,6 @@ exports.privateairportfunc = function ( req, callback ) {
 
   request.end();
 
-  // console.log('parameters', parameters);
-
-  //  var TextSearch = require( "./TextSearch.js" );
-
-  //  console.log('TextSearch', TextSearch);
-
-  //  TextSearch( parameters, function ( error, response ) {
-
-  //   console.log('error', error);
-
-  //   console.log('i am inside funnnn');
-
-  //   console.log('response', response);
-
-  // } );
-
 
 };
 //
@@ -131,14 +115,40 @@ exports.planetypes = function (res) {
 };
 //
 
-exports.distance = function test( input,  callback ){
+exports.distancefunc = function ( data, callback ) {
 
-      var error ="error";
-
-        var data = "20000";
-        callback( error, data )
-
+    var gps = require('gps-manager');
     
+    var lat1 = data.fromairportlat ;
+    var lat2 = data.toairportlat ;
+    var lon1 = data.fromairportlng ;
+    var lon2 = data.toairportlng ;
+    var distance = gps.getDistance(lat1,lon1,lat2,lon2);
+   
+    distance = distance/1000 ;
+    var distanceMiles = distance*0.621371 ;
+    console.log('distance',distance);
+    console.log('distanceMiles',distanceMiles);
+    
+    var estimatedhrs = distance/data.planespeed ;
+
+    var estimatedcost = (estimatedhrs)*data.planecostperhr ;
+     console.log('estimatedhrs' ,estimatedhrs);
+    console.log('estimatedcost' ,estimatedcost);
+    callback(null,distanceMiles,estimatedhrs,estimatedcost);
+    
+   
+
+  
+};
+
+exports.estimatedcostfunc = function ( data ,distance, callback ) {
+    console.log('data',data.distance);
+    var estimatedhrs = distance/data.planespeed
+    var estimatedcost = (estimatedhrs)*data.planecostperhr ;
+    console.log('estimatedcost' ,estimatedcost);
+    callback(null,estimatedhrs,estimatedcost);
+
 };
 
 

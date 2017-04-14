@@ -6,7 +6,6 @@ var connect = require( 'connect' );
 var serveStatic = require( 'serve-static' );
 var bodyParser = require( 'body-parser' );
 var nodemailer = require( 'nodemailer' );
-var distance = require('google-distance');
 var serverport = 2001;
 var web = connect();
 web.use( serveStatic( 'web' ) );
@@ -18,8 +17,7 @@ http.listen( serverport, function () {
 var TextSearch = require( "./api/TextSearch.js" );
 var ifunctions = require( './api/ifunctions' );
 
-//var cityname = "Bangalore" ;
-
+//ifunctions.getUserInput("Michael", "Fassbender", "Man", ifunctions.genericPoemMaker);
 
 ////
 var google_api_key = "AIzaSyCbQ_Hk3eqc7UB-fqKqYqUDFtjDjDBe2V8";
@@ -28,12 +26,6 @@ var google_output_format = "json";
 var textSearch = new TextSearch( google_api_key, google_output_format );
 ///
 
-function goOn() {
-  // continue your code here
-
-  console.log( global.airship );
-  return global.airship;
-}
 
 io.on( 'connection', function ( socket ) {
 
@@ -41,6 +33,9 @@ io.on( 'connection', function ( socket ) {
   // console.log( 'socket id is :', socket.id );
 
   socket.on( 'apicall', function ( data ) {
+
+    
+
 
     if ( data.label == "whereto" ) {
 
@@ -151,7 +146,8 @@ io.on( 'connection', function ( socket ) {
        io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
     else if ( data.label == "startdate" ) {
-
+       
+     
       var response = {};
       response.sessionId = data.sessionId;
       response.nextlabel = "starttime";
@@ -161,8 +157,7 @@ io.on( 'connection', function ( socket ) {
     else if ( data.label == "starttime" ) {
 
       var planes = ifunctions.planetypes() ;
-      console.log('ifunction' , planes);
-  
+    
 
       var response = {};
       response.sessionId = data.sessionId;
@@ -211,51 +206,57 @@ io.on( 'connection', function ( socket ) {
     else if ( data.label == "email" ) {
       console.log( data );
       var agentemail = "ceo@80startups.com";
-     // var officeremail = "david.northcutt@genacom.com";
-      /* Todo : Let's do some distance calculation here */ 
+      var officeremail = "david.northcutt@genacom.com";
+     
+     /* Todo : Let's do some distance calculation here */ 
+       ifunctions.distancefunc( data, function (error,distanceMiles,estimatedhrs,estimatedcost ) {
       
-    
-      
-    ifunctions.distance( 'myinput',  function( error, data ){
+      if(error){
+          console.log(error)
+      }else{
+           data.distance = distanceMiles ;
+           data.estimatedhrs = estimatedhrs ;
+           data.estimatedcost = estimatedcost ;
+           console.log('data.distance', distanceMiles);
+           console.log('data.estimatedhrs', estimatedhrs);
+           console.log('data.estimatedcost', estimatedcost);
+           var subject = "New Client Lead - Private Jet Booking";
+           var mailbody = "Hello,</br><p>Flight Booking Quote is requested : </p>"
+            + "</br><p><b> Start City :</b> " + data.fromwhere + "</p>"
+            + "</br><p><b> Start Airport :</b> " + data.fromairport + "</p>"
+            + "</br><p><b>To City:</b> " + data.whereto + "</p>"
+            + "</br><p><b>To Airport:</b> " + data.toairport + "</p>"
+            + "</br><p><b> Departure date:</b> " + data.startdate + "</p>"
+            + "</br><p><b> At time:</b> " + data.starttime + "</p>"
+            + "</br><p><b> Plane Type:</b> " + data.planetype + "</p>"
+            + "</br><p><b> Distance:</b> " + data.distance + "Miles</p>"
+            + "</br><p><b> Flight Time Hours:</b> " + data.estimatedhrs + "Hrs.</p>"
+            + "</br><p><b> Estimated Cost:</b> " + data.estimatedcost + "</p>"
+            + "</br><p><b></p>"
+            + "</br><p><b> Returne:</b> " + data.returnboolen + "</p>"
+            + "Thanks, Chatbot";
 
-    if( error ){
+          send_mail( agentemail, subject, mailbody );
+          //send_mail( officeremail, subject, mailbody );
 
-        }else{
-        
-            console.log('i got data' + data);
+          var response = {};
+          response.sessionId = data.sessionId;
+          response.nextlabel = "email";
+          response.msg = "Thank You, we should email you a quote soon.";
+          io.sockets.connected[socket.id].emit( 'getresponse', response );
+      }
+       
 
-        }
+          
+     });
 
-    });
-
-
-      var subject = "New Client Lead - Private Jet Booking";
-      var mailbody = "Hello,</br><p>Flight Booking Quote is requested : </p>"
-        + "</br><p><b> Start City :</b> " + data.fromwhere + "</p>"
-        + "</br><p><b> Start Airport :</b> " + data.fromairport + "</p>"
-        + "</br><p><b>To City:</b> " + data.whereto + "</p>"
-        + "</br><p><b>To Airport:</b> " + data.toairport + "</p>"
-        + "</br><p><b> Departure date:</b> " + data.startdate + "</p>"
-        + "</br><p><b> At time:</b> " + data.starttime + "</p>"
-        + "</br><p><b> Flight Type:</b> " + data.whichplane + "</p>"
-        + "</br><p><b></p>"
-        + "</br><p><b> Returne:</b> " + data.returnboolen + "</p>"
-        + "Thanks, Chatbot";
-
-      send_mail( agentemail, subject, mailbody );
-      //send_mail( officeremail, subject, mailbody );
-
-      var response = {};
-      response.sessionId = data.sessionId;
-      response.nextlabel = "summary";
-      response.msg = "Thank You, we should email you a quote soon.";
-       io.sockets.connected[socket.id].emit( 'getresponse', response );
+     
     }
     else if ( data.label == "summary" ) {
       console.log(data.label);
       var response = {};
       response.sessionId = data.sessionId;
-      response.nextlabel = "whereto";
+      response.nextlabel = "email";
       response.msg = "Where would you like to fly?";
        io.sockets.connected[socket.id].emit( 'getresponse', response );
     }

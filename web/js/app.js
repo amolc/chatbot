@@ -242,11 +242,21 @@
                   console.log('fromairportlat',airports.results[selectAirport].geometry.location.lat);
                   console.log('fromairportlng',airports.results[selectAirport].geometry.location.lng);
       console.log('data',data);
+
+      
       socket.emit('apicall', data);
     }
     else if(data.label=="startdate"){
-    store.set('startdate',msg)
-       console.log('data',data);
+      data.whereto = store.get('whereto');
+      data.toairport = store.get('toairport');
+      data.toairportlat = store.get('toairportlat');
+      data.toairportlng = store.get('toairportlng');
+      data.fromwhere = store.get('fromwhere');
+      data.fromairport = store.get('fromairport');
+      data.fromairportlat = store.get('fromairportlat');
+      data.fromairportlng = store.get('fromairportlng');
+      store.set('startdate',msg)
+      console.log('data',data);
       socket.emit('apicall', data);
     }
     else if(data.label=="starttime"){

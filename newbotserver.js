@@ -6,6 +6,8 @@ var connect = require( 'connect' );
 var serveStatic = require( 'serve-static' );
 var bodyParser = require( 'body-parser' );
 var nodemailer = require( 'nodemailer' );
+var chrono = require('chrono-node')
+
 var serverport = 2001;
 var web = connect();
 web.use( serveStatic( 'web' ) );
@@ -147,7 +149,7 @@ io.on( 'connection', function ( socket ) {
     }
     else if ( data.label == "startdate" ) {
        
-     
+    
       var response = {};
       response.sessionId = data.sessionId;
       response.nextlabel = "starttime";
@@ -209,7 +211,7 @@ io.on( 'connection', function ( socket ) {
       var officeremail = "david.northcutt@genacom.com";
      
      /* Todo : Let's do some distance calculation here */ 
-       ifunctions.distancefunc( data, function (error,distanceMiles,estimatedhrs,estimatedcost ) {
+       ifunctions.distancefunc( data, function (error,distanceMiles,estimatedhrs,estimatedcost ,startdate) {
       
       if(error){
           console.log(error)
@@ -217,6 +219,7 @@ io.on( 'connection', function ( socket ) {
            data.distance = distanceMiles ;
            data.estimatedhrs = estimatedhrs ;
            data.estimatedcost = estimatedcost ;
+           data.startdate = startdate ;
            console.log('data.distance', distanceMiles);
            console.log('data.estimatedhrs', estimatedhrs);
            console.log('data.estimatedcost', estimatedcost);

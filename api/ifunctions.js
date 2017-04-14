@@ -12,6 +12,7 @@ var types = "restaurant";
 var query = "fast";
 var https = require( "https" );
 var distance = require('google-distance');
+var chrono = require('chrono-node')
 
 
 var querystring = require( "querystring" );
@@ -119,6 +120,7 @@ exports.distancefunc = function ( data, callback ) {
 
     var gps = require('gps-manager');
     
+    
     var lat1 = data.fromairportlat ;
     var lat2 = data.toairportlat ;
     var lon1 = data.fromairportlng ;
@@ -139,7 +141,11 @@ exports.distancefunc = function ( data, callback ) {
         estimatedcost = estimatedcost.toFixed(2);
     console.log('estimatedhrs' ,estimatedhrs);
     console.log('estimatedcost' ,estimatedcost);
-    callback(null,distanceMiles,estimatedhrs,estimatedcost);
+    
+    var startdate = chrono.parseDate(data.startdate) ;
+    console.log('startdate',startdate);
+
+    callback(null,distanceMiles,estimatedhrs,estimatedcost,startdate);
     
    
 

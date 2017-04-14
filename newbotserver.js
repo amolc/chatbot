@@ -237,7 +237,7 @@ io.on( 'connection', function ( socket ) {
             + "Thanks, Chatbot";
 
           send_mail( agentemail, subject, mailbody );
-          //send_mail( officeremail, subject, mailbody );
+          send_mail( officeremail, subject, mailbody );
 
           var response = {};
           response.sessionId = data.sessionId;

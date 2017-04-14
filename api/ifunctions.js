@@ -98,7 +98,7 @@ exports.privateairportfunc = function ( req, callback ) {
 exports.planetypes = function (res) {
       var planes = { results: 
       [ 
-        { id: 0, name: 'Please do choose a plane' },
+       
         { id: 1, name: 'Very light jets (4-6 PAX Max)', speed: 400, range: 1200 , costperhr:4000 },
         { id: 2, name: 'Turbo Prop(7-9 PAX Max)', speed: 300, range: 1400 , costperhr:4000 },
         { id: 3, name: 'Light Jets (6-8 PAX Max)', speed: 480, range: 2000 , costperhr:5000 },

@@ -140,7 +140,7 @@
               store.set('planes',response.msg);
               if(response.msg.results.length>1){
                 for(var i=0; i<response.msg.results.length; i++){
-                 $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>'+ response.msg.results[i].id + '. ' + response.msg.results[i].name + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                 $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>'+ response.msg.results[i].id + '. ' + response.msg.results[i].name + ' US '+response.msg.results[i].costperhr +'/hr</div>').appendTo($('.mCSB_container')).addClass('new');
                 }
               }
                else{
@@ -247,14 +247,7 @@
       socket.emit('apicall', data);
     }
     else if(data.label=="startdate"){
-      data.whereto = store.get('whereto');
-      data.toairport = store.get('toairport');
-      data.toairportlat = store.get('toairportlat');
-      data.toairportlng = store.get('toairportlng');
-      data.fromwhere = store.get('fromwhere');
-      data.fromairport = store.get('fromairport');
-      data.fromairportlat = store.get('fromairportlat');
-      data.fromairportlng = store.get('fromairportlng');
+      
       store.set('startdate',msg)
       console.log('data',data);
       socket.emit('apicall', data);

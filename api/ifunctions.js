@@ -43,8 +43,8 @@ exports.privateairportfunc = function ( req, callback ) {
   };
 
 
-
-  parameters.key = "AIzaSyBfRKuwq8c3ETUxdC7jMvhh3iN_x0SHRWQ";
+  parameters.key = "AIzaSyCbQ_Hk3eqc7UB-fqKqYqUDFtjDjDBe2V8";
+  //parameters.key = "AIzaSyBfRKuwq8c3ETUxdC7jMvhh3iN_x0SHRWQ";
   parameters.query = parameters.query || "airports";
   parameters.sensor = parameters.sensor || false;
   if ( typeof parameters.location === "object" ) parameters.location = parameters.location.toString();

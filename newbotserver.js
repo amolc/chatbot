@@ -41,11 +41,7 @@ io.on( 'connection', function ( socket ) {
 
   socket.on( 'apicall', function ( data ) {
 
-    // console.log( data );
-    /*001 - Need to add intelligence here */
-
     if ( data.label == "whereto" ) {
-
 
       ifunctions.privateairportfunc( data, function ( error, output ) {
 
@@ -60,9 +56,7 @@ io.on( 'connection', function ( socket ) {
           io.sockets.connected[socket.id].emit( 'getresponse', response );
 
         } else {
-
           if ( output ) {
-
             if ( output.results.length == 0 ) {
 
               var response = {};
@@ -76,52 +70,104 @@ io.on( 'connection', function ( socket ) {
 
             }
             else {
-
               var airports = {}, airportsnames = [];
-
-               //console.log( 'output', output );
-
-              for ( var index = 0; index < output.results.length; index++ ) {
-                var srno = index + 1;
-                airportsnames.push( { id: srno, name: output.results[index].name } );
-
-              }
-              var jsonairports = JSON.parse( JSON.stringify( airportsnames ) )
-              airports.results = jsonairports;
-              //airports = JSON.parse(airports);
-              //console.log('airport names',airports );
-              console.log(airports.results.length);
-              var response = {};
-              response.sessionId = data.sessionId;
-              response.nextlabel = "whereto";
-              response.status = "success";
-              response.msg = airports;
-              io.sockets.connected[socket.id].emit( 'getresponse', response );
-
+                    //console.log( 'output', output );
+                    for ( var index = 0; index < output.results.length; index++ ) {
+                      var srno = index + 1;
+                      airportsnames.push( { id: srno, name: output.results[index].name } );
+                    }
+                    var jsonairports = JSON.parse( JSON.stringify( airportsnames ) )
+                    airports.results = jsonairports;
+                    //airports = JSON.parse(airports);
+                    //console.log('airport names',airports );
+                    console.log(airports.results.length);
+                    var response = {};
+                    response.sessionId = data.sessionId;
+                    response.nextlabel = "toairports";
+                    response.status = "success";
+                    response.msg = airports;
+                    io.sockets.connected[socket.id].emit( 'getresponse', response );
             }
           }
 
-             //console.log('airport names',airports );
-
-          // console.log('output', output);
-
         }
 
+      });
 
-      } );
+    
 
-      // response.msg = "From?";
+    }
+    else if ( data.label == "toairports" ) {
+      console.log('data.label',"toairports");
+      var response = {};
+      response.sessionId = data.sessionId;
+      response.nextlabel = "fromwhere";
+      response.msg = "From Where?";
+      io.sockets.connected[socket.id].emit( 'getresponse', response );
 
     }
     else if ( data.label == "fromwhere" ) {
+      console.log('data.label',"fromwhere");
+         ifunctions.privateairportfunc( data, function ( error, output ) {
 
+        if ( error ) {
+
+          console.log( 'error', error );
+
+          var response = {};
+          response.sessionId = data.sessionId;
+          response.nextlabel = "fromwhere";
+          response.msg = "Something is wrong";
+          io.sockets.connected[socket.id].emit( 'getresponse', response );
+
+        } else {
+          if ( output ) {
+            if ( output.results.length == 0 ) {
+
+              var response = {};
+              response.sessionId = data.sessionId;
+              response.nextlabel = "fromwhere";
+              response.msg = "Sorry! No Airport Found";
+              response.status = "error";
+              io.sockets.connected[socket.id].emit( 'getresponse', response );
+              console.log( 'output',output );
+              console.log( "No Airport Found" );
+
+            }
+            else {
+              var airports = {}, airportsnames = [];
+                    //console.log( 'output', output );
+                    for ( var index = 0; index < output.results.length; index++ ) {
+                      var srno = index + 1;
+                      airportsnames.push( { id: srno, name: output.results[index].name } );
+                    }
+                    var jsonairports = JSON.parse( JSON.stringify( airportsnames ) )
+                    airports.results = jsonairports;
+                    //airports = JSON.parse(airports);
+                    //console.log('airport names',airports );
+                    console.log(airports.results.length);
+                    var response = {};
+                    response.sessionId = data.sessionId;
+                    response.nextlabel = "fromairports";
+                    response.status = "success";
+                    response.msg = airports;
+                    console.log('fromairports',airports);
+                    io.sockets.connected[socket.id].emit( 'getresponse', response );
+            }
+          }
+
+        }
+
+      });
+
+    }
+    else if ( data.label == "fromairports" ) {
+      console.log('fromairport');
       var response = {};
       response.sessionId = data.sessionId;
       response.nextlabel = "startdate";
-      response.msg = "When would you like to start?";
-
-      io.sockets.connected[socket.id].emit( 'getresponse', response );
-
+      response.msg = "When would you like to travel?";
+       io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
     else if ( data.label == "startdate" ) {
 
@@ -129,13 +175,27 @@ io.on( 'connection', function ( socket ) {
       response.sessionId = data.sessionId;
       response.nextlabel = "starttime";
       response.msg = "Whats the best time you would prefer?";
+       io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
     else if ( data.label == "starttime" ) {
+
+       planes = { results: 
+      [ 
+        { id: 0, name: 'Please do choose a plane' },
+        { id: 1, name: 'Very light jets (2 Pax Max.)' },
+        { id: 2, name: 'Light jets (8 Pax Max.)' },
+        { id: 3, name: 'Mid-size jets (9 Pax Max.)' },
+        { id: 4, name: 'Super mid-size jets (11 Pax Max.)' },
+        { id: 5, name: 'Large jets (14 Pax Max.)' }
+      ] 
+    };
 
       var response = {};
       response.sessionId = data.sessionId;
       response.nextlabel = "whichplane";
-      response.msg = "Which Plane would you like to choose?";
+      response.status = "success";
+      response.msg = planes ;
+       io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
     else if ( data.label == "whichplane" ) {
 
@@ -143,28 +203,36 @@ io.on( 'connection', function ( socket ) {
       response.sessionId = data.sessionId;
       response.nextlabel = "returnboolen";
       response.msg = "Would you like to book a return?";
+       io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
     else if ( data.label == "returnboolen" ) {
+      console.log(data.label);
+      console.log(data.msg);
       var response = {};
-      if ( data.msg == "no" ) {
+      var returnboolen = data.msg ;
+          returnboolen = returnboolen.toUpperCase();
+      if (returnboolen == "NO") {
 
         response.sessionId = data.sessionId;
         response.nextlabel = "email";
         response.msg = "Can I get your email";
+         io.sockets.connected[socket.id].emit( 'getresponse', response );
       } else {
-
+        console.log(data.label);
         response.sessionId = data.sessionId;
         response.nextlabel = "returndate";
         response.msg = "What date?";
+         io.sockets.connected[socket.id].emit( 'getresponse', response );
       }
 
     }
     else if ( data.label == "returndate" ) {
-
+      console.log(data.label);
       var response = {};
       response.sessionId = data.sessionId;
       response.nextlabel = "email";
       response.msg = "Can I get your email?";
+       io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
     else if ( data.label == "email" ) {
       console.log( data );
@@ -181,26 +249,29 @@ io.on( 'connection', function ( socket ) {
         + "Thanks, Chatbot";
 
       send_mail( agentemail, subject, mailbody );
-      send_mail( officeremail, subject, mailbody );
+      //send_mail( officeremail, subject, mailbody );
 
       var response = {};
       response.sessionId = data.sessionId;
       response.nextlabel = "summary";
       response.msg = "Thank You, we should email you a quote soon.";
+       io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
     else if ( data.label == "summary" ) {
-
+      console.log(data.label);
       var response = {};
       response.sessionId = data.sessionId;
       response.nextlabel = "whereto";
       response.msg = "Where would you like to fly?";
+       io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
     else {
       var response = {};
-      route.returndate = data.msg;
+      var returndate = data.msg;
       response.sessionId = data.sessionId;
       response.nextlabel = "last";
-      response.msg = route;
+      response.msg = "Success";
+       io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
 
 

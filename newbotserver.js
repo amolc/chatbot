@@ -6,6 +6,7 @@ var connect = require( 'connect' );
 var serveStatic = require( 'serve-static' );
 var bodyParser = require( 'body-parser' );
 var nodemailer = require( 'nodemailer' );
+var distance = require('google-distance');
 var serverport = 2001;
 var web = connect();
 web.use( serveStatic( 'web' ) );
@@ -70,16 +71,7 @@ io.on( 'connection', function ( socket ) {
 
             }
             else {
-                    // var airports = {}, airportsnames = [];
-                    // //console.log( 'output', output );
-                    // for ( var index = 0; index < output.results.length; index++ ) {
-                    //   var srno = index + 1;
-                    //   airportsnames.push( { id: srno, name: output.results[index].name } );
-                    // }
-                    // var jsonairports = JSON.parse( JSON.stringify( airportsnames ) )
-                    // airports.results = jsonairports;
                   
-                    // console.log(airports.results.length);
                     var response = {};
                     response.sessionId = data.sessionId;
                     response.nextlabel = "toairports";
@@ -134,17 +126,7 @@ io.on( 'connection', function ( socket ) {
 
             }
             else {
-              // var airports = {}, airportsnames = [];
-              //       console.log( 'output', output );
-              //       for ( var index = 0; index < output.results.length; index++ ) {
-              //         var srno = index + 1;
-              //         airportsnames.push( { id: srno, name: output.results[index].name } );
-              //       }
-              //       var jsonairports = JSON.parse( JSON.stringify( airportsnames ) )
-              //       airports.results = jsonairports;
-                    //airports = JSON.parse(airports);
-                    //console.log('airport names',airports );
-                    //console.log(airports.results.length);
+             
                     var response = {};
                     response.sessionId = data.sessionId;
                     response.nextlabel = "fromairports";
@@ -231,7 +213,20 @@ io.on( 'connection', function ( socket ) {
       var agentemail = "ceo@80startups.com";
      // var officeremail = "david.northcutt@genacom.com";
       /* Todo : Let's do some distance calculation here */ 
+      
+    
+      
+    ifunctions.distance( 'myinput',  function( error, data ){
 
+    if( error ){
+
+        }else{
+        
+            console.log('i got data' + data);
+
+        }
+
+    });
 
 
       var subject = "New Client Lead - Private Jet Booking";

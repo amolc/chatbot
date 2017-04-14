@@ -11,6 +11,7 @@ var sensor = false;
 var types = "restaurant";
 var query = "fast";
 var https = require( "https" );
+var distance = require('google-distance');
 
 
 var querystring = require( "querystring" );
@@ -129,3 +130,16 @@ exports.planetypes = function (res) {
 
 };
 //
+
+exports.distance = function test( input,  callback ){
+
+      var error ="error";
+
+        var data = "20000";
+        callback( error, data )
+
+    
+};
+
+
+ 

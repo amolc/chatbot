@@ -29,6 +29,7 @@
     "express": "^4.15.0",
     "express-validator": "^3.1.2",
     "fs-extra": "^2.0.0",
+    "google-distance": "^1.0.1",
     "google-places-web": "0.0.4",
     "jsonwebtoken": "^7.3.0",
     "md5": "^2.2.1",

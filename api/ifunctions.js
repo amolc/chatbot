@@ -126,14 +126,18 @@ exports.distancefunc = function ( data, callback ) {
     var distance = gps.getDistance(lat1,lon1,lat2,lon2);
    
     distance = distance/1000 ;
+    distance = distance.toFixed(2);
     var distanceMiles = distance*0.621371 ;
+      distanceMiles = distanceMiles.toFixed(2);
     console.log('distance',distance);
     console.log('distanceMiles',distanceMiles);
+
     
     var estimatedhrs = distance/data.planespeed ;
-
+        estimatedhrs = estimatedhrs.toFixed(2);
     var estimatedcost = (estimatedhrs)*data.planecostperhr ;
-     console.log('estimatedhrs' ,estimatedhrs);
+        estimatedcost = estimatedcost.toFixed(2);
+    console.log('estimatedhrs' ,estimatedhrs);
     console.log('estimatedcost' ,estimatedcost);
     callback(null,distanceMiles,estimatedhrs,estimatedcost);
     

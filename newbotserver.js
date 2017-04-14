@@ -231,6 +231,7 @@ io.on( 'connection', function ( socket ) {
             + "</br><p><b> Plane Type:</b> " + data.planetype + "</p>"
             + "</br><p><b> Distance:</b> " + data.distance + "Miles</p>"
             + "</br><p><b> Flight Time Hours:</b> " + data.estimatedhrs + "Hrs.</p>"
+            + "</br><p><b> Estimated Cost:</b> " + data.planecostperhr + "</p>"
             + "</br><p><b> Estimated Cost:</b> " + data.estimatedcost + "</p>"
             + "</br><p><b></p>"
             + "</br><p><b> Returne:</b> " + data.returnboolen + "</p>"

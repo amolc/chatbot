@@ -70,22 +70,21 @@ io.on( 'connection', function ( socket ) {
 
             }
             else {
-              var airports = {}, airportsnames = [];
-                    //console.log( 'output', output );
-                    for ( var index = 0; index < output.results.length; index++ ) {
-                      var srno = index + 1;
-                      airportsnames.push( { id: srno, name: output.results[index].name } );
-                    }
-                    var jsonairports = JSON.parse( JSON.stringify( airportsnames ) )
-                    airports.results = jsonairports;
-                    //airports = JSON.parse(airports);
-                    //console.log('airport names',airports );
-                    console.log(airports.results.length);
+                    // var airports = {}, airportsnames = [];
+                    // //console.log( 'output', output );
+                    // for ( var index = 0; index < output.results.length; index++ ) {
+                    //   var srno = index + 1;
+                    //   airportsnames.push( { id: srno, name: output.results[index].name } );
+                    // }
+                    // var jsonairports = JSON.parse( JSON.stringify( airportsnames ) )
+                    // airports.results = jsonairports;
+                  
+                    // console.log(airports.results.length);
                     var response = {};
                     response.sessionId = data.sessionId;
                     response.nextlabel = "toairports";
                     response.status = "success";
-                    response.msg = airports;
+                    response.msg = output;
                     io.sockets.connected[socket.id].emit( 'getresponse', response );
             }
           }
@@ -135,23 +134,23 @@ io.on( 'connection', function ( socket ) {
 
             }
             else {
-              var airports = {}, airportsnames = [];
-                    //console.log( 'output', output );
-                    for ( var index = 0; index < output.results.length; index++ ) {
-                      var srno = index + 1;
-                      airportsnames.push( { id: srno, name: output.results[index].name } );
-                    }
-                    var jsonairports = JSON.parse( JSON.stringify( airportsnames ) )
-                    airports.results = jsonairports;
+              // var airports = {}, airportsnames = [];
+              //       console.log( 'output', output );
+              //       for ( var index = 0; index < output.results.length; index++ ) {
+              //         var srno = index + 1;
+              //         airportsnames.push( { id: srno, name: output.results[index].name } );
+              //       }
+              //       var jsonairports = JSON.parse( JSON.stringify( airportsnames ) )
+              //       airports.results = jsonairports;
                     //airports = JSON.parse(airports);
                     //console.log('airport names',airports );
-                    console.log(airports.results.length);
+                    //console.log(airports.results.length);
                     var response = {};
                     response.sessionId = data.sessionId;
                     response.nextlabel = "fromairports";
                     response.status = "success";
-                    response.msg = airports;
-                    console.log('fromairports',airports);
+                    response.msg = output;
+                   // console.log('fromairports',airports);
                     io.sockets.connected[socket.id].emit( 'getresponse', response );
             }
           }
@@ -179,16 +178,9 @@ io.on( 'connection', function ( socket ) {
     }
     else if ( data.label == "starttime" ) {
 
-       planes = { results: 
-      [ 
-        { id: 0, name: 'Please do choose a plane' },
-        { id: 1, name: 'Very light jets (2 Pax Max.)' },
-        { id: 2, name: 'Light jets (8 Pax Max.)' },
-        { id: 3, name: 'Mid-size jets (9 Pax Max.)' },
-        { id: 4, name: 'Super mid-size jets (11 Pax Max.)' },
-        { id: 5, name: 'Large jets (14 Pax Max.)' }
-      ] 
-    };
+      var planes = ifunctions.planetypes() ;
+      console.log('ifunction' , planes);
+  
 
       var response = {};
       response.sessionId = data.sessionId;
@@ -237,7 +229,9 @@ io.on( 'connection', function ( socket ) {
     else if ( data.label == "email" ) {
       console.log( data );
       var agentemail = "ceo@80startups.com";
-      var officeremail = "david.northcutt@genacom.com";
+     // var officeremail = "david.northcutt@genacom.com";
+      /* Todo : Let's do some distance calculation here */ 
+
 
 
       var subject = "New Client Lead - Private Jet Booking";
@@ -274,8 +268,8 @@ io.on( 'connection', function ( socket ) {
       var response = {};
       var returndate = data.msg;
       response.sessionId = data.sessionId;
-      response.nextlabel = "last";
-      response.msg = "Success";
+      response.nextlabel = "email";
+      response.msg = "Some issue, leave us your email and we get back to you.";
        io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
 

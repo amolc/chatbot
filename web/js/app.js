@@ -110,7 +110,9 @@
               }
               if(response.msg.results.length>0){
                 for(var i=0; i<response.msg.results.length; i++){
-                 $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>'+ response.msg.results[i].id + '. ' + response.msg.results[i].name + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                
+                  var srno = i+1 ;
+                 $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>'+ srno + '. ' + response.msg.results[i].name + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 }
               }
                else{
@@ -207,14 +209,18 @@
     else if(data.label=="toairports"){
       var airports = store.get('toairports');
       console.log('airports',airports);
-      for ( var index = 0; index < airports.results.length; index++ ) {
-                      console.log(airports.results[index]);
-                      if(data.msg==airports.results[index].id){
-                        store.set('toairport',airports.results[index].name);
-                       console.log('Matched toairport',airports.results[index].name);
-                      }
-                    
-                    }
+                 
+                 var selectAirport = data.msg-1 ;
+
+                  store.set('toairport',airports.results[data.msg].name);
+                  store.set('toairportlat',airports.results[data.msg].geometry.location.lat);
+                  store.set('toairportlng',airports.results[data.msg].geometry.location.lng);
+                  
+                  console.log('toairport',airports.results[data.msg].name);
+                  console.log('toairportlat',airports.results[data.msg].geometry.location.lat);
+                  console.log('toairportlng',airports.results[data.msg].geometry.location.lng);
+
+
       console.log('data',data);
       socket.emit('apicall', data);
     }
@@ -253,8 +259,12 @@
       for ( var index = 0; index < planes.results.length; index++ ) {
                       console.log(planes.results[index]);
                       if(data.msg==planes.results[index].id){
-                        store.set('whichplane',planes.results[index].name);
                         console.log('Matched Plane',planes.results[index].name);
+                        store.set('plane-type',planes.results[index].name);
+                        store.set('plane-speed',planes.results[index].speed);
+                        store.set('plane-range',planes.results[index].range);
+                        store.set('plane-costperhr',planes.results[index].costperhr);
+
                       }
                     
                     }
@@ -284,7 +294,10 @@
     data.fromairport = store.get('fromairport');
     data.startdate = store.get('startdate');
     data.starttime = store.get('starttime');
-    data.whichplane = store.get('whichplane');
+    data.planetype = store.get('plane-type');
+    data.planespeed = store.get('plane-speed');
+    data.planerange = store.get('plane-range');
+    data.planecostperhr = store.get('plane-costperhr');
     data.returnboolen = store.get('returnboolen');
     data.email = store.get('email');
     console.log('data',data);

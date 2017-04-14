@@ -239,13 +239,18 @@ io.on( 'connection', function ( socket ) {
       var agentemail = "ceo@80startups.com";
       var officeremail = "naim.jeem@80startups.com";
 
+
       var subject = "New Client Lead - Private Jet Booking";
       var mailbody = "Hello,</br><p>Flight Booking Quote is requested : </p>"
-        + "</br><p><b>To:</b> " + data.whereto + "</p>"
-        + "</br><p><b> From :</b> " + data.fromwhere + "</p>"
+        + "</br><p><b> Start City :</b> " + data.fromwhere + "</p>"
+        + "</br><p><b> Start Airport :</b> " + data.fromairport + "</p>"
+        + "</br><p><b>To City:</b> " + data.whereto + "</p>"
+        + "</br><p><b>To Airport:</b> " + data.toairport + "</p>"
         + "</br><p><b> Departure date:</b> " + data.startdate + "</p>"
         + "</br><p><b> At time:</b> " + data.starttime + "</p>"
         + "</br><p><b> Flight Type:</b> " + data.whichplane + "</p>"
+        + "</br><p><b></p>"
+        + "</br><p><b> Returne:</b> " + data.returnboolen + "</p>"
         + "Thanks, Chatbot";
 
       send_mail( agentemail, subject, mailbody );

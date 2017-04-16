@@ -1,0 +1,41 @@
+Very Light Jets
+4-6 PAX Max
+Airspeed 400 mph
+Range 1200 miles
+Cost per hour 3000-4000
+ 
+Light Jets
+6/8 PAX Max
+Airspeed 480 mph
+Range 2000 miles
+Cost per hour 3500-5000
+ 
+MidSize Jets
+7/9 PAX Max
+Airspeed 500 mph
+Range 2500 miles
+Cost per hour 4000-6000
+ 
+Super MidSize Jets
+7/9 PAX Max
+Airspeed 525 mph
+Range 3000 miles
+Cost per hour 4500-7000
+ 
+Heavy Jets
+7/9 PAX Max
+Airspeed 525 mph
+Range 5000 miles
+Cost per hour 6000-10000
+ 
+Jumbo Jets
+200 PAX Max
+Airspeed 525 mph
+Range 8000 miles
+Cost per hour 8000-15000
+ 
+Turbo Prop
+7/9 PAX Max
+Airspeed 300 mph
+Range 1400 miles
+Cost per hour 2500-4000

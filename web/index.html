@@ -39,7 +39,8 @@
     <h1>Julia</h1>
     <h2>PRAVOLA</h2>
     <figure class="avatar">
-      <img src="img/profile.png" /></figure>
+      <img src="img/profile.png" />
+    </figure>
   </div>
   <div class="messages">
     <div class="messages-content">
@@ -48,14 +49,15 @@
   </div>
  
   <div class="message-box" >
-    <div ng-show="textinput"><input id="chatinput" ng-keydown="$event.which === 13 && insertmsg()" type="text" class="message-input place" placeholder="Type message..."><button type="submit" class="message-submit" ng-click="insertmsg()">Send</button></div>
+    <div ng-show="textinput"><input id="chatinput" ng-keydown="$event.which === 13 && insertmsg()" type="text" class="message-input place" placeholder="Type message...">
+        <button type="submit" class="message-submit" ng-click="insertmsg()">Send</button>
+    </div>
     <div ng-show="autoinput"><angucomplete-alt  type="text"  id="chatinput" placeholder="Search countries" pause="100" selected-object="selectedCountry" local-data="countries" search-fields="name" title-field="name" minlength="1"  /></div>
     <div ng-show="airportsuggest">
       <angucomplete-alt  autofocus='true' ng-keydown="$event.which === 13 && selectairport()" type="text"  id="chatinput" placeholder="Select Airport" pause="100" selected-object="selectedairport" local-data="airportsnames" search-fields="name" title-field="name" minlength="1"  />
-    
-
-  </div>
-      <button ng-show="airportsuggest" type="submit" class="message-submit" ng-click="selectairport()">Send</button></div>
+    </div>
+    <button ng-show="airportsuggest" type="submit" class="message-submit" ng-click="selectairport()">Send</button>
+   </div>
   
 </div>
 <button class="" id="btn-chat" ng-click="toggleme()" >Get a Quote</button>

@@ -464,7 +464,12 @@ position: absolute;
 .message-box .message-submit:hover {
   background: #1D7745;
 }
-
+/*Select input*/
+input {
+    background: transparent;
+    color: white;
+    border: none;
+}
 /*--------------------
 Custom Srollbar
 --------------------*/

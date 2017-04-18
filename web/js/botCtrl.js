@@ -79,6 +79,7 @@ app.controller('botCtrl', function ($scope, $http, $sce, $timeout, socket, store
     console.log('message',msg);
     $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
     $('.message-input').val(null);
+
     updateScrollbar();
     emitmsg(msg);
   }
@@ -96,6 +97,7 @@ $scope.selectairportfunc = function() {
     $scope.planesuggest = false ;
     $scope.textinput = true ;
     $scope.airportsnames = [] ;
+      document.getElementById("chatinput").focus();
     updateScrollbar();
     emitmsg(msg);
   }
@@ -113,6 +115,7 @@ $scope.selectplanefunc = function() {
     $scope.airportsuggest = false ;
     $scope.planesuggest = false ;
     $scope.airportsnames = [] ;
+    document.getElementById("chatinput").focus();
     updateScrollbar();
     emitmsg(msg);
   }
@@ -124,11 +127,15 @@ $scope.selectplanefunc = function() {
 
         if (response.nextlabel == "toairports" || response.nextlabel == 'fromairports') {
            
-            
-
             label = response.nextlabel;
             store.set('label', response.nextlabel);
             console.log('reponse.label', response.nextlabel);
+            $scope.$broadcast('angucomplete-alt:clearInput');
+            $scope.planesuggest = false ;
+            $scope.textinput=false ;
+            $scope.airportsuggest = true ;
+            document.getElementById("chatinput").focus();
+
             setTimeout(function () {
                 $('.message.loading').remove();
                 if (response.status == 'success') {
@@ -157,15 +164,7 @@ $scope.selectplanefunc = function() {
                 }
 
                 updateScrollbar();
-                 $scope.$broadcast('angucomplete-alt:clearInput');
-                $scope.planesuggest = false ;
-                $scope.textinput=false ;
-                 $scope.airportsuggest = true ;
-                 $timeout(function() {
-                    console.log("test");
-                     var searchInput = document.getElementById('chatinput');
-                     searchInput.focus();
-                          }, 0);
+                
             }, 2000);
         } else if (response.nextlabel == "whichplane") {
             label = response.nextlabel;
@@ -195,6 +194,7 @@ $scope.selectplanefunc = function() {
                 $scope.planesuggest = true ;
                 $scope.textinput=false ;
                 $scope.airportsuggest = false ;
+                   document.getElementById("chatinput").focus();
                 updateScrollbar();
             }, 200);
 

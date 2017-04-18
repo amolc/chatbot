@@ -56,12 +56,11 @@
       <angucomplete-alt  autofocus='true' ng-keydown="$event.which === 13 && selectairportfunc()" type="text"  id="chatinput" placeholder="Select Airport" pause="100" selected-object="selectedairport" local-data="airportsnames" search-fields="name" title-field="name" minlength="1"  />
     </div>
     <button ng-show="airportsuggest" type="submit" class="message-submit" ng-click="selectairportfunc()">Send</button>
-     <div ng-show="planesuggest">
+    <div ng-show="planesuggest">
       <angucomplete-alt  autofocus='true' ng-keydown="$event.which === 13 && selectplanefunc()" type="text"  id="chatinput" placeholder="Select Plane" pause="100" selected-object="selectedplane" local-data="planetype" search-fields="name" title-field="name" minlength="1"  />
     </div>
     <button ng-show="planesuggest" type="submit" class="message-submit" ng-click="selectplanefunc()">Send</button>
    </div>
-  
 </div>
 <button class="" id="btn-chat" ng-click="toggleme()" >Get a Quote</button>
 <div class="bg"></div>

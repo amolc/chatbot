@@ -238,6 +238,7 @@ io.on( 'connection', function ( socket ) {
             + "</br><p><b> Estimated Cost:</b> " + data.estimatedcost + "</p>"
             + "</br><p><b></p>"
             + "</br><p><b> Returne:</b> " + data.returnboolen + "</p>"
+            + "</br><p><b> Email:</b> " + data.email + "</p>"
             + "Thanks, Chatbot";
 
           send_mail( agentemail, subject, mailbody );

@@ -183,7 +183,15 @@
     background-size: cover;
   }
 
-
+.red{
+  border:1px solid red ;
+}
+.inputbox{
+  width: 250px;
+  float: left;
+  background-color : #d1d1d1; 
+  color:black;
+}
 /*--------------------
 Chat
 --------------------*/

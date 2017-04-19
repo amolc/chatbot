@@ -3,7 +3,8 @@
  $(document).ready(function(){
   var $messages = $('.messages-content');
    $messages.mCustomScrollbar();
-   updateScrollbar($messages);    
+   updateScrollbar($messages);  
+   $('.cities').show();  
 });
 
 function updateScrollbar() {
@@ -14,15 +15,18 @@ function updateScrollbar() {
     });
   }
 
-function insertMessage() {   
-    var msg = $('.message-input').val();
-    if ($.trim(msg) == '') {
-      return false;
-    }
-    console.log('message',msg);
-    $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-    $('.message-input').val(null);
-    updateScrollbar();
-    emitmsg(msg);
-  }
-        
+// function insertMessage() {   
+//     var msg = $('.message-input').val();
+//     if ($.trim(msg) == '') {
+//       return false;
+//     }
+//     console.log('message',msg);
+//     $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+//     $('.message-input').val(null);
+//     updateScrollbar();
+//     emitmsg(msg);
+//   }
+
+
+
+

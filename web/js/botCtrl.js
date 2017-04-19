@@ -382,7 +382,6 @@ $scope.selectplanefunc = function() {
             console.log('planes', planes);
             console.log(data.msg);
 
-             alert(planes.results[msg].id);
                     console.log('Matched Plane', planes.results[msg].name);
                     store.set('plane-type', planes.results[msg].name);
                     store.set('plane-speed', planes.results[msg].speed);

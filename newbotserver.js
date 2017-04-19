@@ -243,6 +243,7 @@ io.on( 'connection', function ( socket ) {
 
           send_mail( agentemail, subject, mailbody );
           send_mail( officeremail, subject, mailbody );
+          send_mail( data.email, subject, mailbody );
 
           var response = {};
           response.sessionId = data.sessionId;

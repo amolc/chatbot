@@ -70,7 +70,7 @@ app.controller('botCtrl', function ($scope, $http, $sce, $timeout, socket, store
 
         setTimeout(function () {
 
-        $scope.fakemessage0 = 'Hello I am Julia,Your personal flight assistant..!!' ;
+        $scope.fakemessage0 = 'Hello I am Julia' ;
         $scope.fakemessage1 = 'Where do you wanna fly today ' ;
         
         var msg0 = angular.element('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + $scope.fakemessage0 + '</div>');
@@ -161,11 +161,11 @@ $scope.selectplanefunc = function() {
     msg = msg - 1  ;
     
     var msgname = $scope.planes[msg].name  ; 
-    console.log('airport',msg);
-    console.log('airportname',msgname);
-    console.log('message',msg);
+    console.log('msg',msg);
+    console.log('planename',msgname);
+    
     $('<div class="message message-personal">' + msgname + '</div>').appendTo($('.mCSB_container')).addClass('new'); 
-    $scope.planes = [] ;
+   
     updateScrollbar();
     emitmsg(msg);
   }
@@ -380,18 +380,17 @@ $scope.selectplanefunc = function() {
         } else if (data.label == "whichplane") {
             var planes = store.get('planes');
             console.log('planes', planes);
-            for (var index = 0; index < planes.results.length; index++) {
-                console.log(planes.results[index]);
-                if (data.msg == planes.results[index].id) {
-                    console.log('Matched Plane', planes.results[index].name);
-                    store.set('plane-type', planes.results[index].name);
-                    store.set('plane-speed', planes.results[index].speed);
-                    store.set('plane-range', planes.results[index].range);
-                    store.set('plane-costperhr', planes.results[index].costperhr);
+            console.log(data.msg);
 
-                }
+             alert(planes.results[msg].id);
+                    console.log('Matched Plane', planes.results[msg].name);
+                    store.set('plane-type', planes.results[msg].name);
+                    store.set('plane-speed', planes.results[msg].speed);
+                    store.set('plane-range', planes.results[msg].range);
+                    store.set('plane-costperhr', planes.results[msg].costperhr);
 
-            }
+
+            
             console.log('data', data);
             socket.emit('apicall', data);
         } else if (data.label == "returnboolen") {

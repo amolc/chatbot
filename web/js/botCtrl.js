@@ -112,6 +112,19 @@ function insertMessage() {
     emitmsg(msg);
     
   }
+  
+$scope.selectdatafunc = function (){   
+    var msg = $('#gtextfield').val();
+    if ($.trim(msg) == '') {
+      return false;
+    }
+    console.log('message',msg);
+    $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+    $('#gtextfield').val(null);
+    updateScrollbar();
+    emitmsg(msg);
+    
+  }
 
 $scope.selectcalendarfunc = function (){   
    
@@ -305,6 +318,7 @@ $scope.selectplanefunc = function() {
                                 var srno = i + 1;
                            // $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg.results[i].id + '. ' + response.msg.results[i].name + ' US ' + response.msg.results[i].costperhr + '/hr</div>').appendTo($('.mCSB_container')).addClass('new');
                                  $scope.planes.push({id:srno, name:response.msg.results[i].name});
+                                 console.log(response.msg.results[i].name);
                          }
                     } else {
                        // $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
@@ -343,7 +357,7 @@ $scope.selectplanefunc = function() {
                 updateScrollbar();
             }, 200);
 
-        }else if (response.nextlabel == "startdate" || response.nextlabel == "starttime" || response.nextlabel == "returnboolen" ) {
+        }else if (response.nextlabel == "startdate" || response.nextlabel == "starttime" || response.nextlabel == "returndate" ) {
             label = response.nextlabel;
             console.log('label', response.nextlabel);
             store.set('label', response.nextlabel);
@@ -385,7 +399,7 @@ $scope.selectplanefunc = function() {
 
                     $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 }
-            
+                showtextfield();
                 updateScrollbar();
             }, 200);
         }
@@ -487,7 +501,7 @@ $scope.selectplanefunc = function() {
             data.fromairportlat = store.get('fromairportlat');
             data.fromairportlng = store.get('fromairportlng');
             data.startdate = store.get('startdate');
-            data.starttime = store.get('starttime');
+           // data.starttime = store.get('starttime');
             data.planetype = store.get('plane-type');
             data.planespeed = store.get('plane-speed');
             data.planerange = store.get('plane-range');
@@ -508,6 +522,7 @@ $scope.selectplanefunc = function() {
             $('#calendarfield').hide();
             $('#planesfield').hide();
             $('#fromairportsfield').hide();
+            $('#textfield').hide();
 
         }
 
@@ -517,7 +532,8 @@ $scope.selectplanefunc = function() {
             $('#airportsfield').show('slow');
             $('#calendarfield').hide('slow');
             $('#planesfield').hide();
-             $('#fromairportsfield').hide();
+            $('#fromairportsfield').hide();
+            $('#textfield').hide();
             $scope.defaultairport ="";
         }
 
@@ -528,6 +544,7 @@ $scope.selectplanefunc = function() {
             $('#citiesfield').hide();
             $('#planesfield').hide();
             $('#airportsfield').hide();
+            $('#textfield').hide();
            console.log("over-shhowfromairports");
            
         }
@@ -535,15 +552,16 @@ $scope.selectplanefunc = function() {
           function showcalendar() {
          console.log('showcalendar', "showcalendar");
             $('#gcalendar').datetimepicker({
-                    value:'2017/01/01 07:00',
-                    step:10,
-                    startDate:'today'//or 1986/12/08;
+                   // value:'2017/01/01 07:00',
+                    step:30,
+                    startDate:'0'//or 1986/12/08
             });
             $('#calendarfield').show('slow');
             $('#citiesfield').hide();
             $('#airportsfield').hide();
             $('#planesfield').hide();
-             $('#fromairportsfield').hide();
+            $('#fromairportsfield').hide();
+            $('#textfield').hide();
             
         }
 
@@ -552,7 +570,19 @@ $scope.selectplanefunc = function() {
             $('#citiesfield').hide();
             $('#airportsfield').hide();
             $('#planesfield').show('slow');
-             $('#fromairportsfield').hide();
+            $('#fromairportsfield').hide();
+            $('#textfield').hide();
+            }
+
+        function showtextfield(){
+            $('#textfield').show();
+            $('#calendarfield').hide();
+            $('#citiesfield').hide();
+            $('#airportsfield').hide();
+            $('#planesfield').hide();
+            $('#fromairportsfield').hide();
+            $('#textfield').show();
+
             }
 
 

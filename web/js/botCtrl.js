@@ -219,12 +219,13 @@ $scope.selectplanefunc = function() {
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
                     console.log('response length', response.msg.results.length);
-                    if (response.nextlabel == "toairports") {
-                        store.set('toairports', response.msg);
-                    } else {
-                        store.set('fromairports', response.msg);
+                     store.set('toairports', response.msg);
+                    // if (response.nextlabel == "toairports") {
+                       
+                    // } else {
+                    //     store.set('fromairports', response.msg);
                      
-                    }
+                    // }
                 
                   $scope.airports = [];
 
@@ -257,7 +258,7 @@ $scope.selectplanefunc = function() {
             }, 100);
                 setTimeout( function(){
                     showairports();
-                },15000);
+                },10000);
             
         } 
         else if (response.nextlabel == 'fromairports') {
@@ -308,7 +309,7 @@ $scope.selectplanefunc = function() {
                   }, 200);
                 setTimeout(function () {
                      showfromairports();
-                },20000);
+                },10000);
            
         }  
         else if (response.nextlabel == "whichplane") {
@@ -348,7 +349,7 @@ $scope.selectplanefunc = function() {
 
             setTimeout(function () {
                      showplanes();
-                },20000);
+                },10000);
 
 
 

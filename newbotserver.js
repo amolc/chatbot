@@ -18,6 +18,7 @@ http.listen( serverport, function () {
 
 var TextSearch = require( "./api/TextSearch.js" );
 var ifunctions = require( './api/ifunctions' );
+var db = require('./api/db.js');
 
 //ifunctions.getUserInput("Michael", "Fassbender", "Man", ifunctions.genericPoemMaker);
 

@@ -189,8 +189,8 @@
 .inputbox{
   width: 250px;
   float: left;
-  background-color : #d1d1d1; 
-  color:black;
+  background-color : transparent;
+  color: white;
 }
 /*--------------------
 Chat

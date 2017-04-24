@@ -248,7 +248,7 @@ io.on( 'connection', function ( socket ) {
           query.insert;
 
           send_mail( agentemail, subject, mailbody );
-          //send_mail( officeremail, subject, mailbody );
+          send_mail( officeremail, subject, mailbody );
           send_mail( data.email, subject, mailbody );
 
           var response = {};

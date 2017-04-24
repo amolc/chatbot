@@ -5,15 +5,15 @@ var nodemailer = require('nodemailer');
 
 var enviroment = {
 	Dbconnection : mysql.createPool({
-//			database : 'pravolachatbot',
-//		    user : 'ftdev',
-//			password : '10gXWOqeaf',
-//		    host :'apps.fountaintechies.com',
+			database : 'pravola-chatbot',
+		    user : 'ftdev',
+			password : '10gXWOqeaf',
+		    host :'apps.fountaintechies.com',
 
-		    host: 'localhost',
-            user: 'root',
-            password: '',
-            database: 'pravola-chatbot'
+//		    host: 'localhost',
+//            user: 'root',
+//            password: '',
+//            database: 'pravola-chatbot'
 	}),
 	/** Function For Time stamp**/
 	timestamp: function() {

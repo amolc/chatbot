@@ -18,7 +18,7 @@ http.listen( serverport, function () {
 
 var TextSearch = require( "./api/TextSearch.js" );
 var ifunctions = require( './api/ifunctions' );
-var db = require('./api/query.js');
+var query = require('./api/query.js');
 
 //ifunctions.getUserInput("Michael", "Fassbender", "Man", ifunctions.genericPoemMaker);
 
@@ -244,6 +244,9 @@ io.on( 'connection', function ( socket ) {
             + "</br><p><b> Returne:</b> " + data.returnboolen + "</p>"
             + "</br><p><b> Email:</b> " + data.email + "</p>"
             + "Thanks, Chatbot";
+          
+          
+          query.insert;
 
           send_mail( agentemail, subject, mailbody );
           //send_mail( officeremail, subject, mailbody );

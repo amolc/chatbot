@@ -10,8 +10,6 @@
 
 var query = function(req, res){
     
-    app.post('/', function(req, res, next){
-
         var chat_data = {
             to_country: data.whereto,
             to_airport: data.toairport,
@@ -30,12 +28,11 @@ var query = function(req, res){
             estimated_time: data.estimated_time
         };
 
-        var insert = connection.query("INSERT INTO chat SET ?", chat_data, function(err, result){
+        var insert = Dbconnection.query("INSERT INTO chat SET ?", chat_data, function(err, result){
             if(err) throw err;
             console.log('data inserted'+insert);
         });
 
-    });
 };
 
 module.exports = query;

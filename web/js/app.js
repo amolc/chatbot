@@ -16,6 +16,7 @@ function updateScrollbar() {
       scrollInertia: 10,
       timeout: 0
     });
+    
   }
 
 // function insertMessage() {   

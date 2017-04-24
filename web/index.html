@@ -51,6 +51,9 @@
   </div>
  
   <div class="message-box" >
+          <div id="loadchat">
+            <div style="float:left" class="load-white" >Loading    </div> <div style="float:left;margin-left:20px;" ><img src="img/chat.svg" /></div>
+          </div>
           <div id="calendarfield">
               <div > <input ng-model="selecteddate"  id="gcalendar" type="text" value=""  class="inputbox" ng-keydown="$event.which === 13 && selectcalendarfunc()"></div> 
               <div >  <button type="submit" class="message-submit" ng-click="selectcalendarfunc()">Send</button></div> 
@@ -73,7 +76,7 @@
         </div>
         <div id="fromairportsfield">
           <select ng-model="selectedfromairportId" ng-options="airport.id as airport.name for airport in fromairports">
-            <option value="">Loading Airports</option>
+            <option value="">{{defaultfromairport}}</option>
           </select>
             <button type="submit" class="message-submit" ng-click="selectfromairportfunc()">Send</button>
          </div>

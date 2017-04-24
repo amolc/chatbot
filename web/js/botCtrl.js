@@ -76,9 +76,12 @@ app.controller('botCtrl', function ($scope, $http, $sce, $timeout, socket, store
         
         var msg0 = angular.element('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + $scope.fakemessage0 + '</div>');
         var msg1 = angular.element('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + $scope.fakemessage1 + '</div>');
+      
 
         angular.element(msg0).appendTo('.mCSB_container').addClass('new');
         angular.element(msg1).appendTo('.mCSB_container').addClass('new');
+      
+        
      
         //$('<div class="message new">' + $scope.fakemessage[1] + '</div>').appendTo($('.mCSB_container')).addClass('new');
         updateScrollbar();
@@ -107,6 +110,7 @@ function insertMessage() {
     }
     console.log('message',msg);
     $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+ 
     $('#gcities').val(null);
     updateScrollbar();
     emitmsg(msg);
@@ -246,18 +250,22 @@ $scope.selectplanefunc = function() {
                     $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 }
                  $scope.selectedairportId = 1 ;
-                showairports();
+                 loadgif();
                 updateScrollbar();
                 console.log($scope.airports);
                 
             }, 100);
+                setTimeout( function(){
+                    showairports();
+                },15000);
+            
         } 
         else if (response.nextlabel == 'fromairports') {
            
             label = response.nextlabel;
             store.set('label', response.nextlabel);
             console.log('reponse.label', response.nextlabel);
-            
+              store.set('fromairports', response.msg);
            
          
             setTimeout(function () {
@@ -295,11 +303,13 @@ $scope.selectplanefunc = function() {
                     $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 }
                  $scope.selectedfromairportId = 1 ;
-                showfromairports();
-                updateScrollbar();
-                console.log($scope.fromairports);
-                
-            }, 100);
+                 loadgif();
+                 updateScrollbar();
+                  }, 200);
+                setTimeout(function () {
+                     showfromairports();
+                },20000);
+           
         }  
         else if (response.nextlabel == "whichplane") {
             label = response.nextlabel;
@@ -307,7 +317,7 @@ $scope.selectplanefunc = function() {
             store.set('label', response.nextlabel);
             console.log(response);
             setTimeout(function () {
-                $('.message.loading').remove();
+               // $('.message.loading').remove();
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
                     console.log('response length', response.msg.results.length);
@@ -332,9 +342,17 @@ $scope.selectplanefunc = function() {
                 }
                 
                  $scope.selectedplaneId = 1 ;
-                 showplanes();
+                 loadgif();
                 updateScrollbar();
             }, 200);
+
+            setTimeout(function () {
+                     showplanes();
+                },20000);
+
+
+
+            
 
         } else if (response.nextlabel == "fromwhere") {
             label = response.nextlabel;
@@ -514,8 +532,20 @@ $scope.selectplanefunc = function() {
 
     }
 
+        function loadgif() {
+            $('#loadchat').show();
+            $('#citiesfield').hide();
+            $('#airportsfield').hide();
+            $('#calendarfield').hide();
+            $('#planesfield').hide();
+            $('#fromairportsfield').hide();
+            $('#textfield').hide();
+
+        }
+
         function showcities() {
             console.log('showcities', "showcities");
+            $('#loadchat').hide();
             $('#gcities').val(null);
             $('#citiesfield').show('slow');
             $('#airportsfield').hide();
@@ -528,6 +558,7 @@ $scope.selectplanefunc = function() {
 
         function showairports() {
          console.log('showairports', "showairports");
+             $('#loadchat').hide();
             $('#citiesfield').hide('slow');
             $('#airportsfield').show('slow');
             $('#calendarfield').hide('slow');
@@ -539,6 +570,7 @@ $scope.selectplanefunc = function() {
 
         function showfromairports() {
          console.log('showfromairports', "showfromairports");
+          $('#loadchat').hide();
             $('#fromairportsfield').show();
             $('#calendarfield').hide();
             $('#citiesfield').hide();
@@ -556,6 +588,7 @@ $scope.selectplanefunc = function() {
                     step:30,
                     startDate:'0'//or 1986/12/08
             });
+             $('#loadchat').hide();
             $('#calendarfield').show('slow');
             $('#citiesfield').hide();
             $('#airportsfield').hide();
@@ -566,6 +599,7 @@ $scope.selectplanefunc = function() {
         }
 
           function showplanes(){
+               $('#loadchat').hide();
             $('#calendarfield').hide();
             $('#citiesfield').hide();
             $('#airportsfield').hide();
@@ -575,6 +609,7 @@ $scope.selectplanefunc = function() {
             }
 
         function showtextfield(){
+             $('#loadchat').hide();
             $('#textfield').show();
             $('#calendarfield').hide();
             $('#citiesfield').hide();

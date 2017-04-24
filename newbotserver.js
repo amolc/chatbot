@@ -75,7 +75,7 @@ io.on( 'connection', function ( socket ) {
                     response.nextlabel = "toairports";
                     response.status = "success";
                     response.msg = output;
-                    response.custommessage = "Please Select an airport" ;
+                    response.custommessage = "I am getting the nearest airports. Help select one." ;
                     io.sockets.connected[socket.id].emit( 'getresponse', response );
             }
           }
@@ -131,7 +131,7 @@ io.on( 'connection', function ( socket ) {
                     response.nextlabel = "fromairports";
                     response.status = "success";
                     response.msg = output;
-                    response.custommessage = "Please Select an airport" ;
+                    response.custommessage = "I am getting the nearest airports. Help select one." ;
                    // console.log('fromairports',airports);
                     io.sockets.connected[socket.id].emit( 'getresponse', response );
             }

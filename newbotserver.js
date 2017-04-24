@@ -150,17 +150,17 @@ io.on( 'connection', function ( socket ) {
       response.msg = "When would you like to travel?";
        io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
-    else if ( data.label == "startdate" ) {
+    // else if ( data.label == "startdate" ) {
        
     
-      var response = {};
-      response.sessionId = data.sessionId;
-      response.nextlabel = "starttime";
-      response.msg = "Whats the best time you would prefer?";
-       io.sockets.connected[socket.id].emit( 'getresponse', response );
-    }
-    else if ( data.label == "starttime" ) {
-
+    //   var response = {};
+    //   response.sessionId = data.sessionId;
+    //   response.nextlabel = "whichplane";
+    //   response.msg = "Please select the best private jet.?";
+    //    io.sockets.connected[socket.id].emit( 'getresponse', response );
+    // }
+    else if ( data.label == "startdate" ) {
+      console.log('startdate-planetype');
       var planes = ifunctions.planetypes() ;
     
 
@@ -234,7 +234,6 @@ io.on( 'connection', function ( socket ) {
             + "</br><p><b>To City:</b> " + data.whereto + "</p>"
             + "</br><p><b>To Airport:</b> " + data.toairport + "</p>"
             + "</br><p><b> Departure date:</b> " + data.startdate + "</p>"
-            + "</br><p><b> At time:</b> " + data.starttime + "</p>"
             + "</br><p><b> Plane Type:</b> " + data.planetype + "</p>"
             + "</br><p><b> Distance:</b> " + data.distance + "Miles</p>"
             + "</br><p><b> Flight Time Hours:</b> " + data.estimatedhrs + "Hrs.</p>"

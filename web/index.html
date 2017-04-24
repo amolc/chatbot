@@ -51,8 +51,8 @@
   </div>
  
   <div class="message-box" >
-            <div id="calendarfield">
-              <div > <input ng-model="selecteddate"  id="gcalendar" type="text" value="2014/03/15 05:06"  class="inputbox" ng-keydown="$event.which === 13 && selectcalendarfunc()"></div> 
+          <div id="calendarfield">
+              <div > <input ng-model="selecteddate"  id="gcalendar" type="text" value=""  class="inputbox" ng-keydown="$event.which === 13 && selectcalendarfunc()"></div> 
               <div >  <button type="submit" class="message-submit" ng-click="selectcalendarfunc()">Send</button></div> 
           </div>
           <div id="citiesfield">
@@ -77,6 +77,10 @@
           </select>
             <button type="submit" class="message-submit" ng-click="selectfromairportfunc()">Send</button>
          </div>
+         <div id="textfield">
+              <div > <input ng-model="selectdata"  id="gtextfield" type="text" value="Yes"  class="inputbox" ng-keydown="$event.which === 13 && selectdatafunc()"></div> 
+              <div >  <button type="submit" class="message-submit" ng-click="selectdatafunc()">Send</button></div> 
+        </div>
    
        
 

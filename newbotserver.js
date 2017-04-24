@@ -74,6 +74,7 @@ io.on( 'connection', function ( socket ) {
                     response.nextlabel = "toairports";
                     response.status = "success";
                     response.msg = output;
+                    response.custommessage = "Please Select an airport" ;
                     io.sockets.connected[socket.id].emit( 'getresponse', response );
             }
           }
@@ -129,6 +130,7 @@ io.on( 'connection', function ( socket ) {
                     response.nextlabel = "fromairports";
                     response.status = "success";
                     response.msg = output;
+                    response.custommessage = "Please Select an airport" ;
                    // console.log('fromairports',airports);
                     io.sockets.connected[socket.id].emit( 'getresponse', response );
             }
@@ -166,6 +168,7 @@ io.on( 'connection', function ( socket ) {
       response.nextlabel = "whichplane";
       response.status = "success";
       response.msg = planes ;
+      response.custommessage = "Please Select a plane" ;
        io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
     else if ( data.label == "whichplane" ) {
@@ -242,7 +245,7 @@ io.on( 'connection', function ( socket ) {
             + "Thanks, Chatbot";
 
           send_mail( agentemail, subject, mailbody );
-          send_mail( officeremail, subject, mailbody );
+          //send_mail( officeremail, subject, mailbody );
           send_mail( data.email, subject, mailbody );
 
           var response = {};
@@ -314,3 +317,7 @@ io.on( 'connection', function ( socket ) {
 
 
 } );
+
+//TODO: Change the messages in array to simple questions
+//TODO: See why the drop down is not immediately updated.
+//TODO: Change the when you want to travel to a - calendar response.

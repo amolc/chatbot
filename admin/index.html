@@ -31,6 +31,7 @@
 <body  class="body-bg">
 
 <div ng-controller="botCtrl" ng-init="init()">
+  <div>{{airports}} </div>
 <div class="container home-container">
 
 <img src="img/pravola-logo.svg"/ style="width: 150px;"><br><br>
@@ -47,10 +48,15 @@
      
     </div>
   </div>
- 
+
+ <!-- TODO: need to add a calendar widget -->
   <div class="message-box" >
+         
+             <div id="myfield">
+              <div > <input ng-model="selecteddate"  id="gcalendar" type="text"  class="inputbox" ng-keydown="$event.which === 13 && selectcalendarfunc()"></div> 
+              <div >
+   
             <div id="calendarfield">
-              
               <div > <input ng-model="selecteddate"  id="gcalendar" type="text"  class="inputbox" ng-keydown="$event.which === 13 && selectcalendarfunc()"></div> 
               <div >  <button type="submit" class="message-submit" ng-click="selectcalendarfunc()">Send</button></div> 
           </div>
@@ -60,10 +66,11 @@
           </div>
           <div id="airportsfield">
           <select ng-model="selectedairportId" ng-options="airport.id as airport.name for airport in airports">
-            <option value="">{{defaultairport}}</option>
+            <option value="">Loading Airports</option>
           </select>
             <button type="submit" class="message-submit" ng-click="selectairportfunc()">Send</button>
         </div>
+         
         <div id="planesfield">
           <select ng-model="selectedplaneId" ng-options="plane.id as plane.name for plane in planes">
             <option value="">Loading Jets</option>
@@ -71,8 +78,6 @@
             <button type="submit" class="message-submit" ng-click="selectplanefunc()">Send</button>
         </div>
        
-
-   
    </div>
 </div>
 <button class="" id="btn-chat" ng-click="toggleme()" >Get a Quote</button>

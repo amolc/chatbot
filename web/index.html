@@ -17,8 +17,10 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
  
-   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBfRKuwq8c3ETUxdC7jMvhh3iN_x0SHRWQ&libraries=places&sensor=false"></script>
-    
+   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBfRKuwq8c3ETUxdC7jMvhh3iN_x0SHRWQ&libraries=places&sensor=false&language=en&v=3"></script>
+ 
+   <script src="js/jquery.datetimepicker.js"></script>
+   <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/ >
   <!--<link rel="stylesheet" href="css/shop.css">-->
   <link rel="stylesheet" href="css/chat.css">
    <link rel="stylesheet" href="css/angucomplete-alt.css">
@@ -50,8 +52,7 @@
  
   <div class="message-box" >
             <div id="calendarfield">
-              
-              <div > <input ng-model="selecteddate"  id="gcalendar" type="text"  class="inputbox" ng-keydown="$event.which === 13 && selectcalendarfunc()"></div> 
+              <div > <input ng-model="selecteddate"  id="gcalendar" type="text" value="2014/03/15 05:06"  class="inputbox" ng-keydown="$event.which === 13 && selectcalendarfunc()"></div> 
               <div >  <button type="submit" class="message-submit" ng-click="selectcalendarfunc()">Send</button></div> 
           </div>
           <div id="citiesfield">
@@ -70,6 +71,13 @@
           </select>
             <button type="submit" class="message-submit" ng-click="selectplanefunc()">Send</button>
         </div>
+        <div id="fromairportsfield">
+          <select ng-model="selectedfromairportId" ng-options="airport.id as airport.name for airport in fromairports">
+            <option value="">Loading Airports</option>
+          </select>
+            <button type="submit" class="message-submit" ng-click="selectfromairportfunc()">Send</button>
+         </div>
+   
        
 
    

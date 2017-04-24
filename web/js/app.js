@@ -4,7 +4,10 @@
   var $messages = $('.messages-content');
    $messages.mCustomScrollbar();
    updateScrollbar($messages);  
+ 
    $('.cities').show();  
+  
+
 });
 
 function updateScrollbar() {

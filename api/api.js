@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
 var env = require('./environment');
 var transporter = env.transporter;
+var getdata = env.getdata;
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

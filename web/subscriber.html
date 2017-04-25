@@ -1,0 +1,56 @@
+ <html ng-app="fetch">
+    <head>
+    <title>Subscribers</title>
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+    </head>
+
+    <body>
+    <br>
+      <div class="row">
+        <div class="container">
+          <h1>User List</h1>
+          <div ng-controller="dbCtrl">
+          <input type="text" ng-model="searchFilter" class="form-control" placeholder="Search">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>To</th>
+                        <th>From</th>
+                        <th>Departure Date</th>
+                        <th>Time</th>
+                        <th>Flight Type</th>
+                        <th>Distance</th>
+                        <th>Cost/hr</th>
+                        <th>Total Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="students in data | filter:searchFilter">
+                        <td>{{rows.email}}</td>
+                        <td>{{rows.Roll}}</td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </body>
+
+    <script>
+        var fetch = angular.module('fetch', []);
+
+        fetch.controller('dbCtrl', ['$scope', '$http', function ($scope, $http) {
+            $http.get("../newbotserver.js")
+                .success(function(data){
+                    $scope.data = data;
+                })
+                .error(function() {
+                    $scope.data = "error in fetching data";
+                });
+        }]);
+
+    </script>
+
+    </html>

@@ -1,4 +1,5 @@
 require( 'use-strict' );
+var path = require('path');
 var app = require( 'express' )();
 var http = require( 'http' ).Server( app );
 var io = require( 'socket.io' )( http );
@@ -7,18 +8,41 @@ var serveStatic = require( 'serve-static' );
 var bodyParser = require( 'body-parser' );
 var nodemailer = require( 'nodemailer' );
 var chrono = require('chrono-node')
-
+var mysql =require('mysql');
 var serverport = 2001;
 var web = connect();
 web.use( serveStatic( 'web' ) );
 app.use( '/', web );
+
+var getdata = require('./api/getdata.js');
+ var connection = mysql.createConnection({
+      	     database : 'pravola-chatbot',
+		    user : 'ftdev',
+			password : '10gXWOqeaf',
+		    host :'apps.fountaintechies.com',
+    });
+app.get('/subscribers',function getSubscribers(req, res) {
+    connection.query('SELECT * FROM quote',function(err, data){
+      if(err)
+      {
+        res.send(err);
+      }
+      res.send(data);
+      //res.render('pacientes',{data:data});
+      console.log(data);
+    });
+    return
+});
+
 http.listen( serverport, function () {
-  console.log( 'listening on *:' + serverport );
+  console.log( 'listening on port ' + serverport );
 } );
 
 var TextSearch = require( "./api/TextSearch.js" );
 var ifunctions = require( './api/ifunctions' );
 var query = require('./api/query.js');
+
+//var admin = require('./systemadmin/app/login.js');
 
 //ifunctions.getUserInput("Michael", "Fassbender", "Man", ifunctions.genericPoemMaker);
 

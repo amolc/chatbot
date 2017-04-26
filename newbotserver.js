@@ -29,9 +29,10 @@ app.get('/subscribers',function getSubscribers(req, res) {
       }
       res.send(data);
       //res.render('pacientes',{data:data});
+        res.sendFile(path.join(__dirname + '/web/subscriber.html'));
       console.log(data);
     });
-    return
+    return;
 });
 
 http.listen( serverport, function () {

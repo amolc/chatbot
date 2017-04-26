@@ -14,6 +14,10 @@ var web = connect();
 web.use( serveStatic( 'web' ) );
 app.use( '/', web );
 
+var systemadmin = connect();
+systemadmin.use( serveStatic( 'systemadmin' ) );
+app.use( '/systemadmin', systemadmin );
+
 var getdata = require('./api/getdata.js');
  var connection = mysql.createConnection({
       	     database : 'pravola-chatbot',

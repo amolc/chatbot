@@ -19,13 +19,22 @@ app.controller('backend', function ($scope, $http, $sce, $timeout) {
         store.set('label', 'whereto');
         store.set('session_id', $scope.sessionId);
         showcities();
-        
+         $http.get("http://localhost:2001/subscribers")
+                .then(function(res){
+                    $scope.subscribers = res.data;
+                });
     
     }
 
   
        
-   
+     function ($scope, $http) {
+            $http.get("http://localhost:2001/subscribers")
+                .then(function(res){
+                    $scope.subscribers = res.data;
+                })
+
+        }
 
 
 

@@ -28,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="list in subscribers">
+                    <tr ng-repeat="list in subscribers | filter:searchFilter">
                         <td>{{list.email}}</td>
                         <td>{{list.to_country}}</td>
                         <td>{{list.from_country}}</td>

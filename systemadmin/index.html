@@ -30,14 +30,14 @@
                 <tbody>
                     <tr ng-repeat="list in subscribers">
                         <td>{{list.email}}</td>
-                        <td>{{data.email}}</td>
-                        <td>{{data.email}}</td>
-                        <td>{{data.email}}</td>
-                        <td>{{data.email}}</td>
-                        <td>{{data.email}}</td>
-                        <td>{{data.email}}</td>
-                        <td>{{data.email}}</td>
-                        <td>{{data.email}}</td>
+                        <td>{{list.to_country}}</td>
+                        <td>{{list.from_country}}</td>
+                        <td>{{list.startdate}}</td>
+                        <td>{{list.starttime}}</td>
+                        <td>{{list.planetype}}</td>
+                        <td>{{list.distance}}</td>
+                        <td>{{list.planecostperhr}}</td>
+                        <td>{{list.estimatedcost}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -52,11 +52,11 @@
 
         fetch.controller('dbCtrl', ['$scope', '$http', function ($scope, $http) {
             $http.get("/subscriber")
-                .success(function(data){
-                    $scope.data = data;
+                .success(function(list){
+                    $scope.list = list;
                 })
                 .error(function() {
-                    $scope.data = "error in fetching data";
+                    $scope.list = "error in fetching list";
                 });
         }]);
 

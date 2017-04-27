@@ -94,10 +94,10 @@ io.on( 'connection', function ( socket ) {
                   
                     var response = {};
                     response.sessionId = data.sessionId;
-                    response.nextlabel = "toairports";
+                    response.nextlabel = "fromwhere";
                     response.status = "success";
                     response.msg = output;
-                    response.custommessage = "I am getting the nearest airports. Help select one." ;
+                    response.custommessage = "From Where?" ;
                     io.sockets.connected[socket.id].emit( 'getresponse', response );
             }
           }
@@ -150,10 +150,10 @@ io.on( 'connection', function ( socket ) {
              
                     var response = {};
                     response.sessionId = data.sessionId;
-                    response.nextlabel = "fromairports";
+                    response.nextlabel = "startdate";
                     response.status = "success";
                     response.msg = output;
-                    response.custommessage = "I am getting the nearest airports. Help select one." ;
+                    response.custommessage = "When would you like to travel?" ;
                    // console.log('fromairports',airports);
                     io.sockets.connected[socket.id].emit( 'getresponse', response );
             }
@@ -234,10 +234,8 @@ io.on( 'connection', function ( socket ) {
     else if ( data.label == "email" ) {
       console.log( data );
 
-
-
       var agentemail = "ceo@80startups.com";
-     // var officeremail = "david.northcutt@genacom.com";
+      var officeremail = "david.northcutt@genacom.com";
      
      /* Todo : Let's do some distance calculation here */ 
        ifunctions.distancefunc( data, function (error,distanceMiles,estimatedhrs,estimatedcost ,startdate) {
@@ -268,7 +266,18 @@ io.on( 'connection', function ( socket ) {
             + "</br><p><b> Returne:</b> " + data.returnboolen + "</p>"
             + "</br><p><b> Email:</b> " + data.email + "</p>"
             + "Thanks, Chatbot";
-          
+
+            var webmsg = "Here is a summary of your booking :</br>"
+            + "<b> Start City :</b> " + data.fromwhere + "</br>"
+            + "<b>To City:</b> " + data.whereto + "</br>"    
+            + "<b> Departure date:</b> " + data.startdate + "</br>"
+            + "<b> Plane Type:</b> " + data.planetype + "</br>"
+            + "<b> Distance:</b> " + data.distance + "Miles</br>"
+            + "<b> Flight Time Hours:</b> " + data.estimatedhrs + "Hrs.</br>"
+            + "<b> Estimated Cost:</b> " + data.planecostperhr + "</br>"
+            + "<b> Estimated Cost:</b> " + data.estimatedcost + "</br>";
+           
+            console.log('webmsg',mailbody);
           
           //ifunctions.insertquotereq(data);
 
@@ -300,13 +309,14 @@ io.on( 'connection', function ( socket ) {
 
 
           send_mail( agentemail, subject, mailbody );
-  //        send_mail( officeremail, subject, mailbody );
+          send_mail( officeremail, subject, mailbody );
           send_mail( data.email, subject, mailbody );
 
+          var quotesummary = ""
           var response = {};
           response.sessionId = data.sessionId;
-          response.nextlabel = "email";
-          response.msg = "Thank You, we should email you a quote soon.";
+          response.nextlabel = "summary";
+          response.msg = webmsg ;
           io.sockets.connected[socket.id].emit( 'getresponse', response );
       }
        

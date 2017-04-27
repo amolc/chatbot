@@ -349,7 +349,7 @@ $scope.selectplanefunc = function() {
 
             setTimeout(function () {
                      showplanes();
-                },3000);
+                },10000);
 
 
 
@@ -360,105 +360,23 @@ $scope.selectplanefunc = function() {
             console.log('label', response.nextlabel);
             store.set('label', response.nextlabel);
             console.log(response);
-           
             setTimeout(function () {
                 $('.message.loading').remove();
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
-                    console.log('response length', response.msg.results.length);
-                     store.set('toairports', response.msg);
-                  
-                
-                  $scope.airports = [];
-
-                    if (response.msg.results.length > 0) {
-                            $scope.defaultairport = response.msg.results[0].name ;
-                             store.set('toairport', response.msg.results[0].name);
-                             store.set('toairportlat', response.msg.results[0].geometry.location.lat);
-                             store.set('toairportlng', response.msg.results[0].geometry.location.lng);
-
-                                console.log('toairport', response.msg.results[0].name);
-                                console.log('toairportlat', response.msg.results[0].geometry.location.lat);
-                                console.log('toairportlng', response.msg.results[0].geometry.location.lng);
-                        
-                    $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.custommessage + '</div>').appendTo($('.mCSB_container')).addClass('new');
-           
-                  
                    
-                } else {
-
-                    $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-                }
-                 $scope.selectedairportId = 1 ;
-                 showcities();
-                 updateScrollbar();
-                 console.log($scope.airports);
-                }
-            }, 1000);
-
-
-            // setTimeout(function () {
-            //     $('.message.loading').remove();
-            //     if (response.status == 'success') {
-            //         console.log('success msg', response.msg);
-                   
-            //             $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-            //         }
-            //     else {
-
-            //         $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-            //     }
-             
-            //     showcities();
-            //     updateScrollbar();
-            // }, 200);
-
-        }else if (response.nextlabel == "startdate" ) {
-            label = response.nextlabel;
-            console.log('label', response.nextlabel);
-            store.set('label', response.nextlabel);
-            console.log(response);
-
-             setTimeout(function () {
-                $('.message.loading').remove();
-                if (response.status == 'success') {
-                    console.log('success msg', response.msg);
-                    console.log('response length', response.msg.results.length);
-                    if (response.nextlabel == "toairports") {
-                        store.set('toairports', response.msg);
-                    } else {
-                        store.set('fromairports', response.msg);
-                     
+                        $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                     }
-                
-                  $scope.fromairports = [];
-
-                    if (response.msg.results.length > 0) {
-                            $scope.defaultfromairport = response.msg.results[0].name ;
-                         store.set('fromairport', response.msg.results[0].name);
-                         store.set('fromairportlat', response.msg.results[0].geometry.location.lat);
-                         store.set('fromairportlng', response.msg.results[0].geometry.location.lng);
-
-                        console.log('fromairport', response.msg.results[0].name);
-                        console.log('fromairportlat', response.msg.results[0].geometry.location.lat);
-                        console.log('fromairportlng', response.msg.results[0].geometry.location.lng);
-                    $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.custommessage + '</div>').appendTo($('.mCSB_container')).addClass('new');
-           
-                   // $scope.airports = JSON.stringify($scope.airportsnames) ;
-                   
-                } else {
+                else {
 
                     $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 }
-                 $scope.selectedfromairportId = 1 ;
-                 showcalendar();
-                 updateScrollbar();
-                }
+             
+                showcities();
+                updateScrollbar();
             }, 200);
-            
 
-        }
-        else if (response.nextlabel == "startdate" || response.nextlabel == "starttime" || response.nextlabel == "returndate" ) {
+        }else if (response.nextlabel == "startdate" || response.nextlabel == "starttime" || response.nextlabel == "returndate" ) {
             label = response.nextlabel;
             console.log('label', response.nextlabel);
             store.set('label', response.nextlabel);

@@ -29,7 +29,16 @@ var TextSearch = require( "./api/TextSearch.js" );
 var ifunctions = require( './api/ifunctions' );
 var query = require('./api/query.js');
 
+var connection = mysql.createConnection({
+    database : 'pravola-chatbot',
+		user : 'ftdev',
+    password : '10gXWOqeaf',
+		host :'apps.fountaintechies.com',
+    });
+
 app.get('/api/quotes',ifunctions.quotes);
+
+
 
 //var admin = require('./systemadmin/app/login.js');
 
@@ -224,8 +233,34 @@ io.on( 'connection', function ( socket ) {
     }
     else if ( data.label == "email" ) {
       console.log( data );
+//insert
+         var quote_data = {
+            to_country: data.whereto,
+            to_airport: data.toairport,
+            from_country: data.fromwhere,
+            from_airport: data.fromairport,
+            planetype: data.planetype,
+            startdate: data.startdate,
+            email: data.email,
+
+            planecostperhr: data.planecostperhr
+
+
+        };
+
+        connection.query("INSERT INTO quote SET ?", quote_data, function(err, res){
+            if(err){
+                console.log(err);
+            } else {
+                console.log(res);
+            }
+        });
+// end insert
+
+
+
       var agentemail = "ceo@80startups.com";
-      var officeremail = "david.northcutt@genacom.com";
+     // var officeremail = "david.northcutt@genacom.com";
      
      /* Todo : Let's do some distance calculation here */ 
        ifunctions.distancefunc( data, function (error,distanceMiles,estimatedhrs,estimatedcost ,startdate) {
@@ -259,6 +294,8 @@ io.on( 'connection', function ( socket ) {
           
           
           //ifunctions.insertquotereq(data);
+
+
 
           send_mail( agentemail, subject, mailbody );
           send_mail( officeremail, subject, mailbody );

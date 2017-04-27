@@ -14,6 +14,7 @@ var https = require( "https" );
 var distance = require('google-distance');
 var chrono = require('chrono-node');
 var mysql =require('mysql');
+var crud = require('mysql-crud');
 
 
 var querystring = require( "querystring" );
@@ -46,9 +47,11 @@ exports.quotes = function(req,res) {
 
 exports.insertquotereq = function(req, res){
     
-        var chat_data = {
-            to_country: req.whereto,
-            to_airport: req.toairport,
+        var quote_data = {
+            to_country: "new york",
+            to_airport: "airport",
+//            to_country: req.whereto,
+//            to_airport: req.toairport,
             from_country: req.fromwhere,
             from_airport: req.fromairport,
             planetype: req.planetype,
@@ -64,9 +67,12 @@ exports.insertquotereq = function(req, res){
             estimated_time: req.estimated_time
         };
         //console.log('chat_data',chat_data);
-        var insert = connection.query("INSERT INTO chat SET ?", chat_data, function(err, result){
+
+
+        var insert = connection.query("INSERT INTO chat SET ?", quote_data, function(err, result){
             if(err) throw err;
             console.log('data inserted'+insert);
+            return;
         });
 
 };
@@ -211,4 +217,3 @@ exports.estimatedcostfunc = function ( data ,distance, callback ) {
 };
 
 
- 

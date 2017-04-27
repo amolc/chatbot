@@ -14,23 +14,23 @@ app.controller('backend', function ($scope, $http, $sce, $timeout) {
 
     $scope.init = function(){
         $scope.toggle = false ;
-        $scope.label = "whereto";
-        $scope.sessionId = Math.random(10);
-        store.set('label', 'whereto');
-        store.set('session_id', $scope.sessionId);
-        showcities();
+        $scope.getquotes();
 
     }
 
   
-       
+       $scope.getquotes = function() {
+     
+        $http.get('/api/quotes').success(function(res) {
+            //console.log("res listexternalcontact:",res);
+                     $scope.subscribers = res ;
+             console.log('res',$scope.subscribers);
+              }).error(function(error) {
+                 console.log("something is wrong");
+            });
+        };
 
-            $http.get("/subscribers")
-                .then(function(res){
-                    $scope.subscribers = res.data;
-                })
-
-
+            
 
 
 

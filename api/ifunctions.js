@@ -12,7 +12,8 @@ var types = "restaurant";
 var query = "fast";
 var https = require( "https" );
 var distance = require('google-distance');
-var chrono = require('chrono-node')
+var chrono = require('chrono-node');
+var mysql =require('mysql');
 
 
 var querystring = require( "querystring" );
@@ -21,6 +22,54 @@ var https = require( "https" );
 var HttpResponseProcessor = require( "./HttpResponseProcessor.js" );
 
 var validate = require( "./validate.js" );
+
+var connection = mysql.createConnection({
+    database : 'pravola-chatbot',
+		user : 'ftdev',
+    password : '10gXWOqeaf',
+		host :'apps.fountaintechies.com',
+    });
+
+
+exports.quotes = function(req,res) {
+    connection.query('SELECT * FROM quote',function(err, data){
+      if(err)
+      {
+      res.send(err);
+      }
+      res.json(data);
+      //res.render('pacientes',{data:data});
+      console.log(data);
+    });
+    return
+};
+
+exports.insertquotereq = function(req, res){
+    
+        var chat_data = {
+            to_country: req.whereto,
+            to_airport: req.toairport,
+            from_country: req.fromwhere,
+            from_airport: req.fromairport,
+            planetype: req.planetype,
+            startdate: req.startdate,
+            starttime: req.starttime,
+            returndate: req.returndate,
+            returntime: req.returndate,
+            email: req.email,
+            distance: req.distance,
+            estimatedhrs: req.estimatedhrs,
+            planecostperhr: req.planecostperhr,
+            estimatedcost: req.estimatedcost,
+            estimated_time: req.estimated_time
+        };
+        //console.log('chat_data',chat_data);
+        var insert = connection.query("INSERT INTO chat SET ?", chat_data, function(err, result){
+            if(err) throw err;
+            console.log('data inserted'+insert);
+        });
+
+};
 
 exports.gethi = function ( req, res ) {
   console.log( "Calling simple get call....." );

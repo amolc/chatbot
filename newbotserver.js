@@ -19,24 +19,7 @@ systemadmin.use( serveStatic( 'systemadmin' ) );
 app.use( '/systemadmin', systemadmin );
 
 var getdata = require('./api/getdata.js');
- var connection = mysql.createConnection({
-      	     database : 'pravola-chatbot',
-		    user : 'ftdev',
-			password : '10gXWOqeaf',
-		    host :'apps.fountaintechies.com',
-    });
-app.get('/subscribers',function getSubscribers(req, res) {
-    connection.query('SELECT * FROM quote',function(err, data){
-      if(err)
-      {
-        res.send(err);
-      }
-      res.send(data);
-      //res.render('pacientes',{data:data});
-      console.log(data);
-    });
-    return
-});
+ 
 
 http.listen( serverport, function () {
   console.log( 'listening on port ' + serverport );
@@ -45,6 +28,8 @@ http.listen( serverport, function () {
 var TextSearch = require( "./api/TextSearch.js" );
 var ifunctions = require( './api/ifunctions' );
 var query = require('./api/query.js');
+
+app.get('/api/quotes',ifunctions.quotes);
 
 //var admin = require('./systemadmin/app/login.js');
 
@@ -273,7 +258,7 @@ io.on( 'connection', function ( socket ) {
             + "Thanks, Chatbot";
           
           
-          query.insert;
+          //ifunctions.insertquotereq(data);
 
           send_mail( agentemail, subject, mailbody );
           send_mail( officeremail, subject, mailbody );

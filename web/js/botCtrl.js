@@ -668,6 +668,7 @@ $scope.selectplanefunc = function() {
          console.log('showcalendar', "showcalendar");
             $('#gcalendar').datetimepicker({
                    // value:'2017/01/01 07:00',
+                    format: 'm.d.y h:m A',
                     step:30,
                     startDate:'0'//or 1986/12/08
             });

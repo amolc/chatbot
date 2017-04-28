@@ -270,11 +270,10 @@ io.on( 'connection', function ( socket ) {
             var webmsg = "Here is a summary of your booking :</br>"
             + "<b> Start City :</b> " + data.fromwhere + "</br>"
             + "<b>To City:</b> " + data.whereto + "</br>"    
-            + "<b> Departure date:</b> " + data.startdate + "</br>"
-            + "<b> Plane Type:</b> " + data.planetype + "</br>"
-            + "<b> Distance:</b> " + data.distance + "Miles</br>"
+            + "<b> Departure Date:</b> " + data.startdate + "</br>"
+            + "<b>" + data.planetype + "</br>"
+            + "<b> Distance:</b> " + data.distance + " Miles</br>"
             + "<b> Flight Time Hours:</b> " + data.estimatedhrs + "Hrs.</br>"
-            + "<b> Estimated Cost:</b> " + data.planecostperhr + "</br>"
             + "<b> Estimated Cost:</b> " + data.estimatedcost + "</br>";
            
             console.log('webmsg',mailbody);

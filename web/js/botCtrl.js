@@ -87,21 +87,20 @@ app.controller('botCtrl', function ($scope, $http, $sce, $timeout, socket, store
         updateScrollbar();
     }, 100);
 
-    }
-    
-    // $scope.insertmsg = function() {
-      
-    // var msg = $('.message-input').val();
-    // if ($.trim(msg) == '') {
-    //   return false;
-    // }
-    // console.log('message',msg);
-    // $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-    // $('.message-input').val(null);
+}
 
-    // updateScrollbar();
-    // emitmsg(msg);
-    //}
+function fake3(){
+
+        setTimeout(function () {
+        $scope.fakemessage3 = 'Would you like a formal quote' ;
+        var msg3 = angular.element('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + $scope.fakemessage3 + '</div>');
+        angular.element(msg3).appendTo('.mCSB_container').addClass('new');
+        updateScrollbar();
+         }, 100);
+
+      }
+    
+    
 
 function insertMessage() {   
     var msg = $('#gcities').val();
@@ -347,7 +346,7 @@ $scope.selectplanefunc = function() {
                 updateScrollbar();
             }, 200);
 
-            setTimeout(function () {
+              setTimeout(function () {
                      showplanes();
                 },3000);
 
@@ -395,23 +394,6 @@ $scope.selectplanefunc = function() {
                  console.log($scope.airports);
                 }
             }, 1000);
-
-
-            // setTimeout(function () {
-            //     $('.message.loading').remove();
-            //     if (response.status == 'success') {
-            //         console.log('success msg', response.msg);
-                   
-            //             $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-            //         }
-            //     else {
-
-            //         $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-            //     }
-             
-            //     showcities();
-            //     updateScrollbar();
-            // }, 200);
 
         }else if (response.nextlabel == "startdate" ) {
             label = response.nextlabel;
@@ -480,7 +462,29 @@ $scope.selectplanefunc = function() {
                 updateScrollbar();
             }, 200);
 
-        } else {
+        } else if (response.nextlabel == "summary") {
+            label = response.nextlabel;
+            console.log('label', response.nextlabel);
+            store.set('label', response.nextlabel);
+            console.log(response);
+            setTimeout(function () {
+                $('.message.loading').remove();
+                if (response.status == 'success') {
+                    console.log('success msg', response.msg);
+                   
+                        $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                    
+                }
+                else {
+
+                    $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                }
+             
+                fake3();
+                updateScrollbar();
+            }, 2000);
+
+        }else {
             label = response.nextlabel;
             store.set('label', response.nextlabel);
             console.log(response);

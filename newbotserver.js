@@ -275,6 +275,7 @@ io.on( 'connection', function ( socket ) {
             + "<b> Distance:</b> " + data.distance + " Miles</br>"
             + "<b> Flight Time Hours:</b> " + data.estimatedhrs + "Hrs.</br>"
             + "<b> Estimated Cost:</b> " + data.estimatedcost + "</br>";
+            
            
             console.log('webmsg',mailbody);
           

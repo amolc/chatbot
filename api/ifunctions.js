@@ -100,8 +100,8 @@ exports.privateairportfunc = function ( req, callback ) {
   };
 
 
-  //parameters.key = "AIzaSyCbQ_Hk3eqc7UB-fqKqYqUDFtjDjDBe2V8";
-  parameters.key = "AIzaSyBfRKuwq8c3ETUxdC7jMvhh3iN_x0SHRWQ";
+  parameters.key = "AIzaSyCbQ_Hk3eqc7UB-fqKqYqUDFtjDjDBe2V8";
+  //parameters.key = "AIzaSyBfRKuwq8c3ETUxdC7jMvhh3iN_x0SHRWQ";
   parameters.query = parameters.query || "airports";
   parameters.sensor = parameters.sensor || false;
   parameters.type = "airport";
@@ -197,7 +197,8 @@ exports.distancefunc = function ( data, callback ) {
     console.log('estimatedhrs' ,estimatedhrs);
     console.log('estimatedcost' ,estimatedcost);
     
-    var startdate = chrono.parseDate(data.startdate) ;
+   // var startdate = chrono.parseDate(data.startdate) ;
+    var startdate = data.startdate ;
     console.log('startdate',startdate);
 
     callback(null,distanceMiles,estimatedhrs,estimatedcost,startdate);

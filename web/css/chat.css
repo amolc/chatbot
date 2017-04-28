@@ -303,6 +303,19 @@ Messages
     margin-left: 35px;
     position: relative;
 }
+.messages .loadmessage {
+    clear: both;
+    float: left;
+    padding: 14px 16px 12px;
+    border-radius: 10px 10px 10px 0;
+    margin: 8px 0;
+    font-size: 15px;
+    line-height: 1.4;
+    color: #fff;
+    text-align: left;
+    margin-left: 35px;
+    position: relative;
+}
 .messages .message .timestamp {
   position: absolute;
   bottom: -15px;

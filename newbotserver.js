@@ -231,6 +231,7 @@ io.on( 'connection', function ( socket ) {
                 var quotesummary = ""
                 var response = {};
                 response.sessionId = data.sessionId;
+                response.status = "success";
                 response.nextlabel = "formalquote";
                 response.msg = webmsg ;
                 io.sockets.connected[socket.id].emit( 'getresponse', response );
@@ -284,6 +285,7 @@ io.on( 'connection', function ( socket ) {
       console.log('formalquote',data.formalquote);
       var response = {};
       response.sessionId = data.sessionId;
+      response.status = "success";
       response.nextlabel = "email";
       response.msg = "Can I get your email?";
        io.sockets.connected[socket.id].emit( 'getresponse', response );

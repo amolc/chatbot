@@ -474,13 +474,15 @@ $scope.selectplanefunc = function() {
             store.set('label', response.nextlabel);
             console.log(response);
             typing();
+            $('#loadchat').remove();
             setTimeout(function () {
-                $('#loadchat').remove();
+             
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
-                   
+                    var msg3 = "Would you like a formal quote" ;
                         $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-                        
+                        $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + msg3 + '</div>').appendTo($('.mCSB_container')).addClass('new');
+               
                 }
                 else {
 
@@ -490,9 +492,29 @@ $scope.selectplanefunc = function() {
              
                 
                 updateScrollbar();
-            }, 8000);
+            }, 6000);
 
-        }else {
+        }else if (response.nextlabel == "email") {
+            label = response.nextlabel;
+            console.log('label', response.nextlabel);
+            store.set('label', response.nextlabel);
+            console.log(response);
+            typing();
+            $('#loadchat').remove();
+            setTimeout(function () {
+                if (response.status == 'success') {
+                    console.log('success msg', response.msg);
+                        $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                }
+                else {
+                    $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+
+                }
+                updateScrollbar();
+            }, 3000);
+
+        }
+        else {
             label = response.nextlabel;
             store.set('label', response.nextlabel);
             console.log(response);
@@ -501,7 +523,7 @@ $scope.selectplanefunc = function() {
                    $('#loadchat').remove();
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
-                    console.log('response length', response.msg.results.length);
+                   
                     if (response.msg.results.length > 1) {
                         for (var i = 0; i < response.msg.results.length; i++) {
                             $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg.results[i].id + '. ' + response.msg.results[i].name + '</div>').appendTo($('.mCSB_container')).addClass('new');

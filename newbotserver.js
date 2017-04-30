@@ -61,7 +61,7 @@ var formatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 2,
 });
 
-
+io.set('origins', '*:*');
 io.on( 'connection', function ( socket ) {
 
 

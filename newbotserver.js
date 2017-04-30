@@ -12,11 +12,15 @@ var mysql =require('mysql');
 var serverport = 2001;
 var web = connect();
 web.use( serveStatic( 'web' ) );
-app.use( '/', web );
+app.use( '/web', web );
 
 var systemadmin = connect();
 systemadmin.use( serveStatic( 'systemadmin' ) );
 app.use( '/systemadmin', systemadmin );
+
+var www = connect();
+www.use( serveStatic( 'www' ) );
+app.use( '/', www );
 
 var getdata = require('./api/getdata.js');
  
@@ -431,6 +435,6 @@ io.on( 'connection', function ( socket ) {
 
 } );
 
-//TODO: Change the messages in array to simple questions
-//TODO: See why the drop down is not immediately updated.
-//TODO: Change the when you want to travel to a - calendar response.
+
+
+

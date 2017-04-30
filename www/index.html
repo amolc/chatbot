@@ -1,0 +1,325 @@
+<!doctype html>
+<html ng-app="mybot" >
+<head>
+<meta charset="UTF-8">
+<title>Pravola - Revolutionizing the Way People Fly Private</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,%20400,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+<!-- <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="css/site.css" rel="stylesheet" type="text/css">
+
+<!-- FAVICON -->
+<link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="images/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+<link rel="manifest" href="images/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!-- END FAV -->
+<!-- chat -->
+ 
+  
+  
+
+<!-- chat -->
+</head>
+
+<body ng-controller="botCtrl" ng-init="init()">
+	<div class="header_container home_hc" >
+    	    <nav class="clearfix">
+
+			<input type="checkbox" id="show-menu" role="button">
+            <label for="show-menu" class="show-menu"><i class="fa fa-navicon"></i></label>
+        	<ul class="head_nav clearfix">
+                <li><a id="homePg" href="index.html">Home</a></li>
+            	<li><a id="whyP" href="legendary_service.php.html">Why Pravola?</a>
+                	<ul class="hidden_drop hddn_1 drop_whyaj" id="hddn_1a">
+                		<li><a href="javascript:void(0);" class="drop_indicator">Elite Member Services</a>
+                        	<ul class="hidden_drop">
+                            	<li><a href="business_aircraft.php.html">Business Aircraft</a></li>
+                                <li><a href="exotic_cars.php.html">Exotic Cars</a></li>
+                                <li><a href="ground_transportation_and_catering.php.html">Ground Transportation & Catering</a></li>
+                                <li><a href="hotels_and_beyond_resorts.php.html">Hotels & Beyond Resorts</a></li>
+                                <li><a href="international_travel.php.html">International Travel</a></li>
+                                <li><a href="island_hopping_services.php.html">Island Hopping Services</a></li>
+                                <li><a href="on_a_yacht.php.html">On a Yacht</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="legendary_service.php.html">Amazing Service</a></li>
+                        <li><a href="jet_sourcing_company.php.html">Jet Sourcing Company</a></li>
+                        <li><a href="safety_standards_and_requirements.php.html">Safety Standards & Requirements</a></li>
+                        <li><a href="reliability_and_accessability.php.html">Reliability & Accessability</a></li>
+                        <li><a href="one_way_and_empty_leg_pricing.php.html">One Way & Empty Leg Pricing</a></li>
+                    </ul>
+                </li>
+                <li><a id="planIt" href="flight_quote.php.html">Plan A Trip</a>
+                	<ul class="hidden_drop hddn_1 drop_planatrip">
+                	
+                        <li><a href="flight_quote.php.html">Flight Quote</a></li>
+                        <li><a href="javascript:void(0);" class="drop_indicator">Trip Type</a>
+                        	<ul class="hidden_drop">
+                                <li><a href="business.php.html">Business</a></li>
+                                <li><a href="casinos_and_horse_races.php.html">Casinos & Horse Races</a></li>
+                                <li><a href="hotels_and_resorts.php.html">Hotels & Resorts</a></li>
+                                <li><a href="islands.php.html">Islands</a></li>
+                                <li><a href="medical.php.html">Medical</a></li>
+                                <li><a href="weddings_and_honeymoons.php.html">Weddings & Honeymoons</a></li>
+                                <li><a href="vip_pets.php.html">VIP Pets</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a id="jetC" href="about_jet_cards.php.html">Jet Cards</a>
+                	<ul class="hidden_drop hddn_1 drop_jetcards">
+                		<li><a href="about_jet_cards.php.html">About Jet Cards</a></li>
+						<li><a href="join_jet_cards.php.html">Join Jet Cards</a></li>
+                    </ul>
+                </li>
+                <li><a id="contU" href="contact_us.php.html">Contact Us</a>
+                	<ul class="hidden_drop hddn_1 drop_contact">
+                    	<li><a href="contact_us.php.html">Contact Us</a></li>
+                		<li><a href="faq.php.html">FAQ</a></li>
+                        <li><a href="flight_quote.php.html">Get a Quote!</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="toll_free_wrap">
+            	<a href="tel://+1-800-308-9056" alt="+1-877-303-5387">+ <span class="white">800-308-9056</span></a>
+                <span class="jets_nmbr"></span>
+            </div>
+        </nav>
+        <header class="wrapper">
+            <section class="clearfix">
+            	<a id="logo" href="index.html" alt="Pravola" ><img src="images/pravola-logo.svg" ></a>
+                <!-- <div class="jet_wrap">
+                	<img class="jet" src="images/header_jet.png" >
+                </div> -->
+                <div class="hdr_title_wrap">
+                    <h1 class="title">Revolutionizing</h1>
+                    <h2 class="tt_upper">the Way People Fly Private</h2>
+                    <p>By making it easier to book trips, more access to available planes, more cost effective, and the fastest quoting system available.</p>
+					<p>We think that is pretty cool... give us a try today!  </p>
+                </div>
+				<a href="javascript:void(0);" id="scroll_down"><i class="fa fa-angle-down"></i></a>
+            </section>
+
+        </header>
+        <div class="hdr_hr"></div>
+		<!--<video autoplay loop poster="images/header_sky_bg4.jpg" class="bgvideo" width="100%">
+			<source src="images/clouds-s.webm" type="video/webm">
+			<source src="images/clouds-s.mp4" type="video/mp4">
+		</video>-->
+    </div>
+    <main class="clearfix" >
+        <section class="info_blocks_wrap home_ib">
+        	<div class="wrapper clearfix">
+                <a href="legendary_service.php.html" onclick="void(0)" class="info_block clearfix">
+                    <div class="circle ib_1">
+						<i class="fa fa-question-circle-o"></i>
+
+                    </div>
+                    <div class="ib_text_wrap">
+                        <h3>Why Pravola</h3>
+                        <p></p>
+                        <div class="readmore rm_1">Read More</div>
+                   	</div>
+                </a>
+                <a href="flight_quote.php.html" class="info_block clearfix">
+                    <div class="circle ib_2">
+						<i class="fa fa-plane"></i>
+
+                    </div>
+                    <div class="ib_text_wrap">
+                        <h3>Flight Quote</h3>
+                        <p></p>
+                        <div class="readmore rm_1">Read More</div>
+                    </div>
+                </a>
+                <a href="join_jet_cards.php.html" class="info_block clearfix">
+                    <div class="circle ib_3">
+						<i class="fa  fa-credit-card"></i>
+
+                    </div>
+                    <div class="ib_text_wrap">
+                        <h3>Jet Card</h3>
+                        <p></p>
+                        <div class="readmore rm_1">Read More</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+        <section class="home_content">
+        	<div class="wrapper clearfix">
+            	<h2 class="blue tt_upper">Pravola Legendary Service</h2>
+                <p>Our legendary service keeps clients flying private with us for years. We specialize in CEO business executive trips, and frequently book same day transcontinental business round trips using two aircraft and two crews, All of our flights boast the most rigid safety standards, certified by Wyvern Safety Standard Company. We also have a voice on the leadership council of the NBAA, the private aviation industry association that lobbies directly to Congress.</p>
+                <p>Pravola’s mission is to give you something you didn’t get on your last flights: efficiency and innovation. On any given day, there are approximately 3,200 aircraft in North America available for private flights. We sift through dozens of fleets, to provide you with the most perfect fit for your needs. For example, we can provide anything from a Citation X that flies at .92 Mach to a fuel efficient very light jet such as a Phenom 100 for your flight mission.</p>
+                <div class="partner_logos">
+                    <a href="http://www.wyvernltd.com/" target="_blank"><img src="images/wyvern_logo.jpg" ></a></li>
+                    <a href="http://www.nbaa.org/" target="_blank"><img src="images/nbaa_logo.jpg" ></a></li>
+                </div>
+                <a href="legendary_service.php.html" class="readmore rm_2">Read More</a>
+            </div>
+        </section>
+    </main>
+	    <footer>
+    	<section class="footer_about">
+        	<div class="gold_gradient_overlay">
+        	<div class="wrapper clearfix">
+            	<a class="footer_logo" href="index.html" alt="Pravola" ><img src="images/pravola-ftr-logo.svg" ></a>
+            	<h2><a class="footer_h_link" href="flight_quote.php.html">Plan a Trip</a></h2>
+                <p>Our legendary service keeps clients flying private for years. We specialize in CEO business executive trips.</p>
+                <p>Pravola is a Wyvern Safety Standard Company. We also have a voice on the leadership council of the NBAA, which is the private aviation industry association lobbying directly to Congress.</p>
+            </div>
+            </div>
+        </section>
+        <section class="footer_image">
+        </section>
+        <nav class="footer_nav">
+            <div class="ftr_jet_img"></div>
+        	<!-- <img class="full_width_img" src="images/footer_jetatsunset2.jpg"> -->
+            <div class="wrapper clearfix">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="safety_standards_and_requirements.php.html">Safety</a></li>
+                    <li><a href="flight_quote.php.html">Flight Quote</a></li>
+                    <li><a href="about_jet_cards.php.html">Jet Cards</a></li>
+                    <li><a href="contact_us.php.html">Contact Us</a></li>
+                     <li><a href=terms-and-conditions.php.html>Terms and Conditions</a></li>
+                </ul>
+               
+        </nav>
+        <section class="footer_end">
+             <button class="btn-chat" id="btn-chat" ng-click="toggleme()">Get a Quote</button>
+        	<div class="wrapper clearfix">
+            	<ul class="footer_social">
+                <!--	<li><a href="javascript:void(0)" target="_blank"><i class="fa fa-facebook-square"></i></a>
+                    <li><a href="javascript:void(0)" target="_blank"><i class="fa fa-twitter-square"></i></a>
+                    <li><a href="javascript:void(0)" target="_blank"><i class="fa fa-linkedin-square"></i></a>
+                    <li><a href="javascript:void(0)" target="_blank"><i class="fa fa-google-plus-square"></i></a>-->
+                </ul>
+                <p class="address_ftr">1 World Trade Center Suite 8500 <span class="pipe">|</span>New York, NY 10007</p>
+                <a class="footer_tollfree clearfix" href="tel://+1-877-303-5387" alt="+1-800-772-8652"><span class="accent">+</span> 800-308-9056 <span class="lt"></span><span class="accent">Toll Free</span></a>
+                <p class="disclaimer">Pravola serves as an agent in obtaining air charter services for our customers. We select carriers which are fully certified by the Federal Aviation Administration and the U.S. Department of Transportation. Carriers are solely responsible for the air transportation arranged on behalf of customers. Pravola does not own or operate the aircraft on which our customers fly. Pravola is not a direct or indirect air carrier. All flights are operated by Part 135 carriers.</p>
+                <p class="footer_copyright">Executive Jets llc DBA "Pravola" </p>
+                <p class="footer_copyright">© Copyright 2017<span class="ftr_copyrt pipe">|</span>All Rights Reserved.</p>
+            </div>
+        </section>
+    </footer>
+    <div class="btn-chat"> <button  id="btn-chat" ng-click="toggleme()">Get a Quote</button></div>
+        <div class="chat" ng-show="toggle">
+        <div class="chat-title">
+          <h1>Julia</h1>
+          <h2>PRAVOLA</h2>
+          <figure class="avatar">
+            <img src="lib/img/profile.png" />
+          </figure>
+        </div>
+        <div class="messages">
+          <div class="messages-content">
+
+          </div>
+        </div>
+
+        <div class="message-box">
+          <div id="loadchat">
+            <div style="float:left" class="load-white">Loading </div>
+            <div style="float:left;margin-left:20px;"><img src="lib/img/chat.svg" /></div>
+          </div>
+          <div id="calendarfield">
+            <div> <input ng-model="selecteddate" id="gcalendar" type="text" value="" class="inputbox" ng-keydown="$event.which === 13 && selectcalendarfunc()"></div>
+            <div> <button type="submit" class="message-submit" ng-click="selectcalendarfunc()">Send</button></div>
+          </div>
+          <div id="citiesfield">
+            <div> <input class="inputbox" id="gcities" ng-keydown="$event.which === 13 && selectplacefunc()" ng-model="chosenPlace"
+                googleplace/></div>
+            <div> <button type="submit" class="message-submit" ng-click="selectplacefunc()">Send</button></div>
+          </div>
+          <div id="airportsfield">
+            <select ng-model="selectedairportId" ng-options="airport.id as airport.name for airport in airports">
+            <option value="">{{defaultairport}}</option>
+          </select>
+            <button type="submit" class="message-submit" ng-click="selectairportfunc()">Send</button>
+          </div>
+          <div id="planesfield">
+            <select ng-model="selectedplaneId" >
+                    <option value="1"  selected="selected" >Very Light Jet $4000/hr</option>
+                    <option value="2">Turbo Prop Jet $4000/hr</option>
+                    <option value="3">Light Jet$ 5000/hr</option>
+                    <option value="4">MidSize Jet $6000/hr</option>
+                    <option value="5">Super Jet $7000/hr</option>
+                    <option value="6">Heavy Jet $10000/hr</option>
+                    <option value="7">Jumbo Jets Jet $15000/hr</option>
+          </select>
+            <button type="submit" class="message-submit" ng-click="selectplanefunc()">Send</button>
+          </div>
+          <div id="fromairportsfield">
+            <select ng-model="selectedfromairportId" ng-options="airport.id as airport.name for airport in fromairports">
+            <option value="">{{defaultfromairport}}</option>
+          </select>
+            <button type="submit" class="message-submit" ng-click="selectfromairportfunc()">Send</button>
+          </div>
+          <div id="textfield">
+            <div> <input ng-model="selectdata" id="gtextfield" type="text" value="Yes" class="inputbox" ng-keydown="$event.which === 13 && selectdatafunc()"></div>
+            <div> <button type="submit" class="message-submit" ng-click="selectdatafunc()">Send</button></div>
+          </div>
+        </div>
+          
+      </div>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
+     <script src="lib/app.js"></script>
+ 
+
+     <script src="lib/jquery.datetimepicker.js"></script>
+  <link rel="stylesheet" type="text/css" href="lib/jquery.datetimepicker.css" />
+    <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			// SET ACTIVE NAV TAB
+			$("#homePg").addClass("active");
+			$('body').imagesLoaded()
+			  .always( function( instance ) {
+			    console.log('all images loaded');
+			  })
+			  .done( function( instance ) {
+			    console.log('all images successfully loaded');
+			  })
+			  .fail( function() {
+			    console.log('all images loaded, at least one is broken');
+			  })
+			  .progress( function( instance, image ) {
+			    var result = image.isLoaded ? 'loaded' : 'broken';
+			    console.log( 'image is ' + result + ' for ' + image.img.src );
+			  });
+              
+		});
+	</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKDSx_T1NPT6POTrShPCed43ULC1mx9U8&libraries=places&sensor=false&language=en&v=3"></script>
+  <!--<link rel="stylesheet" href="css/shop.css">-->
+  <link rel="stylesheet" href="lib/chat.css">
+  <script src="lib/angular-storage.min.js"></script>
+<script src="lib/botCtrl.js"></script>
+ 
+</body>
+</html>
+
+<!-- Localized -->

@@ -171,6 +171,8 @@ exports.planetypes = function (res) {
 };
 //
 
+
+
 exports.distancefunc = function ( data, callback ) {
 
     var gps = require('gps-manager');

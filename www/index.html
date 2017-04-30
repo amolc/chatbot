@@ -233,9 +233,8 @@
         </div>
 
         <div class="message-box">
-          <div id="loadchat">
-            <div style="float:left" class="load-white">Loading </div>
-            <div style="float:left;margin-left:20px;"><img src="lib/img/chat.svg" /></div>
+          <div id="loading" >
+            <div style="height:20px;vertical-align:middle; text-align:center"><img class="imgsize" src="lib/img/chat.svg" /></div>
           </div>
           <div id="calendarfield">
             <div> <input ng-model="selecteddate" id="gcalendar" type="text" value="" class="inputbox" ng-keydown="$event.which === 13 && selectcalendarfunc()"></div>
@@ -253,8 +252,8 @@
             <button type="submit" class="message-submit" ng-click="selectairportfunc()">Send</button>
           </div>
           <div id="planesfield">
-            <select ng-model="selectedplaneId" >
-                    <option value="1"  selected="selected" >Very Light Jet $4000/hr</option>
+            <select ng-model="selectedplaneId"  >
+                    <option value="1" selected>Very Light Jet $4000/hr</option>
                     <option value="2">Turbo Prop Jet $4000/hr</option>
                     <option value="3">Light Jet$ 5000/hr</option>
                     <option value="4">MidSize Jet $6000/hr</option>

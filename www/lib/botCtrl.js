@@ -47,7 +47,7 @@ app.controller('botCtrl', function ($scope, $http, $sce, $timeout, socket, store
         $scope.sessionId = Math.random(10);
         store.set('label', 'whereto');
         store.set('session_id', $scope.sessionId);
-        $scope.selectedplaneId = 1 ;
+        $scope.selectedplaneId = "1" ;
         showcities();
     
     }
@@ -106,9 +106,7 @@ $scope.selectcalendarfunc = function (){
   }
 
 $scope.selectplacefunc = function() {
-    console.log("selectedplace");
-    console.log($scope.gPlace);
-    console.log('chosenplace' , $scope.chosenPlace);
+    
     var msg = $('#gcities').val();
     if ($.trim(msg) == '') {
       return false;
@@ -195,7 +193,7 @@ $scope.selectplanefunc = function() {
                 var msg1 = angular.element('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + $scope.fakemessage1 + '</div>');
                 angular.element(msg1).appendTo('.mCSB_container').addClass('new');
                 updateScrollbar();
-           },4500);
+           },3000);
 
     }
     $scope.fake3 = function(){
@@ -206,7 +204,7 @@ $scope.selectplanefunc = function() {
                 var msg1 = angular.element('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + $scope.fakemessage1 + '</div>');
                 angular.element(msg1).appendTo('.mCSB_container').addClass('new');
                 updateScrollbar();
-           },4500);
+           },3000);
 
     }
     socket.on('getresponse', function (response) {
@@ -219,7 +217,7 @@ $scope.selectplanefunc = function() {
             console.log('reponse.label', response.nextlabel);
             $scope.$broadcast('angucomplete-alt:clearInput');
            
-         
+            typing();
             setTimeout(function () {
                 $('#loadchat').remove();
                 if (response.status == 'success') {
@@ -320,21 +318,14 @@ $scope.selectplanefunc = function() {
         }  
         else if (response.nextlabel == "fromwhere") {
             label = response.nextlabel;
-            console.log('label', response.nextlabel);
             store.set('label', response.nextlabel);
-            console.log(response);
-            
+              loadgif();
               typing();
               setTimeout(function () {
-                
-                $('#chatbot').remove();
                 if (response.status == 'success') {
-                    console.log('success msg', response.msg);
-                    console.log('response length', response.msg.results.length);
+                    $('#loadchat').remove();
                      store.set('toairports', response.msg);
-                  
-                
-                  $scope.airports = [];
+                     $scope.airports = [];
 
                     if (response.msg.results.length > 0) {
                             $scope.defaultairport = response.msg.results[0].name ;
@@ -366,6 +357,7 @@ $scope.selectplanefunc = function() {
             console.log('label', response.nextlabel);
             store.set('label', response.nextlabel);
             console.log(response);
+            loadgif();
             typing();
              setTimeout(function () {
                 $('#loadchat').remove();
@@ -410,6 +402,7 @@ $scope.selectplanefunc = function() {
             console.log('label:116', response.nextlabel);
             store.set('label', response.nextlabel);
             console.log(response);
+            loadgif();
             typing();
             setTimeout(function () {
                 $('#loadchat').remove();
@@ -436,8 +429,8 @@ $scope.selectplanefunc = function() {
                     $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 }
                 
-                 $scope.selectedplaneId = 1 ;
-                  showplanes();
+                 $scope.selectedplaneId = "1" ;
+                showplanes();
                 updateScrollbar();
             }, 6000);
 
@@ -449,6 +442,7 @@ $scope.selectplanefunc = function() {
             console.log('label', response.nextlabel);
             store.set('label', response.nextlabel);
             console.log(response);
+            loadgif();
             typing();
             setTimeout(function () {
                   $('#loadchat').remove();
@@ -477,10 +471,11 @@ $scope.selectplanefunc = function() {
             setTimeout(function () {
              
                 if (response.status == 'success') {
+                    $('#loadchat').remove();
                     console.log('success msg', response.msg);
                     var msg3 = "Would you like a formal quote" ;
-                        $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-                        $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + msg3 + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                        $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new').delay(1000);
+                       // $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + msg3 + '</div>').appendTo($('.mCSB_container')).addClass('new');
                
                 }
                 else {
@@ -488,19 +483,20 @@ $scope.selectplanefunc = function() {
                     $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
 
                 }
-             
-                
                 updateScrollbar();
+                $scope.fake3();
+                showtextfield();
             }, 6000);
-
+           
         }else if (response.nextlabel == "email") {
             label = response.nextlabel;
             console.log('label', response.nextlabel);
             store.set('label', response.nextlabel);
             console.log(response);
+            loadgif();
             typing();
-            $('#loadchat').remove();
             setTimeout(function () {
+                 $('#loadchat').remove();
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
                         $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
@@ -510,6 +506,29 @@ $scope.selectplanefunc = function() {
 
                 }
                 updateScrollbar();
+                showtextfield();
+            }, 3000);
+
+        }
+        else if (response.nextlabel == "returnboolen") {
+            label = response.nextlabel;
+            console.log('label', response.nextlabel);
+            store.set('label', response.nextlabel);
+            console.log(response);
+            loadgif();
+            typing();
+            setTimeout(function () {
+                 $('#loadchat').remove();
+                if (response.status == 'success') {
+                    console.log('success msg', response.msg);
+                        $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                }
+                else {
+                    $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+
+                }
+                updateScrollbar();
+                showtextfield();
             }, 3000);
 
         }
@@ -521,6 +540,7 @@ $scope.selectplanefunc = function() {
             setTimeout(function () {
                    $('#loadchat').remove();
                 if (response.status == 'success') {
+                $('#loadchat').remove();
                     console.log('success msg', response.msg);
                    
                     if (response.msg.results.length > 1) {
@@ -534,8 +554,9 @@ $scope.selectplanefunc = function() {
 
                     $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 }
-                showtextfield();
+                loadgif();
                 updateScrollbar();
+                showtextfield();
             }, 6000);
         }
 
@@ -633,7 +654,7 @@ $scope.selectplanefunc = function() {
             console.log('data', data);
             socket.emit('apicall', data);
         } else if (data.label == "returndate") {
-            store.set('returnboolen', msg)
+            store.set('returndate', msg)
             data.whereto = store.get('whereto');
             data.toairport = store.get('toairport');
             data.toairportlat = store.get('toairportlat');
@@ -643,7 +664,7 @@ $scope.selectplanefunc = function() {
             data.fromairportlat = store.get('fromairportlat');
             data.fromairportlng = store.get('fromairportlng');
             data.startdate = store.get('startdate');
-           // data.starttime = store.get('starttime');
+            data.returndate = store.get('returndate');
             data.planetype = store.get('plane-type');
             data.planespeed = store.get('plane-speed');
             data.planerange = store.get('plane-range');
@@ -672,12 +693,12 @@ $scope.selectplanefunc = function() {
             data.fromairportlat = store.get('fromairportlat');
             data.fromairportlng = store.get('fromairportlng');
             data.startdate = store.get('startdate');
-           // data.starttime = store.get('starttime');
             data.planetype = store.get('plane-type');
             data.planespeed = store.get('plane-speed');
             data.planerange = store.get('plane-range');
             data.planecostperhr = store.get('plane-costperhr');
             data.returnboolen = store.get('returnboolen');
+            data.returndate = store.get('returndate');
             data.email = store.get('email');
             console.log('data', data);
             socket.emit('apicall', data);
@@ -686,7 +707,17 @@ $scope.selectplanefunc = function() {
     }
 
         function loadgif() {
-            $('#loadchat').show();
+            $('#loading').show('slow');
+            $('#citiesfield').hide();
+            $('#airportsfield').hide();
+            $('#calendarfield').hide();
+            $('#planesfield').hide();
+            $('#fromairportsfield').hide();
+            $('#textfield').hide();
+
+        }
+        function unloadgif() {
+            $('#loading').hide();
             $('#citiesfield').hide();
             $('#airportsfield').hide();
             $('#calendarfield').hide();
@@ -697,8 +728,7 @@ $scope.selectplanefunc = function() {
         }
 
         function showcities() {
-            console.log('showcities', "showcities");
-            $('#loadchat').hide();
+            $('#loading').hide('slow');
             $('#gcities').val(null);
             $('#citiesfield').show('slow');
             $('#airportsfield').hide();
@@ -711,7 +741,7 @@ $scope.selectplanefunc = function() {
 
         function showairports() {
          console.log('showairports', "showairports");
-             $('#loadchat').hide();
+            $('#loading').hide();
             $('#citiesfield').hide('slow');
             $('#airportsfield').show('slow');
             $('#calendarfield').hide('slow');
@@ -723,8 +753,8 @@ $scope.selectplanefunc = function() {
 
         function showfromairports() {
          console.log('showfromairports', "showfromairports");
-          $('#loadchat').hide();
-            $('#fromairportsfield').show();
+          $('#loading').hide();
+            $('#fromairportsfield').show('slow');
             $('#calendarfield').hide();
             $('#citiesfield').hide();
             $('#planesfield').hide();
@@ -742,7 +772,7 @@ $scope.selectplanefunc = function() {
                     step:30,
                     startDate:'0'//or 1986/12/08
             });
-             $('#loadchat').hide();
+             $('#loading').hide();
             $('#calendarfield').show('slow');
             $('#citiesfield').hide();
             $('#airportsfield').hide();
@@ -753,7 +783,7 @@ $scope.selectplanefunc = function() {
         }
 
           function showplanes(){
-            $('#loadchat').hide();
+            $('#loading').hide();
             $('#calendarfield').hide();
             $('#citiesfield').hide();
             $('#airportsfield').hide();
@@ -763,8 +793,8 @@ $scope.selectplanefunc = function() {
             }
 
         function showtextfield(){
-             $('#loadchat').hide();
-            $('#textfield').show();
+            $('#loading').hide();
+            $('#textfield').show('slow');
             $('#calendarfield').hide();
             $('#citiesfield').hide();
             $('#airportsfield').hide();

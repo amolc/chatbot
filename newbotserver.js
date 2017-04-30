@@ -55,6 +55,12 @@ var google_output_format = "json";
 var textSearch = new TextSearch( google_api_key, google_output_format );
 ///
 
+var formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2,
+});
+
 
 io.on( 'connection', function ( socket ) {
 
@@ -218,12 +224,15 @@ io.on( 'connection', function ( socket ) {
       
           if(error){
             console.log(error)
-            }else{
-             data.distance = distanceMiles ;
+          }else{
+           
+            var estimatedcostUSD = formatter.format(estimatedcost) ;
+            console.log('currency',estimatedcostUSD);
+            data.distance = distanceMiles ;
            data.estimatedhrs = estimatedhrs ;
-           data.estimatedcost = estimatedcost ;
+           data.estimatedcost = estimatedcostUSD ;
            data.startdate = startdate ;
-            var webmsg = "Here is a summary of your booking :</br>"
+            var webmsg = "<b>Here is a summary of your booking :</b></br>"
             + "<b> Start City :</b> " + data.fromwhere + "</br>"
             + "<b>To City:</b> " + data.whereto + "</br>"    
             + "<b> Departure Date:</b> " + data.startdate + "</br>"
@@ -258,20 +267,25 @@ io.on( 'connection', function ( socket ) {
       
           if(error){
             console.log(error)
-            }else{
+          }else{
+              var estimatedcostUSD = formatter.format(estimatedcost) ;
+              var returncost = estimatedcost*2 ;
+              var estimatedcosttotalUSD = formatter.format(returncost) ;
              data.distance = distanceMiles ;
              data.estimatedhrs = estimatedhrs ;
-             data.estimatedcost = estimatedcost*2 ;
+             data.estimatedcost = estimatedcostUSD ;
+             data.estimatedcosttotal = estimatedcosttotalUSD ;
              data.startdate = startdate ;
-            var webmsg = "Here is a summary of your booking :</br>"
+            var webmsg = "<b>Here is a summary of your booking :</b></br>"
             + "<b> Start City :</b> " + data.fromwhere + "</br>"
             + "<b>To City:</b> " + data.whereto + "</br>"    
             + "<b> Departure Date:</b> " + data.startdate + "</br>"
-            + "<b> Departure Date:</b> " + data.returndate + "</br>"
+            + "<b> Return Date:</b> " + data.returndate + "</br>"
             + "<b>" + data.planetype + "</br>"
             + "<b> Distance:</b> " + data.distance + " Miles</br>"
             + "<b> Flight Time Hours:</b> " + data.estimatedhrs + "Hrs.</br>"
-            + "<b> Estimated Cost:</b> " + data.estimatedcost + "</br>";
+            + "<b> Estimated Cost/Each:</b> " + data.estimatedcost + "</br>"
+            + "<b> Total Cost:</b> " + estimatedcosttotalUSD + "</br>";
             
                 var quotesummary = ""
                 var response = {};
@@ -306,9 +320,12 @@ io.on( 'connection', function ( socket ) {
       if(error){
           console.log(error)
       }else{
+          var estimatedcostUSD = formatter.format(estimatedcost) ;
+          var estimatedcosttotalUSD = formatter.format(estimatedcost*2) ;
            data.distance = distanceMiles ;
            data.estimatedhrs = estimatedhrs ;
-           data.estimatedcost = estimatedcost ;
+           data.estimatedcost = estimatedcostUSD ;
+           data.estimatedcosttotalUSD = estimatedcosttotalUSD ;
            data.startdate = startdate ;
            console.log('data.distance', distanceMiles);
            console.log('data.estimatedhrs', estimatedhrs);
@@ -327,6 +344,9 @@ io.on( 'connection', function ( socket ) {
             + "</br><p><b> Estimated Cost:</b> " + data.estimatedcost + "</p>"
             + "</br><p><b></p>"
             + "</br><p><b> Return:</b> " + data.returnboolen + "</p>"
+            + "</br><p><b> Return Date:</b> " + data.returndate + "</p>"
+            + "</br><p><b> Total Cost:</b> " +  data.estimatedcosttotalUSD + "</p>"
+            + "</br><p><b></p>"
             + "</br><p><b> Email:</b> " + data.email + "</p>"
             + "Thanks, Chatbot";
 
@@ -359,7 +379,7 @@ io.on( 'connection', function ( socket ) {
 
 
 
-
+          console.log(mailbody);
           send_mail( agentemail, subject, mailbody );
           send_mail( officeremail, subject, mailbody );
           send_mail( data.email, subject, mailbody );
@@ -434,7 +454,8 @@ io.on( 'connection', function ( socket ) {
 
 
 } );
-
+//TODO: We need to make the currency proper
+//TODO: We need to show the One way cost and return cost properly.
 
 
 

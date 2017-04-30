@@ -495,7 +495,8 @@ position: absolute;
     transition: background .2s ease;
 }
 .message-box .message-submit:hover {
-  background: #1D7745;
+  background: #6d6d6d;
+  color:#fff;
 }
 /*Select input*/
 input {

@@ -1,56 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
-
-    <link rel="manifest" href="manifest.json">
-
-    <!-- un-comment this code to enable service worker
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(() => console.log('service worker installed'))
-          .catch(err => console.log('Error', err));
-      }
-    </script>-->
-     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKDSx_T1NPT6POTrShPCed43ULC1mx9U8&libraries=places&sensor=false&language=en&v=3"></script>
-  
-    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
-    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
-     <link rel="stylesheet" type="text/css" href="lib/jquery.datetimepicker.css" />
-     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!--<script src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"></script>-->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
-   
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js" ></script>
-     <script src='lib/jquery.datetimepicker.js' ></script>
-     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-     <link href="css/chat.css" rel="stylesheet">
-
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
-
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <script src="js/angular-storage.min.js"></script>
-     <script src="js/scrollbars.min.js"></script>
-
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
-
-    <!-- your app's js -->
-    <!--<script src="js/app.js"></script>-->
-    <script src="js/botctrl.js"></script>
-  </head>
-  <body ng-app="mybot" >
-
-    <ion-pane>
-      <div ng-controller="botCtrl" data-ng-init="init()">
-          <div class="chat-title red">
+    
+        <div class="chat-title red">
           <h1>Julia</h1>
           <h2>PRAVOLA</h2>
           <figure class="avatar">
@@ -105,6 +54,4 @@
             <div> <button type="submit" class="message-submit" ng-click="selectdatafunc()">Send</button></div>
           </div>
         </div>
-    </ion-pane>
-  </body>
-</html>
+        

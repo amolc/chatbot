@@ -22,6 +22,10 @@ var www = connect();
 www.use( serveStatic( 'www' ) );
 app.use( '/', www );
 
+var mobile = connect();
+mobile.use( serveStatic( 'mobile/www' ) );
+app.use( '/mobile', mobile );
+
 var getdata = require('./api/getdata.js');
  
 
@@ -61,7 +65,7 @@ var formatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 2,
 });
 
-io.set('origins', '*:*');
+
 io.on( 'connection', function ( socket ) {
 
 

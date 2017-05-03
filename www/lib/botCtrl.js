@@ -493,7 +493,7 @@ $scope.selectplanefunc = function() {
 
                 }
                 updateScrollbar();
-                typing();
+               
                 $scope.fake3();
                showyesnofield();
             }, 6000);

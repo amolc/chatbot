@@ -391,7 +391,7 @@ io.on( 'connection', function ( socket ) {
           var quotesummary = ""
           var response = {};
           response.sessionId = data.sessionId;
-          response.nextlabel = "summary";
+          response.nextlabel = "startback";
           response.msg = "Thanks, we would get back to you shortly." ;
           io.sockets.connected[socket.id].emit( 'getresponse', response );
       }
@@ -402,13 +402,22 @@ io.on( 'connection', function ( socket ) {
 
      
     }
-    else if ( data.label == "summary" ) {
+    else if ( data.label == "startback" ) {
       console.log(data.label);
       var response = {};
       response.sessionId = data.sessionId;
-      response.nextlabel = "fromwhere";
+      response.nextlabel = "anotherquote";
+      response.msg = "Would you like another quote?";
+       io.sockets.connected[socket.id].emit( 'getresponse', response );
+    }
+    else if ( data.label == "anotherquote" ) {
+      console.log(data.label);
+      var response = {};
+      response.sessionId = data.sessionId;
+      response.nextlabel = "whereto";
       response.msg = "Where would you like to fly?";
        io.sockets.connected[socket.id].emit( 'getresponse', response );
+       console.log("whereto fired");
     }
     else {
       var response = {};

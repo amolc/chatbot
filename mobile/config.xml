@@ -4,8 +4,8 @@
   <description>
        Pravola Private Jet Booking App
     </description>
-  <author email="you@example.com" href="http://example.com/">
-      Your Name Here
+  <author email="amol.chawathe@fountaintechies.com" href="http://example.com/">
+      Amol Chawathe
     </author>
   <content src="index.html"/>
   <access origin="*"/>

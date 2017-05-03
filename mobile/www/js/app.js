@@ -10,7 +10,7 @@
 
 function updateScrollbar() {
    // var $messages = Jquery('.messages-content');
-     angular.element('.messages-content').mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
+     //angular.element('.messages-content').mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
       scrollInertia: 10,
       timeout: 0
     });

@@ -134,7 +134,7 @@ app.controller('botCtrl', function ($scope, $http, $sce, $timeout,$ionicScrollDe
         setTimeout(function () {
      
         var msg3 = angular.element('<div id="loadchat" class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure><img class="imgsize"  src="lib/img/chat.svg" /></div>');
-        angular.element(msg3).appendTo('.mCSB_container').addClass('new').show('slow');
+        angular.element(msg3).appendTo('.messages-content').addClass('new').show('slow');
         updateScrollbar();
          }, 300);
 
@@ -253,7 +253,7 @@ $scope.selectplanefunc = function() {
                 $('#loadchat').remove();
                 $scope.fakemessage0 = 'Hello I am Julia' ;
                 var msg0 = angular.element('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + $scope.fakemessage0 + '</div>');
-                angular.element(msg0).appendTo('.mCSB_container').addClass('new');
+                angular.element(msg0).appendTo('.messages-content').addClass('new');
                 typing();
                 updateScrollbar();
            },2000);
@@ -268,7 +268,7 @@ $scope.selectplanefunc = function() {
                 $('#loadchat').remove();
                 $scope.fakemessage1 = 'Where do you wanna fly today ? ' ;
                 var msg1 = angular.element('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + $scope.fakemessage1 + '</div>');
-                angular.element(msg1).appendTo('.mCSB_container').addClass('new');
+                angular.element(msg1).appendTo('.messages-content').addClass('new');
                 updateScrollbar();
            },3000);
 
@@ -279,7 +279,7 @@ $scope.selectplanefunc = function() {
                 $('#loadchat').remove();
                 $scope.fakemessage1 = 'Would you like to get a formal quote ? ' ;
                 var msg1 = angular.element('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + $scope.fakemessage1 + '</div>');
-                angular.element(msg1).appendTo('.mCSB_container').addClass('new');
+                angular.element(msg1).appendTo('.messages-content').addClass('new');
                 updateScrollbar();
            },3000);
 

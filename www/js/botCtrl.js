@@ -514,9 +514,61 @@ $scope.selectplanefunc = function() {
             }, 3000);
 
         }
+        else if(response.nextlabel == "startback") {
+            label = response.nextlabel;
+            console.log('label',label)
+            store.set('label', response.nextlabel);
+            console.log(response);
+            typing();
+            setTimeout(function () {
+                   $('#loadchat').remove();
+                if (response.status == 'success') {
+                    console.log('success msg', response.msg);
+                   
+                    if (response.msg.results.length > 1) {
+                        for (var i = 0; i < response.msg.results.length; i++) {
+                            $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg.results[i].id + '. ' + response.msg.results[i].name + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                        }
+                    } else {
+                        $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                    }
+                } else {
+
+                    $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                }
+                showtextfield();
+                updateScrollbar();
+            }, 3000);
+        }
+        else if (response.nextlabel == "anotherquote") {
+            label = response.nextlabel;
+            store.set('label', response.nextlabel);
+            console.log(response);
+            typing();
+            setTimeout(function () {
+                   $('#loadchat').remove();
+                if (response.status == 'success') {
+                    console.log('success msg', response.msg);
+                   
+                    if (response.msg.results.length > 1) {
+                        for (var i = 0; i < response.msg.results.length; i++) {
+                            $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg.results[i].id + '. ' + response.msg.results[i].name + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                        }
+                    } else {
+                        $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                    }
+                } else {
+
+                    $('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                }
+                showtextfield();
+                updateScrollbar();
+            }, 3000);
+        }
         else {
             label = response.nextlabel;
             store.set('label', response.nextlabel);
+            
             console.log(response);
             typing();
             setTimeout(function () {
@@ -550,6 +602,7 @@ $scope.selectplanefunc = function() {
         var data = {}
         data.sessionId = store.get('session_id');
         data.label = store.get('label');
+        console.log('emit-data.label' ,data.label);
         data.msg = msg;
         /* Let's store the sessionid and count in localstorage */
         if (data.label == "whereto") {
@@ -658,11 +711,7 @@ $scope.selectplanefunc = function() {
             console.log('data', data);
             socket.emit('apicall', data);
         }
-         else if (data.label == "summary") {
-            store.set('summary', data)
-            console.log('data', data);
-            socket.emit('apicall', data);
-        } else if (data.label == "email") {
+         else if (data.label == "email") {
             store.set('email', msg);
             data.whereto = store.get('whereto');
             data.toairport = store.get('toairport');
@@ -680,6 +729,19 @@ $scope.selectplanefunc = function() {
             data.planecostperhr = store.get('plane-costperhr');
             data.returnboolen = store.get('returnboolen');
             data.email = store.get('email');
+            console.log('data', data);
+            socket.emit('apicall', data);
+        } else if (data.label == "summary") {
+            store.set('summary', data)
+            console.log('data', data);
+            socket.emit('apicall', data);
+        }else if (data.label == "startback") {
+            console.log("startback emit is happening");
+            store.set('startback', data)
+            console.log('data', data);
+            socket.emit('apicall', data);
+        }else if (data.label == "anotherquote") {
+            store.set('anotherquote', data)
             console.log('data', data);
             socket.emit('apicall', data);
         }

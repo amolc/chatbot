@@ -48,7 +48,7 @@ app.controller('botCtrl', function ($scope, $http, $sce, $timeout, socket, store
         store.set('label', 'whereto');
         store.set('session_id', $scope.sessionId);
         $scope.selectedplaneId = "1" ;
-        $scope.yesnoboolenId ="yes";
+        $scope.yesnoboolenId ="Yes";
         showcities();
     
     }
@@ -173,6 +173,8 @@ $scope.selectplanefunc = function() {
       console.log('msg',msg);  
       $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new'); 
       updateScrollbar();
+      $scope.yesnoboolenId = "Yes" ;
+      loadgif();
       emitmsg(msg);
   }
   $scope.toggleme = function(){
@@ -495,6 +497,7 @@ $scope.selectplanefunc = function() {
                 updateScrollbar();
                
                 $scope.fake3();
+                $scope.yesnoboolenId = "Yes";
                showyesnofield();
             }, 6000);
            
@@ -563,8 +566,8 @@ $scope.selectplanefunc = function() {
 
                     $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 }
-                showtextfield();
                 updateScrollbar();
+                 showyesnofield();
             }, 3000);
         }
         else if (response.nextlabel == "anotherquote") {
@@ -582,7 +585,7 @@ $scope.selectplanefunc = function() {
 
                     $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 }
-                showtextfield();
+                showyesnofield();
                 updateScrollbar();
             }, 3000);
         }

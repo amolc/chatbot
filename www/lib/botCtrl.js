@@ -589,7 +589,6 @@ $scope.selectplanefunc = function() {
             store.set('label', response.nextlabel);
             console.log(response);
             typing();
-            $('#loadchat').remove();
             setTimeout(function () {   
                 if (response.status == 'success') {
                     $('#loadchat').remove();
@@ -599,6 +598,7 @@ $scope.selectplanefunc = function() {
                
                 }
                 else {
+                     $('#loadchat').remove();
                     $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 }
                 updateScrollbar();

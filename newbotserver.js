@@ -414,6 +414,7 @@ io.on( 'connection', function ( socket ) {
       console.log(data.label);
       var response = {};
       response.sessionId = data.sessionId;
+      response.status == 'success';
       response.nextlabel = "whereto";
       response.msg = "Where would you like to fly?";
        io.sockets.connected[socket.id].emit( 'getresponse', response );

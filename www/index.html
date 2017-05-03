@@ -263,6 +263,13 @@
           </select>
             <button type="submit" class="message-submit" ng-click="selectplanefunc()">Send</button>
           </div>
+          <div id="yesnoboolen">
+            <select ng-model="yesnoboolenId"  >
+                    <option value="yes" selected>Yes</option>
+                    <option value="no">No</option>
+          </select>
+            <button type="submit" class="message-submit" ng-click="yesnoboolenfunc()">Send</button>
+          </div>
           <div id="fromairportsfield">
             <select ng-model="selectedfromairportId" ng-options="airport.id as airport.name for airport in fromairports">
             <option value="">{{defaultfromairport}}</option>

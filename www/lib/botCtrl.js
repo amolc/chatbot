@@ -48,6 +48,7 @@ app.controller('botCtrl', function ($scope, $http, $sce, $timeout, socket, store
         store.set('label', 'whereto');
         store.set('session_id', $scope.sessionId);
         $scope.selectedplaneId = "1" ;
+        $scope.yesnoboolenId ="yes";
         showcities();
     
     }
@@ -166,7 +167,14 @@ $scope.selectplanefunc = function() {
     updateScrollbar();
     emitmsg(msg);
   }
-   
+
+  $scope.yesnoboolenfunc = function() {
+      var msg = $scope.yesnoboolenId ; 
+      console.log('msg',msg);  
+      $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new'); 
+      updateScrollbar();
+      emitmsg(msg);
+  }
   $scope.toggleme = function(){
         
         $scope.toggle = true;
@@ -485,8 +493,9 @@ $scope.selectplanefunc = function() {
 
                 }
                 updateScrollbar();
+                typing();
                 $scope.fake3();
-                showtextfield();
+               showyesnofield();
             }, 6000);
            
         }else if (response.nextlabel == "email") {
@@ -529,7 +538,7 @@ $scope.selectplanefunc = function() {
 
                 }
                 updateScrollbar();
-                showtextfield();
+                 showyesnofield();
             }, 3000);
 
         } else if(response.nextlabel == "startback") {
@@ -801,6 +810,7 @@ $scope.selectplanefunc = function() {
             $('#planesfield').hide();
             $('#fromairportsfield').hide();
             $('#textfield').hide();
+                $('#yesnoboolen').hide();
 
         }
         function unloadgif() {
@@ -811,6 +821,7 @@ $scope.selectplanefunc = function() {
             $('#planesfield').hide();
             $('#fromairportsfield').hide();
             $('#textfield').hide();
+                $('#yesnoboolen').hide();
 
         }
 
@@ -823,6 +834,7 @@ $scope.selectplanefunc = function() {
             $('#planesfield').hide();
             $('#fromairportsfield').hide();
             $('#textfield').hide();
+                $('#yesnoboolen').hide();
 
         }
 
@@ -835,6 +847,7 @@ $scope.selectplanefunc = function() {
             $('#planesfield').hide();
             $('#fromairportsfield').hide();
             $('#textfield').hide();
+                $('#yesnoboolen').hide();
             $scope.defaultairport ="";
         }
 
@@ -847,6 +860,7 @@ $scope.selectplanefunc = function() {
             $('#planesfield').hide();
             $('#airportsfield').hide();
             $('#textfield').hide();
+                $('#yesnoboolen').hide();
            console.log("over-shhowfromairports");
            
         }
@@ -866,6 +880,7 @@ $scope.selectplanefunc = function() {
             $('#planesfield').hide();
             $('#fromairportsfield').hide();
             $('#textfield').hide();
+                $('#yesnoboolen').hide();
             
         }
 
@@ -877,6 +892,7 @@ $scope.selectplanefunc = function() {
             $('#planesfield').show('slow');
             $('#fromairportsfield').hide();
             $('#textfield').hide();
+                $('#yesnoboolen').hide();
             }
 
         function showtextfield(){
@@ -888,6 +904,18 @@ $scope.selectplanefunc = function() {
             $('#planesfield').hide();
             $('#fromairportsfield').hide();
             $('#textfield').show();
+            $('#yesnoboolen').hide();
+
+        }
+        function showyesnofield(){
+            $('#loading').hide();
+            $('#textfield').hide();
+            $('#calendarfield').hide();
+            $('#citiesfield').hide();
+            $('#airportsfield').hide();
+            $('#planesfield').hide();
+            $('#fromairportsfield').hide();
+            $('#yesnoboolen').show('slow');
 
             }
 

@@ -309,7 +309,7 @@ io.on( 'connection', function ( socket ) {
       response.sessionId = data.sessionId;
       response.status = "success";
       response.nextlabel = "email";
-      response.msg = "Can I get your email?";
+      response.msg = "Can I get your email and phone?";
        io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
    

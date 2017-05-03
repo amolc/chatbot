@@ -159,7 +159,7 @@ exports.planetypes = function (res) {
         { id: 2, name: 'Turbo Prop Jet: $4000/hr', speed: 300, range: 1400 , costperhr:4000 },
         { id: 3, name: 'Light Jet: $5000/hr', speed: 480, range: 2000 , costperhr:5000 },
         { id: 4, name: 'MidSize Jet: $6000/hr', speed: 500, range: 2500 , costperhr:6000 },
-        { id: 5, name: 'Super Jet: $7000/hr', speed: 525, range: 3000 , costperhr:7000 },
+        { id: 5, name: 'Super MidSize Jet: $7000/hr', speed: 525, range: 3000 , costperhr:7000 },
         { id: 6, name: 'Heavy Jet: $10000/hr', speed: 525, range: 5000 , costperhr:10000 },
         { id: 7, name: 'Jumbo Jets Jet: $15000/hr', speed: 525, range: 8000 , costperhr:15000 },  
       ] 

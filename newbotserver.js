@@ -242,7 +242,7 @@ io.on( 'connection', function ( socket ) {
             + "<b> Departure Date: </b> " + data.startdate + "</br>"
             + "<b>" + data.planetype + "</br>"
             + "<b> Distance: </b> " + data.distance + " Miles</br>"
-            + "<b> Flight Time Hours: </b> " + data.estimatedhrs + "Hrs.</br>"
+            + "<b> Flight Time Hours: </b> " + data.estimatedhrs + "</br>"
             + "<b> Estimated Cost: </b> " + data.estimatedcost + "</br>";
             
                 var quotesummary = ""
@@ -287,7 +287,7 @@ io.on( 'connection', function ( socket ) {
             + "<b> Return Date: </b> " + data.returndate + "</br>"
             + "<b>" + data.planetype + "</br>"
             + "<b> Distance: </b> " + data.distance + " Miles</br>"
-            + "<b> Flight Time Hours: </b> " + data.estimatedhrs + "Hrs.</br>"
+            + "<b> Flight Time Hours: </b> " + data.estimatedhrs + "</br>"
             + "<b> Estimated Cost/Each: </b> " + data.estimatedcost + "</br>"
             + "<b> Total Cost: </b> " + estimatedcosttotalUSD + "</br>";
             
@@ -305,12 +305,25 @@ io.on( 'connection', function ( socket ) {
       else if ( data.label == "formalquote" ) {
       console.log(data.label);
       console.log('formalquote',data.formalquote);
-      var response = {};
-      response.sessionId = data.sessionId;
-      response.status = "success";
-      response.nextlabel = "email";
-      response.msg = "Can I get your email and phone?";
-       io.sockets.connected[socket.id].emit( 'getresponse', response );
+      var needquote = data.msg ;
+          needquote = needquote.toUpperCase();
+      if (needquote == "NO") {
+             var response = {};
+            response.sessionId = data.sessionId;
+            response.status = "success";
+            response.nextlabel = "anotherquote";
+            response.msg = "Would you like another quote?";
+            io.sockets.connected[socket.id].emit( 'getresponse', response );
+      }
+      else{
+            var response = {};
+            response.sessionId = data.sessionId;
+            response.status = "success";
+            response.nextlabel = "email";
+            response.msg = "Can I get your email and phone?";
+            io.sockets.connected[socket.id].emit( 'getresponse', response );
+      }
+    
     }
    
     else if ( data.label == "email" ) {
@@ -343,7 +356,7 @@ io.on( 'connection', function ( socket ) {
             + "</br><p><b> Departure date:</b> " + data.startdate + "</p>"
             + "</br><p><b> Plane Type:</b> " + data.planetype + "</p>"
             + "</br><p><b> Distance:</b> " + data.distance + "Miles</p>"
-            + "</br><p><b> Flight Time Hours:</b> " + data.estimatedhrs + "Hrs.</p>"
+            + "</br><p><b> Flight Time Hours:</b> " + data.estimatedhrs + "</p>"
             + "</br><p><b> Estimated Cost:</b> " + data.planecostperhr + "</p>"
             + "</br><p><b> Estimated Cost:</b> " + data.estimatedcost + "</p>"
             + "</br><p><b></p>"
@@ -412,13 +425,25 @@ io.on( 'connection', function ( socket ) {
     }
     else if ( data.label == "anotherquote" ) {
       console.log(data.label);
-      var response = {};
-      response.sessionId = data.sessionId;
-      response.status == 'success';
-      response.nextlabel = "whereto";
-      response.msg = "Where would you like to fly?";
-       io.sockets.connected[socket.id].emit( 'getresponse', response );
-       console.log("whereto fired");
+       var needquote = data.msg ;
+          needquote = needquote.toUpperCase();
+      if (needquote == "NO") {
+             var response = {};
+            response.sessionId = data.sessionId;
+            response.status = "success";
+            response.nextlabel = "startover";
+            response.msg = "Thank you goodbye.";
+            io.sockets.connected[socket.id].emit( 'getresponse', response );
+      }else{
+           var response = {};
+          response.sessionId = data.sessionId;
+          response.status == 'success';
+          response.nextlabel = "whereto";
+          response.msg = "Where would you like to fly?";
+          io.sockets.connected[socket.id].emit( 'getresponse', response );
+          console.log("whereto fired");
+      }
+     
     }
     else {
       var response = {};

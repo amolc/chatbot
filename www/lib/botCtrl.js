@@ -576,15 +576,9 @@ $scope.selectplanefunc = function() {
                    $('#loadchat').remove();
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
-                   
-                    if (response.msg.results.length > 1) {
-                        for (var i = 0; i < response.msg.results.length; i++) {
-                            $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg.results[i].id + '. ' + response.msg.results[i].name + '</div>').appendTo($('.mCSB_container')).addClass('new');
-                        }
-                    } else {
                         $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                     }
-                } else {
+                 else {
 
                     $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 }
@@ -626,14 +620,10 @@ $scope.selectplanefunc = function() {
                 $('#loadchat').remove();
                     console.log('success msg', response.msg);
                    
-                    if (response.msg.results.length > 1) {
-                        for (var i = 0; i < response.msg.results.length; i++) {
-                            $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg.results[i].id + '. ' + response.msg.results[i].name + '</div>').appendTo($('.mCSB_container')).addClass('new');
-                        }
-                    } else {
-                        $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-                    }
-                } else {
+                    
+                            $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg +'</div>').appendTo($('.mCSB_container')).addClass('new');
+                         }
+                 else {
 
                     $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 }

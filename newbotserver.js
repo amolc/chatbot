@@ -236,14 +236,14 @@ io.on( 'connection', function ( socket ) {
            data.estimatedhrs = estimatedhrs ;
            data.estimatedcost = estimatedcostUSD ;
            data.startdate = startdate ;
-            var webmsg = "<b>Here is a summary of your booking :</b></br>"
-            + "<b> Start City :</b> " + data.fromwhere + "</br>"
-            + "<b>To City:</b> " + data.whereto + "</br>"    
-            + "<b> Departure Date:</b> " + data.startdate + "</br>"
+            var webmsg = "<b> Here is a summary of your booking: </b></br>"
+            + "<b> Depart: </b> " + data.fromwhere + "</br>"
+            + "<b> Destination: </b> " + data.whereto + "</br>"    
+            + "<b> Departure Date: </b> " + data.startdate + "</br>"
             + "<b>" + data.planetype + "</br>"
-            + "<b> Distance:</b> " + data.distance + " Miles</br>"
-            + "<b> Flight Time Hours:</b> " + data.estimatedhrs + "Hrs.</br>"
-            + "<b> Estimated Cost:</b> " + data.estimatedcost + "</br>";
+            + "<b> Distance: </b> " + data.distance + " Miles</br>"
+            + "<b> Flight Time Hours: </b> " + data.estimatedhrs + "Hrs.</br>"
+            + "<b> Estimated Cost: </b> " + data.estimatedcost + "</br>";
             
                 var quotesummary = ""
                 var response = {};
@@ -280,16 +280,16 @@ io.on( 'connection', function ( socket ) {
              data.estimatedcost = estimatedcostUSD ;
              data.estimatedcosttotal = estimatedcosttotalUSD ;
              data.startdate = startdate ;
-            var webmsg = "<b>Here is a summary of your booking :</b></br>"
-            + "<b> Start City :</b> " + data.fromwhere + "</br>"
-            + "<b>To City:</b> " + data.whereto + "</br>"    
-            + "<b> Departure Date:</b> " + data.startdate + "</br>"
-            + "<b> Return Date:</b> " + data.returndate + "</br>"
+            var webmsg = "<b> Here is a summary of your booking: </b></br>"
+            + "<b> Depart: </b> " + data.fromwhere + "</br>"
+            + "<b> Destination: </b> " + data.whereto + "</br>"    
+            + "<b> Departure Date: </b> " + data.startdate + "</br>"
+            + "<b> Return Date: </b> " + data.returndate + "</br>"
             + "<b>" + data.planetype + "</br>"
-            + "<b> Distance:</b> " + data.distance + " Miles</br>"
-            + "<b> Flight Time Hours:</b> " + data.estimatedhrs + "Hrs.</br>"
-            + "<b> Estimated Cost/Each:</b> " + data.estimatedcost + "</br>"
-            + "<b> Total Cost:</b> " + estimatedcosttotalUSD + "</br>";
+            + "<b> Distance: </b> " + data.distance + " Miles</br>"
+            + "<b> Flight Time Hours: </b> " + data.estimatedhrs + "Hrs.</br>"
+            + "<b> Estimated Cost/Each: </b> " + data.estimatedcost + "</br>"
+            + "<b> Total Cost: </b> " + estimatedcosttotalUSD + "</br>";
             
                 var quotesummary = ""
                 var response = {};
@@ -336,9 +336,9 @@ io.on( 'connection', function ( socket ) {
            console.log('data.estimatedcost', estimatedcost);
            var subject = "New Client Lead - Private Jet Booking";
            var mailbody = "Hello,</br><p>Flight Booking Quote is requested : </p>"
-            + "</br><p><b> Start City :</b> " + data.fromwhere + "</p>"
+            + "</br><p><b> Depart: </b> " + data.fromwhere + "</p>"
             + "</br><p><b> Start Airport :</b> " + data.fromairport + "</p>"
-            + "</br><p><b>To City:</b> " + data.whereto + "</p>"
+            + "</br><p><b> Destination: </b> " + data.whereto + "</p>"
             + "</br><p><b>To Airport:</b> " + data.toairport + "</p>"
             + "</br><p><b> Departure date:</b> " + data.startdate + "</p>"
             + "</br><p><b> Plane Type:</b> " + data.planetype + "</p>"

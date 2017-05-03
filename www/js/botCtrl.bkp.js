@@ -72,7 +72,7 @@ app.controller('botCtrl', function ($scope, $http, $sce, $timeout, socket, store
         setTimeout(function () {
 
         $scope.fakemessage0 = 'Hello I am Julia' ;
-        $scope.fakemessage1 = 'Where do you wanna fly today ' ;
+        $scope.fakemessage1 = 'Where do you wanna fly today? ' ;
         
         var msg0 = angular.element('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + $scope.fakemessage0 + '</div>');
         var msg1 = angular.element('<div class="message new"><figure class="avatar"><img src="img/profile.png" /></figure>' + $scope.fakemessage1 + '</div>');

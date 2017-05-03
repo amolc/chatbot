@@ -189,7 +189,7 @@ $scope.selectplanefunc = function() {
         
          setTimeout(function () {
                 $('#loadchat').remove();
-                $scope.fakemessage1 = 'Where do you wanna fly today ? ' ;
+                $scope.fakemessage1 = 'Where do you wanna fly today? ' ;
                 var msg1 = angular.element('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + $scope.fakemessage1 + '</div>');
                 angular.element(msg1).appendTo('.mCSB_container').addClass('new');
                 updateScrollbar();
@@ -200,7 +200,7 @@ $scope.selectplanefunc = function() {
         
          setTimeout(function () {
                 $('#loadchat').remove();
-                $scope.fakemessage1 = 'Would you like to get a formal quote ? ' ;
+                $scope.fakemessage1 = 'Would you like to get a formal quote? ' ;
                 var msg1 = angular.element('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + $scope.fakemessage1 + '</div>');
                 angular.element(msg1).appendTo('.mCSB_container').addClass('new');
                 updateScrollbar();

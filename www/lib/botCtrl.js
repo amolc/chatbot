@@ -207,11 +207,22 @@ $scope.selectplanefunc = function() {
 
     }
     $scope.fake3 = function(){
-        
+        typing();
          setTimeout(function () {
                 $('#loadchat').remove();
                 $scope.fakemessage1 = 'Would you like to get a formal quote? ' ;
                 var msg1 = angular.element('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + $scope.fakemessage1 + '</div>');
+                angular.element(msg1).appendTo('.mCSB_container').addClass('new');
+                updateScrollbar();
+           },3000);
+
+    }
+     $scope.fake4 = function(){
+        typing();
+         setTimeout(function () {
+                $('#loadchat').remove();
+                $scope.fakemessage4 = 'Would you like another quote?' ;
+                var msg1 = angular.element('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + $scope.fakemessage4 + '</div>');
                 angular.element(msg1).appendTo('.mCSB_container').addClass('new');
                 updateScrollbar();
            },3000);
@@ -523,6 +534,28 @@ $scope.selectplanefunc = function() {
             }, 3000);
 
         }
+        else if (response.nextlabel == "name") {
+            label = response.nextlabel;
+            console.log('label', response.nextlabel);
+            store.set('label', response.nextlabel);
+            console.log(response);
+            loadgif();
+            typing();
+            setTimeout(function () {
+                 $('#loadchat').remove();
+                if (response.status == 'success') {
+                    console.log('success msg', response.msg);
+                    $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                }
+                else {
+                    $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+
+                }
+                updateScrollbar();
+                showtextfield();
+            }, 3000);
+
+        }
         else if (response.nextlabel == "returnboolen") {
             label = response.nextlabel;
             console.log('label', response.nextlabel);
@@ -566,6 +599,7 @@ $scope.selectplanefunc = function() {
 
                     $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 }
+              
                 updateScrollbar();
                  showyesnofield();
             }, 3000);
@@ -585,6 +619,7 @@ $scope.selectplanefunc = function() {
 
                     $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 }
+                $scope.fake4();
                 showyesnofield();
                 updateScrollbar();
             }, 3000);
@@ -697,17 +732,13 @@ $scope.selectplanefunc = function() {
             socket.emit('apicall', data);
         } else if (data.label == "whichplane") {
             var planes = store.get('planes');
+            store.set('plane-type', planes.results[msg].name);
+            store.set('plane-speed', planes.results[msg].speed);
+            store.set('plane-range', planes.results[msg].range);
+            store.set('plane-costperhr', planes.results[msg].costperhr);
             console.log('planes', planes);
             console.log(data.msg);
-
-                    console.log('Matched Plane', planes.results[msg].name);
-                    store.set('plane-type', planes.results[msg].name);
-                    store.set('plane-speed', planes.results[msg].speed);
-                    store.set('plane-range', planes.results[msg].range);
-                    store.set('plane-costperhr', planes.results[msg].costperhr);
-
-
-            
+            console.log('Matched Plane', planes.results[msg].name);
             console.log('data', data);
             socket.emit('apicall', data);
         } else if (data.label == "returnboolen") {
@@ -754,12 +785,20 @@ $scope.selectplanefunc = function() {
             console.log('data', data);
             socket.emit('apicall', data);
         }
-         else if (data.label == "summary") {
-            store.set('summary', data)
+        else if (data.label == "name") {
+            store.set('name', msg);
+            data.name = store.get('name');
             console.log('data', data);
             socket.emit('apicall', data);
-        } else if (data.label == "email") {
+        }
+         else if (data.label == "email") {
             store.set('email', msg);
+            data.email = store.get('email');
+            console.log('data', data);
+            socket.emit('apicall', data);
+        }
+         else if (data.label == "phone") {
+            store.set('phone', msg);
             data.whereto = store.get('whereto');
             data.toairport = store.get('toairport');
             data.toairportlat = store.get('toairportlat');
@@ -775,7 +814,9 @@ $scope.selectplanefunc = function() {
             data.planecostperhr = store.get('plane-costperhr');
             data.returnboolen = store.get('returnboolen');
             data.returndate = store.get('returndate');
+            data.name = store.get('name');
             data.email = store.get('email');
+            data.phone = store.get('phone');
             console.log('data', data);
             socket.emit('apicall', data);
         }else if (data.label == "summary") {

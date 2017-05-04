@@ -305,7 +305,7 @@ io.on( 'connection', function ( socket ) {
       else if ( data.label == "formalquote" ) {
       console.log(data.label);
       console.log('formalquote',data.formalquote);
-      var needquote = data.msg ;
+      var needquote = data.formalquote ;
           needquote = needquote.toUpperCase();
       if (needquote == "NO") {
              var response = {};
@@ -319,16 +319,37 @@ io.on( 'connection', function ( socket ) {
             var response = {};
             response.sessionId = data.sessionId;
             response.status = "success";
-            response.nextlabel = "email";
-            response.msg = "Can I get your email and phone?";
+            response.nextlabel = "name";
+            response.msg = "Can I get your name?";
             io.sockets.connected[socket.id].emit( 'getresponse', response );
       }
     
     }
-   
+     else if ( data.label == "name" ) {
+      console.log(data.label);
+      console.log('name',data.name);
+            var response = {};
+            response.sessionId = data.sessionId;
+            response.status = "success";
+            response.nextlabel = "email";
+            response.msg = "Can I get your email?";
+            io.sockets.connected[socket.id].emit( 'getresponse', response );
+    }
     else if ( data.label == "email" ) {
-      console.log( data );
+      console.log(data.label);
+      console.log('email',data.email);
+            var response = {};
+            response.sessionId = data.sessionId;
+            response.status = "success";
+            response.nextlabel = "phone";
+            response.msg = "And just in case we need to call you a phone number?";
+            io.sockets.connected[socket.id].emit( 'getresponse', response );
+    }
 
+    
+    else if ( data.label == "phone" ) {
+      console.log( data );
+      console.log('phone',data.phone);
       var agentemail = "ceo@80startups.com";
       var officeremail = "david.northcutt@genacom.com";
      
@@ -364,7 +385,9 @@ io.on( 'connection', function ( socket ) {
             + "</br><p><b> Return Date:</b> " + data.returndate + "</p>"
             + "</br><p><b> Total Cost:</b> " +  data.estimatedcosttotalUSD + "</p>"
             + "</br><p><b></p>"
+            + "</br><p><b> Name:</b> " + data.name + "</p>"
             + "</br><p><b> Email:</b> " + data.email + "</p>"
+            + "</br><p><b> Phone:</b> " + data.phone + "</p>"
             + "Thanks, Chatbot";
 
            
@@ -378,11 +401,15 @@ io.on( 'connection', function ( socket ) {
             from_airport: data.fromairport,
             planetype: data.planetype,
             startdate: data.startdate,
-            email: data.email,
             distance: data.distance,
             planecostperhr: data.planecostperhr,
-            estimatedcost: data.estimatedcost
-
+            estimatedhrs:data.estimatedhrs,
+            estimatedcost: data.estimatedcost,
+            returndate:  data.returndate,
+            estimatedcosttotalUSD: data.estimatedcosttotalUSD,
+            email: data.email,
+            name: data.name,
+            phone: data.name
         };
 
         connection.query("INSERT INTO quote SET ?", quote_data, function(err, res){
@@ -404,7 +431,7 @@ io.on( 'connection', function ( socket ) {
           var quotesummary = ""
           var response = {};
           response.sessionId = data.sessionId;
-          response.nextlabel = "startback";
+          response.nextlabel = "anotherquote";
           response.msg = "Thanks, we would get back to you shortly." ;
           io.sockets.connected[socket.id].emit( 'getresponse', response );
       }
@@ -414,14 +441,6 @@ io.on( 'connection', function ( socket ) {
      });
 
      
-    }
-    else if ( data.label == "startback" ) {
-      console.log(data.label);
-      var response = {};
-      response.sessionId = data.sessionId;
-      response.nextlabel = "anotherquote";
-      response.msg = "Would you like another quote?";
-       io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
     else if ( data.label == "anotherquote" ) {
       console.log(data.label);

@@ -207,7 +207,7 @@ $scope.selectplanefunc = function() {
 
     }
     $scope.fake3 = function(){
-        typing();
+       
          setTimeout(function () {
                 $('#loadchat').remove();
                 $scope.fakemessage1 = 'Would you like to get a formal quote? ' ;
@@ -506,7 +506,6 @@ $scope.selectplanefunc = function() {
 
                 }
                 updateScrollbar();
-               
                 $scope.fake3();
                 $scope.yesnoboolenId = "Yes";
                showyesnofield();
@@ -603,6 +602,26 @@ $scope.selectplanefunc = function() {
                 updateScrollbar();
                  showyesnofield();
             }, 3000);
+        }
+        else if (response.nextlabel == "end") {
+            label = response.nextlabel;
+            store.set('label', response.nextlabel);
+            console.log(response);
+            typing();
+            setTimeout(function () {
+                   $('#loadchat').remove();
+                if (response.status == 'success') {
+                    console.log('success msg', response.msg);
+                        $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                    }
+                 else {
+
+                    $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                }
+                showtextfield();
+                updateScrollbar();
+            }, 3000);
+            $scope.toggle = false ;
         }
         else if (response.nextlabel == "anotherquote") {
             label = response.nextlabel;

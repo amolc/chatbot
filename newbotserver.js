@@ -311,8 +311,8 @@ io.on( 'connection', function ( socket ) {
              var response = {};
             response.sessionId = data.sessionId;
             response.status = "success";
-            response.nextlabel = "anotherquote";
-            response.msg = "Would you like another quote?";
+            response.nextlabel = "startover";
+            response.msg = "Thank you goodbye.";
             io.sockets.connected[socket.id].emit( 'getresponse', response );
       }
       else{
@@ -431,7 +431,7 @@ io.on( 'connection', function ( socket ) {
           var quotesummary = ""
           var response = {};
           response.sessionId = data.sessionId;
-          response.nextlabel = "anotherquote";
+          response.nextlabel = "end";
           response.msg = "Thanks, we would get back to you shortly." ;
           io.sockets.connected[socket.id].emit( 'getresponse', response );
       }
@@ -441,6 +441,15 @@ io.on( 'connection', function ( socket ) {
      });
 
      
+    }
+    else if ( data.label == "end" ) {
+     
+           var response = {};
+          response.sessionId = data.sessionId;
+          response.status == 'success';
+          response.nextlabel = "whereto";
+          response.msg = "Good Bye.";
+          io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
     else if ( data.label == "anotherquote" ) {
       console.log(data.label);

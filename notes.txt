@@ -32,10 +32,9 @@ Jumbo Jets
 200 PAX Max
 Airspeed 525 mph
 Range 8000 miles
-Cost per hour 8000-15000
- 
-Turbo Prop
-7/9 PAX Max
-Airspeed 300 mph
-Range 1400 miles
-Cost per hour 2500-4000
+
+"Can I get your name?"
+
+"Thank you, and an email to send it too"
+
+"And just in case we need to call you a phone number?" 

@@ -1,0 +1,54 @@
+$font1: 'Open Sans', sans-serif;
+$accent1: #fbb03b;
+$accent2: #f7931e;
+$accent3: #2b4e69;
+
+
+@mixin small {
+    @media only screen and (max-width: 480px) {
+        @content;
+    }
+}
+@mixin smallPlus {
+    @media only screen and (min-width: 480px) {
+        @content;
+    }
+}
+
+@mixin phone {
+    @media only screen and (max-width: 767px) {
+        @content;
+    }
+}
+@mixin sixHPlus {
+    @media only screen and (min-width: 600px) {
+        @content;
+    }
+}
+
+@mixin pad {
+    @media only screen and (min-width: 768px) {
+        @content;
+    }
+}
+@mixin padOnly {
+    @media only screen and (min-width: 768px) and (max-width: 1024px)  {
+        @content;
+    }
+}
+
+@mixin midPadPlus {
+    @media only screen and (min-width: 900px) {
+        @content;
+    }
+}
+@mixin allMobile {
+    @media only screen and (max-width: 1024px) {
+        @content;
+    }
+}
+@mixin padPlus {
+    @media only screen and (min-width: 1025px) {
+        @content;
+    }
+}

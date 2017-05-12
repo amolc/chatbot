@@ -3,9 +3,6 @@ var label = '';
 
 var app = angular.module('myApp', []);
 
-
-
-
 app.controller('backend', function ($scope, $http, $sce, $timeout) {
 
 

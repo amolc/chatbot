@@ -1,0 +1,141 @@
+    <footer>
+    	<section class="footer_about">
+        	<div class="gold_gradient_overlay">
+        	<div class="wrapper clearfix">
+            	<a class="footer_logo" href="index.php" alt="Pravola" ><img src="images/pravola-ftr-logo.svg" ></a>
+            	<h2><a class="footer_h_link" href="flight_quote.php">Plan a Trip</a></h2>
+                <p>Our legendary service keeps clients flying private for years. We specialize in CEO business executive trips.</p>
+                <p>Pravola is a Wyvern Safety Standard Company. We also have a voice on the leadership council of the NBAA, which is the private aviation industry association lobbying directly to Congress.</p>
+            </div>
+            </div>
+        </section>
+        <section class="footer_image">
+        </section>
+        <nav class="footer_nav">
+            <div class="ftr_jet_img"></div>
+        	<!-- <img class="full_width_img" src="images/footer_jetatsunset2.jpg"> -->
+            <div class="wrapper clearfix">
+                <ul>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="safety_standards_and_requirements.php">Safety</a></li>
+                    <li><a href="flight_quote.php">Flight Quote</a></li>
+                    <li><a href="about_jet_cards.php">Jet Cards</a></li>
+                    <li><a href="contact_us.php">Contact Us</a></li>
+                     <li><a href=terms-and-conditions.php>Terms and Conditions</a></li>
+                </ul>
+
+        </nav>
+        <section class="footer_end">
+               <button class="btn-chat" id="btn-chat" ng-click="toggleme()">Get a Quote</button>
+        	<div class="wrapper clearfix">
+            	<ul class="footer_social">
+                <!--	<li><a href="javascript:void(0)" target="_blank"><i class="fa fa-facebook-square"></i></a>
+                    <li><a href="javascript:void(0)" target="_blank"><i class="fa fa-twitter-square"></i></a>
+                    <li><a href="javascript:void(0)" target="_blank"><i class="fa fa-linkedin-square"></i></a>
+                    <li><a href="javascript:void(0)" target="_blank"><i class="fa fa-google-plus-square"></i></a>-->
+                </ul>
+                <p class="address_ftr">1 World Trade Center Suite 8500 <span class="pipe">|</span>New York, NY 10007</p>
+                <a class="footer_tollfree clearfix" href="tel://+1-877-303-5387" alt="+1-800-772-8652"><span class="accent">+</span> 800-308-9056 <span class="lt"></span><span class="accent">Toll Free</span></a>
+                <p class="disclaimer">Pravola serves as an agent in obtaining air charter services for our customers. We select carriers which are fully certified by the Federal Aviation Administration and the U.S. Department of Transportation. Carriers are solely responsible for the air transportation arranged on behalf of customers. Pravola does not own or operate the aircraft on which our customers fly. Pravola is not a direct or indirect air carrier. All flights are operated by Part 135 carriers.</p>
+                <p class="footer_copyright">Executive Jets llc DBA "Pravola" </p>
+                <p class="footer_copyright">© Copyright 2017<span class="ftr_copyrt pipe">|</span>All Rights Reserved.</p>
+            </div>
+            <div class="messages">
+              <div class="messages-content">
+
+              </div>
+            </div>
+        </section>
+    </footer>
+
+
+    <div data-ng-app="mybot" data-ng-controller="botCtrl" data-ng-init="init()" >
+    <div class="btn-chat"> <button  id="btn-chat" ng-click="toggleme()">Get a Quote</button></div>
+        <div class="chat" ng-show="toggle">
+        <div class="chat-title">
+          <h1>Julia</h1>
+          <h2>PRAVOLA</h2>
+          <figure class="avatar">
+            <img src="lib/img/profile.png" />
+          </figure>
+        </div>
+        <div class="messages">
+          <div class="messages-content">
+
+          </div>
+        </div>
+
+        <div class="message-box">
+          <div id="loading" >
+            <div style="height:20px;vertical-align:middle; text-align:center"><img class="imgsize" src="lib/img/chat.svg" /></div>
+          </div>
+          <div id="calendarfield">
+            <div> <input ng-model="selecteddate" id="gcalendar" type="text" value="" class="inputbox" ng-keydown="$event.which === 13 && selectcalendarfunc()"></div>
+            <div> <button type="submit" class="message-submit" ng-click="selectcalendarfunc()">Send</button></div>
+          </div>
+          <div id="citiesfield">
+            <div> <input class="inputbox" id="gcities" ng-keydown="$event.which === 13 && selectplacefunc()" ng-model="chosenPlace"
+                googleplace/></div>
+            <div> <button type="submit" class="message-submit" ng-click="selectplacefunc()">Send</button></div>
+          </div>
+          <div id="airportsfield">
+            <select ng-model="selectedairportId" ng-options="airport.id as airport.name for airport in airports">
+            <option value="">{{defaultairport}}</option>
+          </select>
+            <button type="submit" class="message-submit" ng-click="selectairportfunc()">Send</button>
+          </div>
+          <div id="planesfield">
+            <select ng-model="selectedplaneId"  >
+                    <option value="1" selected>Very Light Jet $4000/hr</option>
+                    <option value="2">Turbo Prop Jet $4000/hr</option>
+                    <option value="3">Light Jet $5000/hr</option>
+                    <option value="4">Midsize Jet $6000/hr</option>
+                    <option value="5">Super Midsize Jet $7000/hr</option>
+                    <option value="6">Heavy Jet $10000/hr</option>
+                    <option value="7">Jumbo Jet $15000/hr</option>
+          </select>
+            <button type="submit" class="message-submit" ng-click="selectplanefunc()">Send</button>
+          </div>
+          <div id="yesnoboolen">
+            <select ng-model="yesnoboolenId"  >
+                    <option value="Yes" selected>Yes</option>
+                    <option value="No">No</option>
+          </select>
+            <button type="submit" class="message-submit" ng-click="yesnoboolenfunc()">Send</button>
+          </div>
+          <div id="fromairportsfield">
+            <select ng-model="selectedfromairportId" ng-options="airport.id as airport.name for airport in fromairports">
+            <option value="">{{defaultfromairport}}</option>
+          </select>
+            <button type="submit" class="message-submit" ng-click="selectfromairportfunc()">Send</button>
+          </div>
+          <div id="textfield">
+            <div> <input ng-model="selectdata" id="gtextfield" type="text" value="Yes" class="inputbox" ng-keydown="$event.which === 13 && selectdatafunc()"></div>
+            <div> <button type="submit" class="message-submit" ng-click="selectdatafunc()">Send</button></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKDSx_T1NPT6POTrShPCed43ULC1mx9U8&libraries=places&sensor=false&language=en&v=3"></script>
+<!--<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="lib/jquery.datetimepicker.js"></script>
+  <script src="lib/app.js"></script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+    <script src="lib/angular-storage.min.js"></script>
+    <script src="lib/botCtrl.js"></script>
+    <script src="lib/app.js"></script>
+
+
+   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
+   <link rel="stylesheet" type="text/css" href="lib/jquery.datetimepicker.css" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+   <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Open+Sans'>
+   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" >
+   <link rel="stylesheet" href="lib/chat.css">

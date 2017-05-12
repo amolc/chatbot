@@ -46,7 +46,7 @@ exports.quotes = function(req,res) {
 };
 
 exports.insertquotereq = function(req, res){
-    
+
         var quote_data = {
             to_country: "new york",
             to_airport: "airport",
@@ -96,7 +96,7 @@ exports.privateairportfunc = function ( req, callback ) {
 
 
   var parameters = {
-    query: "private airports in " + req.msg
+    query: req.msg
   };
 
 
@@ -152,21 +152,21 @@ exports.privateairportfunc = function ( req, callback ) {
 //
 
 exports.planetypes = function (res) {
-      var planes = { results: 
-      [ 
-       
+      var planes = { results:
+      [
+
         { id: 1, name: 'Very Light Jet: $4000/hr', speed: 400, range: 1200 , costperhr:4000 },
         { id: 2, name: 'Turbo Prop Jet: $4000/hr', speed: 300, range: 1400 , costperhr:4000 },
         { id: 3, name: 'Light Jet: $5000/hr', speed: 480, range: 2000 , costperhr:5000 },
         { id: 4, name: 'MidSize Jet: $6000/hr', speed: 500, range: 2500 , costperhr:6000 },
         { id: 5, name: 'Super MidSize Jet: $7000/hr', speed: 525, range: 3000 , costperhr:7000 },
         { id: 6, name: 'Heavy Jet: $10000/hr', speed: 525, range: 5000 , costperhr:10000 },
-        { id: 7, name: 'Jumbo Jets Jet: $15000/hr', speed: 525, range: 8000 , costperhr:15000 },  
-      ] 
+        { id: 7, name: 'Jumbo Jets Jet: $15000/hr', speed: 525, range: 8000 , costperhr:15000 },
+      ]
     };
 
       return planes ;
-  
+
 
 };
 //
@@ -176,14 +176,14 @@ exports.planetypes = function (res) {
 exports.distancefunc = function ( data, callback ) {
 
     var gps = require('gps-manager');
-    
-    
+
+
     var lat1 = data.fromairportlat ;
     var lat2 = data.toairportlat ;
     var lon1 = data.fromairportlng ;
     var lon2 = data.toairportlng ;
     var distance = gps.getDistance(lat1,lon1,lat2,lon2);
-   
+
     distance = distance/1000 ;
     distance = distance.toFixed(2);
     var distanceMiles = distance*0.621371 ;
@@ -191,23 +191,23 @@ exports.distancefunc = function ( data, callback ) {
     console.log('distance',distance);
     console.log('distanceMiles',distanceMiles);
 
-    
+
     var estimatedhrs = distance/data.planespeed ;
         estimatedhrs = estimatedhrs.toFixed(2);
     var estimatedcost = (estimatedhrs)*data.planecostperhr ;
         estimatedcost = estimatedcost.toFixed(2);
     console.log('estimatedhrs' ,estimatedhrs);
     console.log('estimatedcost' ,estimatedcost);
-    
+
    // var startdate = chrono.parseDate(data.startdate) ;
     var startdate = data.startdate ;
     console.log('startdate',startdate);
 
     callback(null,distanceMiles,estimatedhrs,estimatedcost,startdate);
-    
-   
 
-  
+
+
+
 };
 
 exports.estimatedcostfunc = function ( data ,distance, callback ) {
@@ -218,5 +218,3 @@ exports.estimatedcostfunc = function ( data ,distance, callback ) {
     callback(null,estimatedhrs,estimatedcost);
 
 };
-
-

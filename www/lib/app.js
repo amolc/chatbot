@@ -1,6 +1,7 @@
 /* this is crude and stupid but we have all jquery here */
 
  $(document).ready(function(){
+   
   var $messages = $('.messages-content');
    $messages.mCustomScrollbar();
    updateScrollbar($messages);  

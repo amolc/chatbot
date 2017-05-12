@@ -1,0 +1,1603 @@
+html {
+  color: #333;
+  font-size: 62.5%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none; }
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none; }
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 2em 0;
+  padding: 0; }
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle; }
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0; }
+
+textarea {
+  resize: vertical; }
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0; }
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  margin: 0 auto; }
+
+.wrapper {
+  width: 90%;
+  margin: 0 5%; }
+
+img {
+  max-width: 100%;
+  height: auto; }
+
+.no_rt {
+  margin-right: 0 !important; }
+
+h1, h2, h3, h4, h5, h6, h7, h8 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-style: italic; }
+
+h1 {
+  font-size: 4em;
+  text-transform: uppercase; }
+
+h2 {
+  font-size: 3em; }
+
+h3 {
+  font-size: 2em; }
+
+h4 {
+  font-size: 1.6em; }
+
+.tt_upper {
+  text-transform: uppercase; }
+
+.home_ib h3 {
+  text-transform: uppercase; }
+
+p {
+  font-size: 1.5em; }
+
+.small_text {
+  font-size: 1.3em; }
+
+.white {
+  color: #fff; }
+
+.blue {
+  color: #2b4e69; }
+
+.dark_blue {
+  color: #223e53; }
+
+.gold_1 {
+  color: #fbb03b; }
+
+.gold_2 {
+  color: #f7931e; }
+
+.red {
+  color: #c1272d; }
+
+.lt_grey {
+  color: #CCC; }
+
+.circle {
+  border-radius: 50%; }
+
+.hidden {
+  display: none !important;
+  visibility: hidden; }
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px; }
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto; }
+
+.invisible {
+  visibility: hidden; }
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table; }
+
+.clearfix:after {
+  clear: both; }
+
+.clearfix {
+  *zoom: 1; }
+
+.full_width_img {
+  width: 100%; }
+
+nav {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: solid 1px rgba(255, 255, 255, 0.4);
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  position: relative;
+  z-index: 1000; }
+
+.header_container {
+  background-image: url(../images/header_sky_bg2.jpg);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative; }
+
+.toll_free_wrap {
+  display: table;
+  font-size: 2.3em;
+  margin: 0 auto 0;
+  padding: 0.3em 22px 0 16px;
+  height: 68px;
+  text-shadow: 0 0 0.2em rgba(0, 0, 0, 0.5); }
+
+.toll_free_wrap a {
+  color: #fbb03b;
+  font-weight: 600;
+  font-style: italic;
+  text-decoration: none; }
+
+.jets_nmbr {
+  display: block;
+  font-size: 0.51em;
+  letter-spacing: 0.54em;
+  margin-right: -0.45em;
+  font-style: normal;
+  text-align: right;
+  color: #fff; }
+
+header {
+  text-align: center;
+  font-size: 0.8em; }
+
+.child_hdr {
+  margin: 2.5em auto 5em !important;
+  background-image: url("../images/pravola-logo.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: block;
+  width: 100%;
+  height: 6vw;
+  max-height: 115px;
+  min-height: 80px;
+  max-width: 7em; }
+  .child_hdr > img {
+    display: none; }
+
+.hdr_hr.child_hdr_hr {
+  background: #f7931e; }
+
+.child_hdr_banner h1 {
+  color: #fff;
+  display: inline-block;
+  margin: 0;
+  font-size: 3.6em; }
+
+.breadcrumbs {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 1.2em;
+  margin: 1.2em 0 0;
+  text-transform: uppercase;
+  display: block;
+  width: 100%;
+  float: left;
+  text-align: center; }
+
+.breadcrumbs a {
+  color: #e2c8a4;
+  text-decoration: none; }
+
+.breadcrumbs a::before {
+  content: '/';
+  margin: 0.5em;
+  color: #e2c8a4; }
+
+.breadcrumbs a:first-child::before {
+  content: '';
+  margin: 0; }
+
+.breadcrumbs a:hover {
+  color: #fff; }
+
+.child_content {
+  padding: 4em 0 5em; }
+
+.page_content,
+.welcome_join,
+.page_nav {
+  float: left;
+  max-width: 100%;
+  display: inline-block; }
+  .page_content h3,
+  .welcome_join h3,
+  .page_nav h3 {
+    color: #333;
+    text-transform: uppercase;
+    font-size: 1.4em;
+    font-weight: 800;
+    font-style: normal;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+    padding: 0 0 1em; }
+
+.page_content {
+  padding-bottom: 2em;
+  width: 100%; }
+
+.page_content h2 {
+  margin: 0; }
+
+.content_hr1,
+.content_hr2 {
+  background-color: #e6e6e6;
+  margin: 10px 0; }
+
+.content_hr1 {
+  margin-top: 0; }
+
+.page_content h3 {
+  margin: 26px 0 0; }
+
+.page_content .child_main_img {
+  height: auto;
+  width: 100%;
+  margin-bottom: 20px;
+  max-width: 100%; }
+
+.page_content ul, .page_content ol {
+  font-size: 1.5em;
+  padding: 0 0 0 1.5em;
+  display: inline-block; }
+
+.content_flex_block {
+  display: inline-block;
+  float: left;
+  margin-right: 3em; }
+
+.content_flex_block:last-child {
+  margin-right: 0 !important; }
+
+.page_content img {
+  margin-bottom: 1em;
+  width: 100%; }
+
+.out_of_p_img {
+  margin-top: 1em;
+  max-width: 280px !important; }
+
+.welcome_join,
+.page_nav {
+  min-width: 280px; }
+
+.welcome_join {
+  border-top: 1px solid #e2c8a4;
+  padding-top: 40px;
+  width: 100%; }
+
+.address_wrap {
+  display: inline-block;
+  float: left;
+  margin-right: 3em; }
+
+.address_wrap:first-child {
+  margin-bottom: 3em; }
+
+.address_p {
+  display: block;
+  width: 280px; }
+
+.join_now_img_link {
+  max-width: 280px;
+  display: inline-block;
+  float: left;
+  text-decoration: none;
+  margin: 0 20px 10px 0; }
+
+.join_now {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 1.7em;
+  text-decoration: none;
+  padding: 1px 0; }
+
+.welcome_join h4 {
+  background-color: #3a698d;
+  color: #fff;
+  margin: 0;
+  padding: 16px 20px; }
+
+.welcome_join p {
+  margin: 0 0 20px 0; }
+
+.tel {
+  text-decoration: none; }
+
+.page_nav {
+  margin: 0 0 2em 0;
+  padding: 0;
+  list-style: none;
+  width: 100%; }
+
+.page_nav h3 {
+  margin: 0; }
+
+.page_nav a {
+  text-decoration: none; }
+
+.page_nav li {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 1.6em;
+  margin: 5px 0;
+  display: block; }
+
+.page_nav li a {
+  color: #3a698d;
+  padding-right: 10px; }
+
+.page_nav li ul {
+  padding: 0;
+  border: none;
+  display: inline-block; }
+
+.page_nav li li {
+  font-size: 0.8em;
+  list-style: none;
+  display: inline-block;
+  margin: 0; }
+
+.page_nav li li::after {
+  content: '/';
+  margin: 0 2px 0 8px;
+  color: #ccc; }
+
+.page_nav li li:last-child::after {
+  content: none;
+  margin: 0; }
+
+.page_nav li li a {
+  color: #7da8ca;
+  padding-right: 0; }
+
+.pn_active {
+  color: #fbb03b !important; }
+
+.child_content_inner {
+  display: inline-block;
+  max-width: 100%; }
+
+.contact_form {
+  line-height: 1.75em; }
+
+.frm_row_wrap {
+  display: inline-block;
+  width: 100%;
+  margin-top: 2px; }
+
+.frm_fw, .frm_hw {
+  position: relative; }
+
+.frm_fw {
+  display: inline-block;
+  width: 100%; }
+
+.frm_hw {
+  display: block;
+  width: 100%; }
+
+.frm_hw:last-child {
+  margin-right: 0; }
+
+.contact_form label {
+  display: inline-block;
+  font-size: 1.5em;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  margin-top: 5px; }
+
+.contact_form textarea,
+.contact_form input,
+.contact_form select {
+  background-color: #e9f2fa;
+  border: medium none;
+  display: block;
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 1.5em;
+  color: #666;
+  padding: 4px 8px;
+  margin: 10px 0; }
+
+.contact_form select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
+
+.contact_form textarea:focus,
+.contact_form input:focus,
+.contact_form select:focus {
+  background-color: #f1f1f1; }
+
+.contact_form input,
+.contact_form select {
+  max-width: 100%;
+  position: relative;
+  height: 2em; }
+
+.contact_form select {
+  background-image: url(../images/select.png);
+  background-position: right 4px;
+  background-repeat: no-repeat;
+  width: auto; }
+
+.contact_form textarea {
+  min-height: 170px;
+  height: auto; }
+
+.join_btn {
+  display: inline-block;
+  margin-top: 0.5em !important; }
+
+.contact_form button, .join_btn {
+  background-color: #2b4e69;
+  border: medium none;
+  border-radius: 8px;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 1.7em;
+  margin: 30px 0 20px;
+  padding: .6em 1.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer; }
+
+.contact_form button i, .join_btn i {
+  color: #fbb03b; }
+
+.date_input {
+  padding-left: 33px !important; }
+
+.cal_btn {
+  font-size: 1.8em;
+  left: 8px;
+  position: absolute;
+  top: 39px;
+  color: #3a698d !important;
+  display: block;
+  z-index: 10; }
+
+.flight_wrap > h3 {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+  margin-top: 2em;
+  padding-bottom: 20px;
+  text-transform: uppercase; }
+
+.check_box {
+  float: left;
+  height: auto !important;
+  margin: 0 9px 0 0 !important;
+  width: auto !important; }
+
+.frm_fw.add_leg {
+  margin: 1em 0;
+  font-size: 1.3em; }
+
+.three_col_img, .two_col_img {
+  margin: 1em 0; }
+
+.four_col_img > img,
+.three_col_img > img,
+.two_col_img > img {
+  margin: 1em 2% 1em 0 !important;
+  width: 100% !important; }
+
+.four_col_img > img:last-child {
+  margin-right: 0 !important; }
+
+.four_col_img > img {
+  float: left !important;
+  width: 23% !important; }
+
+.elite_wrap {
+  background-color: #e9f2fa;
+  padding: 8px 20px;
+  margin: 3em 0 1.5em; }
+
+.elite_wrap > h3 {
+  border-bottom: 1px solid #ccc;
+  margin-top: 7px;
+  padding-bottom: 10px !important; }
+
+.elite_wrap > p {
+  font-size: 1.4em;
+  font-style: italic; }
+
+.bxslider {
+  list-style: outside none none;
+  padding: 0; }
+
+.bx-wrapper .bx-viewport {
+  border: none !important;
+  box-shadow: none !important;
+  left: 0 !important; }
+
+.bx-pager.bx-default-pager {
+  display: none !important; }
+
+.inner_fw {
+  display: block; }
+
+.aircraft_page {
+  display: inline; }
+
+.aircraft_tabs {
+  display: inline-block;
+  margin-top: 10px;
+  width: 100%; }
+
+.aircraft_page .ui-tabs .ui-tabs-nav {
+  border-bottom: medium none;
+  margin-bottom: 1px; }
+
+.aircraft_page .ui-tabs .ui-tabs-nav > li {
+  font-size: 1.5em; }
+
+.aircraft_slide_img {
+  width: 100%; }
+
+.aircraft_label {
+  background-color: #2b4e69;
+  color: #fff;
+  margin: 0;
+  padding: 12px;
+  width: 100%;
+  font-size: 1.6em; }
+
+.specific_aircraft_list {
+  list-style: outside none none;
+  margin: 0;
+  padding: 0; }
+
+.specific_aircraft_list li {
+  display: inline-block;
+  font-size: 1.4em; }
+
+.specific_aircraft_list li::after {
+  content: '/';
+  margin: 0 5px;
+  color: #ccc; }
+
+.specific_aircraft_list li:last-child::after {
+  content: none;
+  margin: 0; }
+
+.specific_aircraft_list li a {
+  color: #fbb03b;
+  text-decoration: none; }
+
+.specific_aircraft_list li a:hover {
+  text-decoration: underline;
+  color: #333; }
+
+.aircraft_type_h {
+  margin: 0 0 7px 0; }
+
+.aircraft_nav > li {
+  display: inline; }
+
+.aircraft_nav > li::after {
+  content: '/';
+  color: #ccc;
+  margin: 0 7px 0 0; }
+
+.aircraft_nav > li:last-child::after {
+  content: none; }
+
+.three_col_box_wrap {
+  margin-bottom: 2em; }
+
+.three_col_box {
+  background-color: #f2f2f2;
+  display: inline-block;
+  float: left;
+  height: auto;
+  margin-bottom: 2em;
+  padding: 16px;
+  width: 100%; }
+
+.three_col_box:last-child {
+  margin-bottom: 0; }
+
+.jet_stat_label {
+  font-size: 1.5em;
+  font-weight: 700; }
+
+.jet_stat {
+  font-size: 2.3em;
+  font-weight: 700; }
+
+.passengers {
+  color: #f2bc59;
+  font-size: 3em;
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400; }
+
+.pass_comment {
+  display: inline-block; }
+
+header h1 {
+  font-size: 3.6em;
+  color: #fbb03b;
+  margin: 0.8em 0 0;
+  font-weight: 800; }
+
+header h2 {
+  font-size: 2em;
+  color: #fff;
+  margin: 0 0 1em;
+  font-weight: 600; }
+
+header h1, header h2 {
+  width: 100%;
+  float: left;
+  text-shadow: 0 0 0.2em rgba(0, 0, 0, 0.3); }
+
+header p {
+  font-size: 1.6em;
+  font-weight: 300;
+  width: 100%;
+  display: block;
+  float: left;
+  margin: 0.3em 0 .5em;
+  color: #fff; }
+
+#logo {
+  display: block;
+  margin: 5.5em auto 2em;
+  max-width: 418px; }
+  #logo img {
+    -webkit-filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.25));
+            filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.25)); }
+
+.jet {
+  margin: 2.2em 0 1.4em; }
+
+.hdr_hr {
+  width: 100%;
+  display: block;
+  height: 13px;
+  background-color: #f7931e;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  bottom: 0; }
+
+#scroll_down {
+  display: none; }
+
+.info_blocks_wrap {
+  width: 100%;
+  height: auto;
+  padding: 40px 0;
+  background-image: url(../images/dark_grey_bg2.jpg);
+  background-position: center bottom;
+  background-repeat: no-repeat no-repeat;
+  background-size: cover;
+  position: relative;
+  text-align: center; }
+
+.info_block {
+  display: block;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding: 10px 0;
+  text-decoration: none;
+  width: 90%; }
+
+.ib_1, .ib_2, .ib_3 {
+  display: inline-block;
+  height: 126px;
+  width: 127px;
+  margin-bottom: 20px;
+  position: relative; }
+  .ib_1 i, .ib_2 i, .ib_3 i {
+    color: #999;
+    font-size: 11em;
+    text-shadow: 0 0 0.15em rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+
+.overlay_plus {
+  display: none;
+  background-color: rgba(43, 83, 154, 0.7);
+  border-radius: 50%;
+  height: 127px;
+  padding: 38px;
+  width: 127px; }
+
+.info_block h3 {
+  font-size: 1.8em;
+  font-weight: 600;
+  color: #fbb03b; }
+
+.info_block p {
+  color: #ccc; }
+
+.readmore {
+  font-size: 1.2em;
+  padding: 9px 15px;
+  text-transform: uppercase;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 800;
+  margin-top: 15px;
+  text-decoration: none;
+  border-radius: 8px; }
+
+.rm_1 {
+  color: #fff;
+  background-color: #fbb03b;
+  display: inline-block; }
+
+.rm_2 {
+  color: #FFF;
+  background-color: #2b4e69;
+  display: inline-block; }
+
+.home_content {
+  text-align: center;
+  padding: 4em 0 7em; }
+  .home_content h2 {
+    font-size: 4em;
+    font-weight: 800; }
+
+.partner_logos {
+  display: block;
+  float: left;
+  margin: 3em 0;
+  width: 100%; }
+  .partner_logos a {
+    margin: 0 20px; }
+    .partner_logos a img {
+      -webkit-filter: grayscale(100%) opacity(50%);
+              filter: grayscale(100%) opacity(50%); }
+
+footer {
+  text-align: center; }
+
+footer ul {
+  display: inline-block;
+  list-style: outside none none;
+  margin: 0;
+  padding: 0; }
+
+footer a {
+  text-decoration: none; }
+
+.footer_h_link {
+  color: #fff; }
+
+.footer_logo {
+  display: inline-block;
+  margin-bottom: 2em;
+  width: 100%;
+  max-width: 155px;
+  height: auto; }
+
+.footer_about {
+  background-position: top center;
+  background-color: #2b4e69;
+  background-size: cover;
+  width: 100%; }
+  .footer_about h2 {
+    color: #fff;
+    text-shadow: 0 0 0.3em rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    font-weight: 800; }
+  .footer_about p {
+    color: #ccc; }
+
+.gold_gradient_overlay {
+  width: 100%;
+  background-image: url(../images/ftr_airport.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  padding: 6em 0; }
+
+.footer_nav {
+  background-color: #2b4e69;
+  border-bottom: medium none; }
+
+.footer_nav ul {
+  padding: 3.5em 0;
+  font-style: italic;
+  font-weight: 600;
+  text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.4); }
+
+.footer_nav ul li {
+  font-size: 1.5em; }
+
+.footer_nav ul li:first-child {
+  margin-left: 0; }
+
+.footer_nav ul li:last-child {
+  margin-right: 0; }
+
+.footer_nav ul li a {
+  text-transform: uppercase;
+  color: #fbb03b; }
+
+.footer_end {
+  background-image: url(../images/dark_grey_bg2.jpg);
+  background-color: #333;
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+.ftr_jet_img {
+  background-image: url(../images/footer_jetatsunset3.jpg);
+  background-color: #999;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 28vw;
+  display: block;
+  min-height: 20em; }
+
+.footer_social li {
+  display: inline-block; }
+
+.footer_end .wrapper {
+  padding: 3em 0; }
+
+.footer_social a {
+  color: #fbb03b;
+  display: inline-block;
+  font-size: calc(30px + 20 * ((100vw - 420px) / 860));
+  margin: 0.2em 7px; }
+
+.address_ftr {
+  color: #b3b3b3;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.6em;
+  font-style: italic;
+  font-weight: 600;
+  text-transform: uppercase; }
+
+.pipe {
+  margin: 0 0.5em; }
+
+.address_ftr .pipe {
+  color: #fbb03b; }
+
+.footer_tollfree {
+  color: white;
+  display: inline-block;
+  font-family: "Open Sans", sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 2em;
+  text-transform: uppercase; }
+  .footer_tollfree .accent {
+    color: #fbb03b; }
+  .footer_tollfree .lt {
+    font-weight: 300; }
+
+.fl {
+  display: inline-block;
+  margin: 0 4px; }
+
+.disclaimer {
+  color: #ccc;
+  font-size: 1.1em;
+  line-height: 2.2em; }
+
+.footer_copyright {
+  color: #808080;
+  font-size: 1em; }
+
+#scroll_down {
+  display: inline-block;
+  font-size: 6em;
+  color: #2b4e69;
+  margin-bottom: .2em;
+  text-shadow: 0 0 0.1em rgba(255, 255, 255, 0.5);
+  padding: 0 .8em; }
+
+.bgvideo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  opacity: .5; }
+
+.faq h4 {
+  font-weight: 600;
+  color: #2b4e69; }
+
+@media only screen and (max-width: 480px) {
+
+  .header_container.home_hc {
+    min-height: 100vh; } }
+
+@media only screen and (max-width: 1199px) {
+
+  .page_nav {
+    border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+    padding-bottom: 1em; }
+
+  .page_nav li > ul {
+    border-left: solid 1px rgba(251, 176, 59, 0.5);
+    padding-left: 10px; }
+
+  .page_nav li li a {
+    text-transform: uppercase;
+    font-size: .8em; } }
+
+@media only screen and (max-width: 767px) {
+
+  .info_block:first-child {
+    margin-top: 0; } }
+
+@media screen and (max-width: 768px) {
+
+  .head_nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    font-size: 1.5em; }
+
+  .hidden_drop {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0; }
+
+  .head_nav li a:hover + .hidden_drop, .hidden_drop:hover {
+    position: relative;
+    display: block; }
+
+  .hidden_drop li a {
+    background-color: #333 !important; }
+
+  .hidden_drop li a:hover {
+    background-color: #3d3d3d !important; }
+
+  .head_nav ul li ul li a {
+    background-color: #444 !important; }
+
+  .head_nav li a {
+    display: block;
+    min-width: 140px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    background: #2b4e69;
+    text-decoration: none;
+    -webkit-transition: background-color 300ms;
+    transition: background-color 300ms; }
+
+  .head_nav > li:hover > a {
+    background: #fbb03b;
+    color: #333;
+    font-weight: 600; }
+
+  .head_nav li ul li a {
+    width: auto;
+    min-width: 100px;
+    padding: 0 20px; }
+
+  .hidden_drop li a {
+    height: 40px;
+    line-height: 40px;
+    font-size: 0.75em;
+    text-transform: uppercase; }
+
+  .drop_indicator:after {
+    content: "\f0d7";
+    font-family: FontAwesome;
+    color: #fbb03b;
+    font-size: 1em;
+    margin-left: 10px; }
+
+  #show-menu ~ .show-menu i {
+    -webkit-transition: all 250ms;
+    transition: all 250ms; }
+
+  #show-menu:checked ~ .show-menu i {
+    color: #fbb03b; }
+
+  .show-menu {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    font-size: 2.4em;
+    text-decoration: none;
+    color: #595959;
+    background: #333;
+    text-align: center;
+    padding: 3px 0;
+    display: none; }
+
+  nav input[type=checkbox] {
+    display: none;
+    -webkit-appearance: none; }
+
+  nav input[type=checkbox]:checked ~ .head_nav {
+    display: block; }
+
+  .head_nav {
+    position: static;
+    display: none; }
+
+  .head_nav li {
+    border-top: solid 1px #223e54; }
+
+  .head_nav li li {
+    border-top: solid 1px #222; }
+
+  .head_nav li li li {
+    border-top: solid 1px #333; }
+
+  .head_nav li, li a {
+    width: 100%; }
+
+  .show-menu {
+    display: block; } }
+
+@media screen and (min-width: 1280px) {
+
+  .footer_social a {
+    font-size: 50px; } }
+
+@media screen and (max-width: 420px) {
+
+  .footer_social a {
+    font-size: 30px; } }
+
+@media only screen and (min-width: 1025px) {
+
+  .footer_social a {
+    -webkit-transition: all 250ms;
+    transition: all 250ms; }
+
+  .home_hc {
+    background-image: none;
+    background-color: rgba(0, 0, 0, 0.3); }
+
+  #scroll_down:hover {
+    color: white; } }
+
+@media all and (max-width: 480px) {
+
+  header {
+    font-size: 0.7em; }
+
+  #logo {
+    width: 90%;
+    margin: 4em 5% 1em; }
+
+  .info_block {
+    display: block;
+    height: auto;
+    margin: 40px 5%;
+    padding: 10px 0;
+    width: 90%; }
+
+  .home_content {
+    padding: 1.5em 0 5em; }
+
+  .footer_nav ul {
+    width: 100%;
+    padding: .8em 0; }
+
+  .footer_nav ul li {
+    display: block;
+    padding: .8em;
+    font-style: normal;
+    font-size: 1.1em;
+    font-weight: normal;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.1); }
+
+  .footer_nav ul li:last-child {
+    border-bottom: none; }
+
+  .footer_nav ul li a {
+    color: white; }
+
+  .address_ftr {
+    font-size: 1.2em; }
+
+  .footer_copyright {
+    margin: 1em 0 0.5em; }
+
+  .child_hdr_banner h1 {
+    font-size: 3em; }
+
+  .welcome_join p {
+    float: left; }
+
+  .join_now {
+    float: left; }
+
+  .aircraft_page .ui-tabs .ui-tabs-nav > li {
+    font-size: 1.3em; }
+
+  .aircraft_label {
+    font-size: 1.3em; }
+
+  .bx-wrapper .bx-controls-direction a {
+    font-size: 20px !important; } }
+
+@media all and (min-width: 480px) {
+
+  header {
+    font-size: 0.85em; }
+
+  .three_col_img > img:last-child,
+  .two_col_img > img:last-child {
+    margin-right: 0 !important; }
+
+  .three_col_img > img,
+  .two_col_img > img {
+    float: left !important; }
+
+  .three_col_img > img {
+    width: 32% !important; }
+
+  .two_col_img > img {
+    width: 49% !important; }
+
+  footer ul li {
+    display: inline-block; }
+
+  .footer_nav ul li {
+    margin: 6px; }
+
+  .footer_copyright {
+    margin: 2em 0 1em; }
+
+  .footer_tollfree {
+    margin-bottom: 2em; }
+
+  .frm_hw {
+    display: inline-block;
+    float: left;
+    margin-right: 2%;
+    max-width: 380px;
+    width: 49%; }
+
+  .page_content img {
+    float: left;
+    margin-bottom: 0.3em;
+    margin-right: 1em;
+    width: 50%;
+    max-width: 400px; }
+
+  .page_content p img {
+    max-width: 280px; } }
+
+@media all and (min-width: 769px) {
+
+  .show-menu {
+    display: none; }
+
+  #show-menu {
+    display: none; }
+
+  header.wrapper {
+    width: 80%;
+    margin: 0 10%; }
+
+  header {
+    font-size: 1em; }
+
+  .toll_free_wrap {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    float: right; }
+
+  .footer_nav ul {
+    padding: 5em 0; }
+
+  .footer_nav ul li {
+    font-size: 1.8em;
+    padding: 0 10px; }
+
+  .footer_nav ul li a {
+    -webkit-transition: all 200ms;
+    transition: all 200ms; }
+
+  .footer_nav ul li a:hover {
+    color: #fff; }
+
+  .rm_2:hover {
+    background-color: #666;
+    border-color: #f2f2f2; }
+
+  .footer_tollfree {
+    margin-bottom: 3em; }
+
+  .disclaimer {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%; }
+
+  .footer_copyright {
+    margin: 7em 0 6em; }
+
+  .footer_social a {
+    margin: 1em .3em; }
+
+  .footer_social a:hover {
+    color: #fff; }
+
+  .page_nav {
+    display: inline-block; }
+
+  .hddn_1 {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    background-color: rgba(26, 26, 26, 0.95);
+    position: absolute;
+    top: 68px;
+    left: 26px;
+    width: 550px;
+    padding: 30px;
+    list-style: none;
+    border-top: 1px solid #fbb03b;
+    background-position: top 25px right 40px;
+    background-repeat: no-repeat;
+    background-size: 130px;
+    min-height: 180px;
+    -webkit-transition: all 250ms;
+    transition: all 250ms;
+    background-image: url(../images/pravola-nav-logo.svg); }
+
+  .hddn_1 li {
+    margin-bottom: 10px; }
+
+  .hddn_1 li > a {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-size: 0.75em;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #ccc; }
+
+  .hddn_1 li > a:hover {
+    color: #fff; }
+
+  .head_nav > li:hover > .hddn_1 {
+    visibility: visible;
+    opacity: 1; }
+
+  .head_nav {
+    display: block;
+    float: left;
+    list-style: outside none none;
+    padding-left: 25px;
+    margin: 0;
+    font-size: 1.6em;
+    font-weight: 300;
+    text-transform: uppercase;
+    height: 68px;
+    position: relative; }
+
+  .head_nav > li {
+    display: inline-block;
+    margin-right: 18px;
+    padding: 23px 0 24px;
+    text-shadow: 0 0 0.2em rgba(0, 0, 0, 0.5); }
+
+  .head_nav > li:last-child {
+    margin: 0; }
+
+  .head_nav > li > a {
+    text-decoration: none;
+    color: #fff;
+    padding: 18px 0 30px;
+    border-top: 5px solid rgba(251, 176, 59, 0);
+    -webkit-transition: all 250ms;
+    transition: all 250ms; }
+
+  .head_nav > li > a.active {
+    color: #fbb03b !important;
+    border-top: 5px solid #fbb03b; }
+
+  .head_nav > li:hover > a {
+    color: #fff;
+    border-top: 5px solid #fbb03b; }
+
+  .hddn_1 .hidden_drop {
+    border-left: 1px solid #fdd089;
+    list-style: outside none none;
+    margin: 6px 0;
+    padding: 0 0 0 11px; }
+
+  .hddn_1 .hidden_drop li a {
+    font-family: "Open Sans",sans-serif;
+    font-weight: 400;
+    color: #95a7b4;
+    text-transform: none;
+    font-size: 0.85em; }
+
+  .hddn_1 .hidden_drop li a:hover {
+    color: #fff; }
+
+  .info_block:hover .overlay_plus {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0; }
+
+  .info_block:hover h3 {
+    color: #fff; }
+
+  .info_block:hover p {
+    color: #f2f2f2; }
+
+  .info_block:hover .ib_text_wrap > .readmore.rm_1 {
+    color: #2b4e69;
+    background-color: #fff; }
+
+  .info_block:hover .circle i {
+    color: #fbb03b; }
+
+  .info_blocks_wrap.child_hdr_banner h1 {
+    float: left; }
+
+  .breadcrumbs {
+    float: left;
+    text-align: center; }
+
+  .page_nav {
+    text-align: left; }
+
+  .page_nav a:hover {
+    color: #333; }
+
+  .address_wrap:first-child {
+    margin: 0 20px 10px 0; }
+
+  .tel:hover {
+    text-decoration: underline; }
+
+  .contact_form input {
+    max-width: 520px; }
+
+  .contact_form button:hover, .join_btn:hover {
+    background-color: #333; }
+
+  .three_col_box {
+    height: 122px;
+    margin-bottom: 0;
+    margin-right: 2%;
+    width: 32%; }
+
+  .three_col_box:last-child {
+    margin-right: 0; } }
+
+@media all and (min-width: 480px) and (max-width: 1024px) {
+
+  .info_block .circle {
+    width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+    text-align: right; }
+
+  .info_block .circle:nth-child(1n) {
+    float: left;
+    margin-right: 30px;
+    clear: none; }
+
+  .info_block .circle:last-child {
+    margin-right: 0; }
+
+  .info_block .circle:nth-child(2n) {
+    margin-right: 0;
+    float: right; }
+
+  .info_block .circle:nth-child(2n + 1) {
+    clear: left; }
+
+  .info_block .ib_text_wrap {
+    width: calc(99.99% * 2/3 - (30px - 30px * 2/3));
+    text-align: left;
+    border-left: solid 1px rgba(251, 176, 59, 0.4);
+    padding-left: 6vw; }
+
+  .info_block .ib_text_wrap:nth-child(1n) {
+    float: left;
+    margin-right: 30px;
+    clear: none; }
+
+  .info_block .ib_text_wrap:last-child {
+    margin-right: 0; }
+
+  .info_block .ib_text_wrap:nth-child(2n) {
+    margin-right: 0;
+    float: right; }
+
+  .info_block .ib_text_wrap:nth-child(2n + 1) {
+    clear: left; } }
+
+@media all and (max-width: 1024px) and (min-width: 769px) {
+
+  .child_hdr_banner h1 {
+    text-align: left; }
+
+  .breadcrumbs {
+    text-align: left; }
+
+  .jet_stat_label {
+    font-size: 1.3em; }
+
+  .jet_stat {
+    font-size: 2em; } }
+
+@media all and (min-width: 1025px) {
+
+  .info_block {
+    width: calc(99.99% * 1/3 - (30px - 30px * 1/3)); }
+
+  .info_block:nth-child(1n) {
+    float: left;
+    margin-right: 30px;
+    clear: none; }
+
+  .info_block:last-child {
+    margin-right: 0; }
+
+  .info_block:nth-child(3n) {
+    margin-right: 0;
+    float: right; }
+
+  .info_block:nth-child(3n + 1) {
+    clear: left; }
+
+  .page_content {
+    min-width: 520px; }
+
+  .breadcrumbs {
+    text-align: left; } }
+
+@media all and (min-width: 1200px) {
+
+  .wrapper {
+    width: 1120px !important;
+    margin: 0 auto !important; }
+
+  header p {
+    padding: 0 75px; }
+
+  .child_hdr_banner h1 {
+    float: left;
+    width: 50%;
+    text-align: left;
+    margin-right: 5%; }
+
+  .breadcrumbs {
+    text-align: right;
+    width: 45%; }
+
+  .page_nav {
+    width: 280px;
+    margin-right: 20px; }
+
+  .page_nav h3 {
+    margin-bottom: 1em; }
+
+  .page_content {
+    width: 520px; }
+
+  .page_nav li li {
+    display: block;
+    margin: 5px 0;
+    padding-left: 10px; }
+
+  .page_nav li ul {
+    display: block;
+    border-left: solid 1px rgba(251, 176, 59, 0.5); }
+
+  .page_nav li li {
+    font-size: 1em; }
+
+  .page_nav li li::after {
+    content: none;
+    margin: 0; }
+
+  .welcome_join {
+    margin-left: 20px;
+    width: 280px;
+    padding-top: 0;
+    border-top: none; }
+
+  .join_now_img_link {
+    margin-right: 0; }
+
+  .contact_form textarea {
+    min-height: 300px; }
+
+  .aircraft_page {
+    width: 820px; }
+
+  .inner_fw {
+    display: block; }
+
+  .aircraft_page {
+    display: inline-block; }
+
+  .aircraft_nav > li {
+    display: block; }
+
+  .aircraft_nav > li::after {
+    content: none; } }
+
+@media only screen and (max-width: 1024px) {
+
+  .home_hc .bgvideo {
+    display: none; } }
+
+/*# sourceMappingURL=site.css.map */

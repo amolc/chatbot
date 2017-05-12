@@ -27,7 +27,7 @@ mobile.use( serveStatic( 'mobile/www' ) );
 app.use( '/mobile', mobile );
 
 var getdata = require('./api/getdata.js');
- 
+
 
 http.listen( serverport, function () {
   console.log( 'listening on port ' + serverport );
@@ -73,7 +73,7 @@ io.on( 'connection', function ( socket ) {
 
   socket.on( 'apicall', function ( data ) {
 
-    
+
 
 
     if ( data.label == "whereto" ) {
@@ -105,7 +105,7 @@ io.on( 'connection', function ( socket ) {
 
             }
             else {
-                  
+
                     var response = {};
                     response.sessionId = data.sessionId;
                     response.nextlabel = "fromwhere";
@@ -120,7 +120,7 @@ io.on( 'connection', function ( socket ) {
 
       });
 
-    
+
 
     }
     else if ( data.label == "toairports" ) {
@@ -161,7 +161,7 @@ io.on( 'connection', function ( socket ) {
 
             }
             else {
-             
+
                     var response = {};
                     response.sessionId = data.sessionId;
                     response.nextlabel = "startdate";
@@ -187,8 +187,8 @@ io.on( 'connection', function ( socket ) {
        io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
     // else if ( data.label == "startdate" ) {
-       
-    
+
+
     //   var response = {};
     //   response.sessionId = data.sessionId;
     //   response.nextlabel = "whichplane";
@@ -198,7 +198,7 @@ io.on( 'connection', function ( socket ) {
     else if ( data.label == "startdate" ) {
       console.log('startdate-planetype');
       var planes = ifunctions.planetypes() ;
-    
+
 
       var response = {};
       response.sessionId = data.sessionId;
@@ -223,13 +223,13 @@ io.on( 'connection', function ( socket ) {
       var returnboolen = data.msg ;
           returnboolen = returnboolen.toUpperCase();
       if (returnboolen == "NO") {
-        
+
         ifunctions.distancefunc( data, function (error,distanceMiles,estimatedhrs,estimatedcost ,startdate) {
-      
+
           if(error){
             console.log(error)
           }else{
-           
+
             var estimatedcostUSD = formatter.format(estimatedcost) ;
             console.log('currency',estimatedcostUSD);
             data.distance = distanceMiles ;
@@ -238,13 +238,13 @@ io.on( 'connection', function ( socket ) {
            data.startdate = startdate ;
             var webmsg = "<b> Here is a summary of your booking: </b></br>"
             + "<b> Depart: </b> " + data.fromwhere + "</br>"
-            + "<b> Destination: </b> " + data.whereto + "</br>"    
+            + "<b> Destination: </b> " + data.whereto + "</br>"
             + "<b> Departure Date: </b> " + data.startdate + "</br>"
             + "<b>" + data.planetype + "</br>"
             + "<b> Distance: </b> " + data.distance + " Miles</br>"
             + "<b> Flight Time Hours: </b> " + data.estimatedhrs + "</br>"
             + "<b> Estimated Cost: </b> " + data.estimatedcost + "</br>";
-            
+
                 var quotesummary = ""
                 var response = {};
                 response.sessionId = data.sessionId;
@@ -252,7 +252,7 @@ io.on( 'connection', function ( socket ) {
                 response.nextlabel = "formalquote";
                 response.msg = webmsg ;
                 io.sockets.connected[socket.id].emit( 'getresponse', response );
-                   }      
+                   }
                 });
       } else {
         console.log(data.label);
@@ -266,9 +266,9 @@ io.on( 'connection', function ( socket ) {
       console.log(data.label);
       console.log(data.label);
       console.log(data.msg);
-     
+
         ifunctions.distancefunc( data, function (error,distanceMiles,estimatedhrs,estimatedcost ,startdate) {
-      
+
           if(error){
             console.log(error)
           }else{
@@ -282,7 +282,7 @@ io.on( 'connection', function ( socket ) {
              data.startdate = startdate ;
             var webmsg = "<b> Here is a summary of your booking: </b></br>"
             + "<b> Depart: </b> " + data.fromwhere + "</br>"
-            + "<b> Destination: </b> " + data.whereto + "</br>"    
+            + "<b> Destination: </b> " + data.whereto + "</br>"
             + "<b> Departure Date: </b> " + data.startdate + "</br>"
             + "<b> Return Date: </b> " + data.returndate + "</br>"
             + "<b>" + data.planetype + "</br>"
@@ -290,16 +290,16 @@ io.on( 'connection', function ( socket ) {
             + "<b> Flight Time Hours: </b> " + data.estimatedhrs + "</br>"
             + "<b> Estimated Cost/Each: </b> " + data.estimatedcost + "</br>"
             + "<b> Total Cost: </b> " + estimatedcosttotalUSD + "</br>";
-            
+
                 var quotesummary = ""
                 var response = {};
                 response.sessionId = data.sessionId;
                 response.nextlabel = "formalquote";
                 response.msg = webmsg ;
                 io.sockets.connected[socket.id].emit( 'getresponse', response );
-                   }      
+                   }
                 });
-      
+
 
     }
       else if ( data.label == "formalquote" ) {
@@ -311,8 +311,8 @@ io.on( 'connection', function ( socket ) {
              var response = {};
             response.sessionId = data.sessionId;
             response.status = "success";
-            response.nextlabel = "startover";
-            response.msg = "Thank you goodbye.";
+            response.nextlabel = "anotherquote";
+            response.msg = "Would you like another quote?";
             io.sockets.connected[socket.id].emit( 'getresponse', response );
       }
       else{
@@ -323,7 +323,7 @@ io.on( 'connection', function ( socket ) {
             response.msg = "Can I get your name?";
             io.sockets.connected[socket.id].emit( 'getresponse', response );
       }
-    
+
     }
      else if ( data.label == "name" ) {
       console.log(data.label);
@@ -346,15 +346,15 @@ io.on( 'connection', function ( socket ) {
             io.sockets.connected[socket.id].emit( 'getresponse', response );
     }
 
-    
+
     else if ( data.label == "phone" ) {
       console.log( data );
       console.log('phone',data.phone);
       var agentemail = "ceo@80startups.com";
       var officeremail = "david.northcutt@genacom.com";
-     
+
        ifunctions.distancefunc( data, function (error,distanceMiles,estimatedhrs,estimatedcost ,startdate) {
-      
+
       if(error){
           console.log(error)
       }else{
@@ -390,7 +390,7 @@ io.on( 'connection', function ( socket ) {
             + "</br><p><b> Phone:</b> " + data.phone + "</p>"
             + "Thanks, Chatbot";
 
-           
+
           //ifunctions.insertquotereq(data);
 
 //insert
@@ -435,15 +435,15 @@ io.on( 'connection', function ( socket ) {
           response.msg = "Thanks, we would get back to you shortly." ;
           io.sockets.connected[socket.id].emit( 'getresponse', response );
       }
-       
 
-          
+
+
      });
 
-     
+
     }
     else if ( data.label == "end" ) {
-     
+
            var response = {};
           response.sessionId = data.sessionId;
           response.status == 'success';
@@ -471,7 +471,7 @@ io.on( 'connection', function ( socket ) {
           io.sockets.connected[socket.id].emit( 'getresponse', response );
           console.log("whereto fired");
       }
-     
+
     }
     else {
       var response = {};
@@ -523,6 +523,3 @@ io.on( 'connection', function ( socket ) {
 } );
 //TODO: We need to make the currency proper
 //TODO: We need to show the One way cost and return cost properly.
-
-
-

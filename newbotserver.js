@@ -340,12 +340,27 @@ io.on( 'connection', function ( socket ) {
     else if ( data.label == "email" ) {
       console.log(data.label);
       console.log('email',data.email);
+      var emailformat = data.email ;
+          var n=0 ;
+           n = emailformat.search("@");
+           console.log("n",n);
+      if (n<=0) {
             var response = {};
             response.sessionId = data.sessionId;
             response.status = "success";
-            response.nextlabel = "phone";
-            response.msg = "And just in case we need to call you a phone number?";
+            response.nextlabel = "email";
+            response.msg = "Please provide a proper email?";
             io.sockets.connected[socket.id].emit( 'getresponse', response );
+      }
+      else{
+        var response = {};
+        response.sessionId = data.sessionId;
+        response.status = "success";
+        response.nextlabel = "phone";
+        response.msg = "And just in case we need to call you a phone number?";
+        io.sockets.connected[socket.id].emit( 'getresponse', response );
+      }
+
     }
 
 

@@ -104,7 +104,7 @@ exports.privateairportfunc = function ( req, callback ) {
   //parameters.key = "AIzaSyBfRKuwq8c3ETUxdC7jMvhh3iN_x0SHRWQ";
   parameters.query = parameters.query || "airports";
   parameters.sensor = parameters.sensor || false;
-  parameters.type = "airport";
+  parameters.type = "regions";
   if ( typeof parameters.location === "object" ) parameters.location = parameters.location.toString();
   var url = "https://maps.googleapis.com/maps/api/place/textsearch/json?" + querystring.stringify( parameters )
 

@@ -641,7 +641,6 @@
 
                         $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                     }
-                    $scope.fake4();
                     showyesnofield();
                     updateScrollbar();
                 }, 3000);

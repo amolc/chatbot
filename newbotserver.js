@@ -9,6 +9,7 @@ var bodyParser = require( 'body-parser' );
 var nodemailer = require( 'nodemailer' );
 var chrono = require('chrono-node')
 var mysql =require('mysql');
+var mg = require('nodemailer-mailgun-transport');
 var serverport = 2001;
 var web = connect();
 web.use( serveStatic( 'web' ) );
@@ -502,22 +503,49 @@ io.on( 'connection', function ( socket ) {
     }
   } );
   function send_mail( usermail, subject, mailbody ) {
-    var mailOptions = {
-      from: '<operations@80startups.com>', // sender address
-      to: usermail, // list of receivers
-      subject: subject, // Subject line
-      html: mailbody // html body
-    };
+    // var mailOptions = {
+    //   from: '<operations@80startups.com>', // sender address
+    //   to: usermail, // list of receivers
+    //   subject: subject, // Subject line
+    //   html: mailbody // html body
+    // };
+    //
+    //
+    // transporter.sendMail( mailOptions, function ( error, info ) {
+    //   if ( error ) {
+    //     console.log( error );
+    //   } else {
+    //     console.log( 'Message sent: ' + info.response );
+    //   }
+    //   //jsonp(response);
+    // } );
 
-
-    transporter.sendMail( mailOptions, function ( error, info ) {
-      if ( error ) {
-        console.log( error );
-      } else {
-        console.log( 'Message sent: ' + info.response );
+    var auth = {
+      auth: {
+        api_key: 'key-b4687b67307cb2598abad76006bd7a4a',
+        domain: '80startups.com'
       }
-      //jsonp(response);
-    } );
+    }
+
+    var nodemailerMailgun = nodemailer.createTransport(mg(auth));
+
+    nodemailerMailgun.sendMail({
+      from: 'operations@80startups.com',
+      to: usermail, // An array if you have multiple recipients.
+      subject: subject,
+      'h:Reply-To': 'operations@80startups.com',
+      //You can use "html:" to send HTML email content. It's magic!
+      html: mailbody,
+      //You can use "text:" to send plain-text content. It's oldschool!
+      text: mailbody
+    }, function (err, info) {
+      if (err) {
+        console.log('Error: ' + err);
+      }
+      else {
+        console.log('Response: ' + info);
+      }
+    });
   };
 
 

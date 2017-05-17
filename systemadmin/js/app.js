@@ -15,10 +15,10 @@ app.controller('backend', function ($scope, $http, $sce, $timeout) {
 
     }
 
-  
+
        $scope.getquotes = function() {
-     
-        $http.get('/api/quotes').success(function(res) {
+
+        $http.get('http://atlanta.fountaintechies.com:2001/api/quotes').success(function(res) {
             //console.log("res listexternalcontact:",res);
                      $scope.subscribers = res ;
              console.log('res',$scope.subscribers);
@@ -27,12 +27,12 @@ app.controller('backend', function ($scope, $http, $sce, $timeout) {
             });
         };
 
-            
 
 
 
-   
-    
+
+
+
 
 
 });

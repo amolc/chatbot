@@ -356,7 +356,7 @@ io.on( 'connection', function ( socket ) {
             response.sessionId = data.sessionId;
             response.status = "success";
             response.nextlabel = "email";
-            response.msg = "Please provide a proper email?";
+            response.msg = "Please provide a valid email address.";
             io.sockets.connected[socket.id].emit( 'getresponse', response );
       }
       else{

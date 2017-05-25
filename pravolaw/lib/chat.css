@@ -232,12 +232,11 @@
       --------------------*/
 
       .chat {
-        position: relative;
+
+        position: fixed;
         bottom: 10%;
         left: 86%;
-        transform: translate(-50%, -50%);
-        -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
+        top:65%;
         width: 360px;
         height: 80vh;
         max-height: 500px;
@@ -246,9 +245,9 @@
         box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
         background: #303030;
         border-radius: 20px;
+        display: flex;
         display: -webkit-box;
         display: -ms-flexbox;
-        display: flex;
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
@@ -256,6 +255,8 @@
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
       }
 
 

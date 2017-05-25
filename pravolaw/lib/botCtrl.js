@@ -50,7 +50,7 @@ app.controller('botCtrl', function ($scope, $http, $sce, $timeout, socket, store
         $scope.selectedplaneId = "1" ;
         $scope.yesnoboolenId ="Yes";
         showcities();
-
+        chatwindowclose();
     }
 
 
@@ -178,11 +178,11 @@ $scope.selectplanefunc = function() {
       emitmsg(msg);
   }
   $scope.toggleme = function(){
-
-        $scope.toggle = true;
+        console.log("v1");
+        chatwindowopen();
         typing();
 
-        setTimeout(function () {
+          setTimeout(function () {
                 $('.loadchattype').remove();
                 $scope.fakemessage0 = 'Hello I am Julia' ;
                 var msg0 = angular.element('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + $scope.fakemessage0 + '</div>');
@@ -983,6 +983,17 @@ $scope.selectplanefunc = function() {
             $('#yesnoboolen').show('slow');
 
             }
+
+            function chatwindowopen(){
+                 console.log("openwindow");
+                // $('.chat').show('slow');
+                $('#chatwindow').show('show');
+              }
+
+            function chatwindowclose(){
+                  console.log("closewindow");
+                  $('#chatwindow').hide();
+                }
 
 
 });

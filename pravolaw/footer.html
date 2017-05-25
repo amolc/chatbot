@@ -26,7 +26,7 @@
 
         </nav>
         <section class="footer_end">
-               <button class="btn-chat" id="btn-chat" ng-click="toggleme()">Get a Quote</button>
+
         	<div class="wrapper clearfix">
             	<ul class="footer_social">
                 <!--	<li><a href="javascript:void(0)" target="_blank"><i class="fa fa-facebook-square"></i></a>
@@ -51,7 +51,8 @@
 
     <div data-ng-app="mybot" data-ng-controller="botCtrl" data-ng-init="init()" >
     <div class="btn-chat"> <button  id="btn-chat" ng-click="toggleme()">Get a Quote</button></div>
-        <div class="chat" ng-show="toggle">
+    <div>
+        <div class="chat" id="chatwindow">
         <div class="chat-title">
           <h1>Julia</h1>
           <h2>PRAVOLA</h2>
@@ -116,6 +117,7 @@
         </div>
 
       </div>
+    </div>
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKDSx_T1NPT6POTrShPCed43ULC1mx9U8&libraries=places&sensor=false&language=en&v=3"></script>
 <!--<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->

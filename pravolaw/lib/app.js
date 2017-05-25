@@ -2,7 +2,7 @@
 
  $(document).ready(function(){
    console.log("app");
-   $('#chat').hide();
+
   var $messages = $('.messages-content');
    $messages.mCustomScrollbar();
    updateScrollbar($messages);

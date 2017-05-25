@@ -50,7 +50,7 @@ app.controller('botCtrl', function ($scope, $http, $sce, $timeout, socket, store
         $scope.selectedplaneId = "1" ;
         $scope.yesnoboolenId ="Yes";
         showcities();
-
+        chatwindowclose();
     }
 
 
@@ -59,7 +59,7 @@ app.controller('botCtrl', function ($scope, $http, $sce, $timeout, socket, store
     function typing(){
         setTimeout(function () {
 
-        var msg3 = angular.element('<div id="loadchat" class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure><img class="imgsize"  src="lib/img/chat.svg" /></div>');
+        var msg3 = angular.element('<div id="loadchat" class="loadchattype message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure><img class="imgsize"  src="lib/img/chat.svg" /></div>');
         angular.element(msg3).appendTo('.mCSB_container').addClass('new').show('slow');
         updateScrollbar();
          }, 300);
@@ -178,12 +178,12 @@ $scope.selectplanefunc = function() {
       emitmsg(msg);
   }
   $scope.toggleme = function(){
-
-        $scope.toggle = true;
+        console.log("v1");
+        chatwindowopen();
         typing();
 
-        setTimeout(function () {
-                $('#loadchat').remove();
+          setTimeout(function () {
+                $('.loadchattype').remove();
                 $scope.fakemessage0 = 'Hello I am Julia' ;
                 var msg0 = angular.element('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + $scope.fakemessage0 + '</div>');
                 angular.element(msg0).appendTo('.mCSB_container').addClass('new');
@@ -198,7 +198,7 @@ $scope.selectplanefunc = function() {
     $scope.fake2 = function(){
 
          setTimeout(function () {
-                $('#loadchat').remove();
+                $('.loadchattype').remove();
                 $scope.fakemessage1 = 'Where do you wanna fly today? ' ;
                 var msg1 = angular.element('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + $scope.fakemessage1 + '</div>');
                 angular.element(msg1).appendTo('.mCSB_container').addClass('new');
@@ -209,7 +209,7 @@ $scope.selectplanefunc = function() {
     $scope.fake3 = function(){
 
          setTimeout(function () {
-                $('#loadchat').remove();
+                $('.loadchattype').remove();
                 $scope.fakemessage1 = 'Would you like to get a formal quote? ' ;
                 var msg1 = angular.element('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + $scope.fakemessage1 + '</div>');
                 angular.element(msg1).appendTo('.mCSB_container').addClass('new');
@@ -220,7 +220,7 @@ $scope.selectplanefunc = function() {
      $scope.fake4 = function(){
         typing();
          setTimeout(function () {
-                $('#loadchat').remove();
+                $('.loadchattype').remove();
                 $scope.fakemessage4 = 'Would you like another quote?' ;
                 var msg1 = angular.element('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + $scope.fakemessage4 + '</div>');
                 angular.element(msg1).appendTo('.mCSB_container').addClass('new');
@@ -231,8 +231,8 @@ $scope.selectplanefunc = function() {
     $scope.fake5 = function(){
        typing();
         setTimeout(function () {
-               $('#loadchat').remove();
-               $scope.fakemessage4 = 'Thank You,Goodbye.' ;
+               $('.loadchattype').remove();
+               $scope.fakemessage4 = 'Thank You, Goodbye.' ;
                var msg1 = angular.element('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + $scope.fakemessage4 + '</div>');
                angular.element(msg1).appendTo('.mCSB_container').addClass('new');
                updateScrollbar();
@@ -251,7 +251,7 @@ $scope.selectplanefunc = function() {
 
             typing();
             setTimeout(function () {
-                $('#loadchat').remove();
+                $('.loadchattype').remove();
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
                     console.log('response length', response.msg.results.length);
@@ -356,7 +356,7 @@ $scope.selectplanefunc = function() {
               typing();
               setTimeout(function () {
                 if (response.status == 'success') {
-                    $('#loadchat').remove();
+                    $('.loadchattype').remove();
                      store.set('toairports', response.msg);
                      $scope.airports = [];
 
@@ -393,7 +393,7 @@ $scope.selectplanefunc = function() {
             loadgif();
             typing();
              setTimeout(function () {
-                $('#loadchat').remove();
+                $('.loadchattype').remove();
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
                     console.log('response length', response.msg.results.length);
@@ -438,7 +438,7 @@ $scope.selectplanefunc = function() {
             loadgif();
             typing();
             setTimeout(function () {
-                $('#loadchat').remove();
+                $('.loadchattype').remove();
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
                     console.log('response length', response.msg.results.length);
@@ -478,7 +478,7 @@ $scope.selectplanefunc = function() {
             loadgif();
             typing();
             setTimeout(function () {
-                  $('#loadchat').remove();
+                  $('.loadchattype').remove();
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
 
@@ -500,11 +500,11 @@ $scope.selectplanefunc = function() {
             store.set('label', response.nextlabel);
             console.log(response);
             typing();
-            $('#loadchat').remove();
+            $('.loadchattype').remove();
             setTimeout(function () {
 
                 if (response.status == 'success') {
-                    $('#loadchat').remove();
+                    $('.loadchattype').remove();
                     console.log('success msg', response.msg);
                     var msg3 = "Would you like a formal quote" ;
                         $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new').delay(1000);
@@ -530,7 +530,7 @@ $scope.selectplanefunc = function() {
             loadgif();
             typing();
             setTimeout(function () {
-                 $('#loadchat').remove();
+                 $('.loadchattype').remove();
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
                         $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
@@ -552,7 +552,7 @@ $scope.selectplanefunc = function() {
             loadgif();
             typing();
             setTimeout(function () {
-                 $('#loadchat').remove();
+                 $('.loadchattype').remove();
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
                     $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
@@ -574,7 +574,7 @@ $scope.selectplanefunc = function() {
             loadgif();
             typing();
             setTimeout(function () {
-                 $('#loadchat').remove();
+                 $('.loadchattype').remove();
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
                         $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
@@ -594,7 +594,7 @@ $scope.selectplanefunc = function() {
             console.log(response);
             typing();
             setTimeout(function () {
-                   $('#loadchat').remove();
+                   $('.loadchattype').remove();
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
 
@@ -620,7 +620,7 @@ $scope.selectplanefunc = function() {
             console.log(response);
             typing();
             setTimeout(function () {
-                   $('#loadchat').remove();
+                   $('.loadchattype').remove();
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
                         $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
@@ -641,7 +641,7 @@ $scope.selectplanefunc = function() {
             console.log(response);
             typing();
             setTimeout(function () {
-                   $('#loadchat').remove();
+                   $('.loadchattype').remove();
                 if (response.status == 'success') {
                     console.log('success msg', response.msg);
                         $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
@@ -663,14 +663,14 @@ $scope.selectplanefunc = function() {
             typing();
             setTimeout(function () {
                 if (response.status == 'success') {
-                    $('#loadchat').remove();
+                    $('.loadchattype').remove();
                     console.log('success msg', response.msg);
                         $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new').delay(1000);
                        // $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + msg3 + '</div>').appendTo($('.mCSB_container')).addClass('new');
 
                 }
                 else {
-                     $('#loadchat').remove();
+                     $('.loadchattype').remove();
                     $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 }
                 updateScrollbar();
@@ -684,9 +684,9 @@ $scope.selectplanefunc = function() {
             console.log(response);
             typing();
             setTimeout(function () {
-                   $('#loadchat').remove();
+                   $('.loadchattype').remove();
                 if (response.status == 'success') {
-                $('#loadchat').remove();
+                $('.loadchattype').remove();
                     console.log('success msg', response.msg);
 
 
@@ -983,6 +983,17 @@ $scope.selectplanefunc = function() {
             $('#yesnoboolen').show('slow');
 
             }
+
+            function chatwindowopen(){
+                 console.log("openwindow");
+                // $('.chat').show('slow');
+                $('#chatwindow').show('show');
+              }
+
+            function chatwindowclose(){
+                  console.log("closewindow");
+                  $('#chatwindow').hide();
+                }
 
 
 });

@@ -191,6 +191,9 @@ exports.distancefunc = function ( data, callback ) {
     console.log('distance',distance);
     console.log('distanceMiles',distanceMiles);
 
+    console.log("Jun 1- estimated costfrom and to");
+    console.log("data.planecostperhrfrom",data.planecostperhrfrom);
+    console.log("data.planecostperhrto",data.planecostperhrto);
 
     var estimatedhrs = distance/data.planespeed ;
         estimatedhrs = estimatedhrs.toFixed(2);

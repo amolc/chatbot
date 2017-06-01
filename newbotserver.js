@@ -233,7 +233,7 @@ io.on( 'connection', function ( socket ) {
           returnboolen = returnboolen.toUpperCase();
       if (returnboolen == "NO") {
 
-        ifunctions.distancefunc( data, function (error,distanceMiles,estimatedhrs,estimatedcost ,startdate) {
+        ifunctions.distancefunc( data, function (error,distanceMiles,estimatedhrs,estimatedcost ,startdate,estimatedcostfrom,estimatedcostto) {
 
           if(error){
             console.log(error)
@@ -241,9 +241,16 @@ io.on( 'connection', function ( socket ) {
 
             var estimatedcostUSD = formatter.format(estimatedcost) ;
             console.log('currency',estimatedcostUSD);
-            data.distance = distanceMiles ;
+            var estimatedcostfromUSD = formatter.format(estimatedcostfrom) ;
+            console.log('currency',estimatedcostfromUSD);
+            var estimatedcosttoUSD = formatter.format(estimatedcostto) ;
+            console.log('currency',estimatedcosttoUSD);
+
+           data.distance = distanceMiles ;
            data.estimatedhrs = estimatedhrs ;
            data.estimatedcost = estimatedcostUSD ;
+           data.estimatedcostfrom = estimatedcostfromUSD ;
+           data.estimatedcostto = estimatedcosttoUSD ;
            data.startdate = startdate ;
             var webmsg = "<b> Here is a summary of your booking: </b></br>"
             + "<b> Depart: </b> " + data.fromwhere + "</br>"
@@ -252,7 +259,7 @@ io.on( 'connection', function ( socket ) {
             + "<b>" + data.planetype + "</br>"
             + "<b> Distance: </b> " + data.distance + " Miles</br>"
             + "<b> Flight Time Hours: </b> " + data.estimatedhrs + "</br>"
-            + "<b> Estimated Cost: </b> " + data.estimatedcost + "</br>";
+            + "<b> Estimated Cost: </b> " + data.estimatedcostfrom + "-"+ data.estimatedcostto + "</br>";
 
                 var quotesummary = ""
                 var response = {};
@@ -276,18 +283,31 @@ io.on( 'connection', function ( socket ) {
       console.log(data.label);
       console.log(data.msg);
 
-        ifunctions.distancefunc( data, function (error,distanceMiles,estimatedhrs,estimatedcost ,startdate) {
+        ifunctions.distancefunc( data, function (error,distanceMiles,estimatedhrs,estimatedcost ,startdate,estimatedcostfrom,estimatedcostto) {
 
           if(error){
             console.log(error)
           }else{
               var estimatedcostUSD = formatter.format(estimatedcost) ;
+              var estimatedcostfromUSD = formatter.format(estimatedcostfrom) ;
+              console.log('currency',estimatedcostfromUSD);
+              var estimatedcosttoUSD = formatter.format(estimatedcostto) ;
+              console.log('currency',estimatedcosttoUSD);
+
               var returncost = estimatedcost*2 ;
               var estimatedcosttotalUSD = formatter.format(returncost) ;
+              var returncostfrom = estimatedcostfrom*2 ;
+              var estimatedcosttotalfromUSD = formatter.format(returncostfrom) ;
+              var returncostto = estimatedcostto*2 ;
+              var estimatedcosttotaltoUSD = formatter.format(returncostto) ;
              data.distance = distanceMiles ;
              data.estimatedhrs = estimatedhrs ;
              data.estimatedcost = estimatedcostUSD ;
+             data.estimatedcostfrom = estimatedcostfromUSD ;
+             data.estimatedcostto = estimatedcosttoUSD ;
              data.estimatedcosttotal = estimatedcosttotalUSD ;
+             data.estimatedcosttotalfrom = estimatedcosttotalfromUSD ;
+             data.estimatedcosttotalto = estimatedcosttotaltoUSD ;
              data.startdate = startdate ;
             var webmsg = "<b> Here is a summary of your booking: </b></br>"
             + "<b> Depart: </b> " + data.fromwhere + "</br>"
@@ -297,8 +317,8 @@ io.on( 'connection', function ( socket ) {
             + "<b>" + data.planetype + "</br>"
             + "<b> Distance: </b> " + data.distance + " Miles</br>"
             + "<b> Flight Time Hours: </b> " + data.estimatedhrs + "</br>"
-            + "<b> Estimated Cost/Each: </b> " + data.estimatedcost + "</br>"
-            + "<b> Total Cost: </b> " + estimatedcosttotalUSD + "</br>";
+            + "<b> Estimated Cost/Each: </b> " + data.estimatedcostfrom +"-"+ data.estimatedcostto + "</br>"
+            + "<b> Total Cost: </b> " + estimatedcosttotalfromUSD + "-"+ estimatedcosttotaltoUSD  +"</br>";
 
                 var quotesummary = ""
                 var response = {};

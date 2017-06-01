@@ -155,13 +155,13 @@ exports.planetypes = function (res) {
       var planes = { results:
       [
 
-        { id: 1, name: 'Very Light Jet: $4000/hr', speed: 400, range: 1200 , costperhr:4000 },
-        { id: 2, name: 'Turbo Prop Jet: $4000/hr', speed: 300, range: 1400 , costperhr:4000 },
-        { id: 3, name: 'Light Jet: $5000/hr', speed: 480, range: 2000 , costperhr:5000 },
-        { id: 4, name: 'MidSize Jet: $6000/hr', speed: 500, range: 2500 , costperhr:6000 },
-        { id: 5, name: 'Super MidSize Jet: $7000/hr', speed: 525, range: 3000 , costperhr:7000 },
-        { id: 6, name: 'Heavy Jet: $10000/hr', speed: 525, range: 5000 , costperhr:10000 },
-        { id: 7, name: 'Jumbo Jets Jet: $15000/hr', speed: 525, range: 8000 , costperhr:15000 },
+        { id: 1, name: 'Very Light Jet', speed: 400, range: 1200 , costperhr:4000 , costperhrfrom:2500 , costperhrto:4000},
+        { id: 2, name: 'Turbo Prop Jet', speed: 300, range: 1400 , costperhr:4000 , costperhrfrom:2500 , costperhrto:3500},
+        { id: 3, name: 'Light Jet', speed: 480, range: 2000 , costperhr:5000, costperhrfrom:3000 , costperhrto:4500 },
+        { id: 4, name: 'MidSize Jet', speed: 500, range: 2500 , costperhr:6000, costperhrfrom:4000 , costperhrto:6000},
+        { id: 5, name: 'Super MidSize Jet', speed: 525, range: 3000 , costperhr:7000 , costperhrfrom:6000 , costperhrto:8000},
+        { id: 6, name: 'Heavy Jet', speed: 525, range: 5000 , costperhr:10000, costperhrfrom:7000 , costperhrto:10000 },
+        { id: 7, name: 'Jumbo Jets Jet', speed: 525, range: 8000 , costperhr:15000 , costperhrfrom:10000, costperhrto:12000  },
       ]
     };
 

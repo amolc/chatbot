@@ -259,76 +259,76 @@
 
 		});
 	</script>
-  <div data-ng-app="mybot" data-ng-controller="botCtrl" data-ng-init="init()" >
-  <div class="btn-chat"> <button  id="btn-chat" ng-click="toggleme()">Get a Quote</button></div>
-  <div>
-      <div class="chat" id="chatwindow">
-      <div class="chat-title">
-        <h1>Julia</h1>
-        <h2>PRAVOLA</h2>
-        <figure class="avatar">
-          <img src="lib/img/profile.png" />
-        </figure>
-      </div>
-      <div class="messages">
-        <div class="messages-content">
+	<div data-ng-app="mybot" data-ng-controller="botCtrl" data-ng-init="init()" >
+	<div class="btn-chat"> <button  id="btn-chat" ng-click="toggleme()">Get a Quote</button></div>
+	<div>
+			<div class="chat" id="chatwindow">
+			<div class="chat-title">
+				<h1>Julia</h1>
+				<h2>PRAVOLA</h2>
+				<figure class="avatar">
+					<img src="lib/img/profile.png" />
+				</figure>
+			</div>
+			<div class="messages">
+				<div class="messages-content">
 
-        </div>
-      </div>
+				</div>
+			</div>
 
-      <div class="message-box">
-        <div id="loading" >
-          <div style="height:20px;vertical-align:middle; text-align:center"><img class="imgsize" src="lib/img/chat.svg" /></div>
-        </div>
-        <div id="calendarfield">
-          <div> <input ng-model="selecteddate" id="gcalendar" type="text" value="" class="inputbox" ng-keydown="$event.which === 13 && selectcalendarfunc()"></div>
-          <div> <button type="submit" class="message-submit" ng-click="selectcalendarfunc()">Send</button></div>
-        </div>
-        <div id="citiesfield">
-          <div> <input class="inputbox" id="gcities" ng-keydown="$event.which === 13 && selectplacefunc()" ng-model="chosenPlace"
-              googleplace/></div>
-          <div> <button type="submit" class="message-submit" ng-click="selectplacefunc()">Send</button></div>
-        </div>
-        <div id="airportsfield">
-          <select ng-model="selectedairportId" ng-options="airport.id as airport.name for airport in airports">
-          <option value="">{{defaultairport}}</option>
-        </select>
-          <button type="submit" class="message-submit" ng-click="selectairportfunc()">Send</button>
-        </div>
-        <div id="planesfield">
-          <select ng-model="selectedplaneId"  >
-                  <option value="1" selected>Very Light Jet $4000/hr</option>
-                  <option value="2">Turbo Prop Jet $4000/hr</option>
-                  <option value="3">Light Jet $5000/hr</option>
-                  <option value="4">Midsize Jet $6000/hr</option>
-                  <option value="5">Super Midsize Jet $7000/hr</option>
-                  <option value="6">Heavy Jet $10000/hr</option>
-                  <option value="7">Jumbo Jet $15000/hr</option>
-        </select>
-          <button type="submit" class="message-submit" ng-click="selectplanefunc()">Send</button>
-        </div>
-        <div id="yesnoboolen">
-          <select ng-model="yesnoboolenId"  >
-                  <option value="Yes" selected>Yes</option>
-                  <option value="No">No</option>
-        </select>
-          <button type="submit" class="message-submit" ng-click="yesnoboolenfunc()">Send</button>
-        </div>
-        <div id="fromairportsfield">
-          <select ng-model="selectedfromairportId" ng-options="airport.id as airport.name for airport in fromairports">
-          <option value="">{{defaultfromairport}}</option>
-        </select>
-          <button type="submit" class="message-submit" ng-click="selectfromairportfunc()">Send</button>
-        </div>
-        <div id="textfield">
-          <div> <input ng-model="selectdata" id="gtextfield" type="text" value="Yes" class="inputbox" ng-keydown="$event.which === 13 && selectdatafunc()"></div>
-          <div> <button type="submit" class="message-submit" ng-click="selectdatafunc()">Send</button></div>
-        </div>
-      </div>
+			<div class="message-box">
+				<div id="loading" >
+					<div style="height:20px;vertical-align:middle; text-align:center"><img class="imgsize" src="lib/img/chat.svg" /></div>
+				</div>
+				<div id="calendarfield">
+					<div> <input ng-model="selecteddate" id="gcalendar" type="text" value="" class="inputbox" ng-keydown="$event.which === 13 && selectcalendarfunc()"></div>
+					<div> <button type="submit" class="message-submit" ng-click="selectcalendarfunc()">Send</button></div>
+				</div>
+				<div id="citiesfield">
+					<div> <input class="inputbox" id="gcities" ng-keydown="$event.which === 13 && selectplacefunc()" ng-model="chosenPlace"
+							googleplace/></div>
+					<div> <button type="submit" class="message-submit" ng-click="selectplacefunc()">Send</button></div>
+				</div>
+				<div id="airportsfield">
+					<select ng-model="selectedairportId" ng-options="airport.id as airport.name for airport in airports">
+					<option value="">{{defaultairport}}</option>
+				</select>
+					<button type="submit" class="message-submit" ng-click="selectairportfunc()">Send</button>
+				</div>
+				<div id="planesfield">
+					<select ng-model="selectedplaneId"  >
+									<option value="1" selected>Very Light Jet</option>
+									<option value="2">Turbo Prop Jet</option>
+									<option value="3">Light Jet</option>
+									<option value="4">Midsize Jet</option>
+									<option value="5">Super Midsize Jet</option>
+									<option value="6">Heavy Jet</option>
+									<option value="7">Jumbo Jet</option>
+				</select>
+					<button type="submit" class="message-submit" ng-click="selectplanefunc()">Send</button>
+				</div>
+				<div id="yesnoboolen">
+					<select ng-model="yesnoboolenId"  >
+									<option value="Yes" selected>Yes</option>
+									<option value="No">No</option>
+				</select>
+					<button type="submit" class="message-submit" ng-click="yesnoboolenfunc()">Send</button>
+				</div>
+				<div id="fromairportsfield">
+					<select ng-model="selectedfromairportId" ng-options="airport.id as airport.name for airport in fromairports">
+					<option value="">{{defaultfromairport}}</option>
+				</select>
+					<button type="submit" class="message-submit" ng-click="selectfromairportfunc()">Send</button>
+				</div>
+				<div id="textfield">
+					<div> <input ng-model="selectdata" id="gtextfield" type="text" value="Yes" class="inputbox" ng-keydown="$event.which === 13 && selectdatafunc()"></div>
+					<div> <button type="submit" class="message-submit" ng-click="selectdatafunc()">Send</button></div>
+				</div>
+			</div>
 
-    </div>
-  </div>
-  </div>
+		</div>
+	</div>
+	</div>
 
 </body>
 </html>

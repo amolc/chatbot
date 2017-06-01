@@ -397,17 +397,24 @@ io.on( 'connection', function ( socket ) {
       var agentemail = "ceo@80startups.com";
       var officeremail = "david.northcutt@genacom.com";
 
-       ifunctions.distancefunc( data, function (error,distanceMiles,estimatedhrs,estimatedcost ,startdate) {
+       ifunctions.distancefunc( data, function (error,distanceMiles,estimatedhrs,estimatedcost ,startdate,estimatedcostfrom,estimatedcostto) {
 
       if(error){
           console.log(error)
       }else{
-          var estimatedcostUSD = formatter.format(estimatedcost) ;
+          var estimatedcostfromUSD = formatter.format(estimatedcostfrom) ;
+          var estimatedcosttoUSD = formatter.format(estimatedcostto) ;
+          var returnestimatedcostfromUSD = formatter.format(estimatedcostfrom) ;
+          var returnestimatedcosttoUSD = formatter.format(estimatedcostto) ;
           var estimatedcosttotalUSD = formatter.format(estimatedcost*2) ;
            data.distance = distanceMiles ;
            data.estimatedhrs = estimatedhrs ;
            data.estimatedcost = estimatedcostUSD ;
            data.estimatedcosttotalUSD = estimatedcosttotalUSD ;
+           data.estimatedcostfromUSD = estimatedcostfromUSD ;
+           data.estimatedcosttoUSD = estimatedcosttoUSD ;
+           data.returnestimatedcostfromUSD = returnestimatedcostfromUSD ;
+           data.returnestimatedcosttoUSD = returnestimatedcosttoUSD ;
            data.startdate = startdate ;
            console.log('data.distance', distanceMiles);
            console.log('data.estimatedhrs', estimatedhrs);
@@ -422,12 +429,11 @@ io.on( 'connection', function ( socket ) {
             + "</br><p><b> Plane Type:</b> " + data.planetype + "</p>"
             + "</br><p><b> Distance:</b> " + data.distance + "Miles</p>"
             + "</br><p><b> Flight Time Hours:</b> " + data.estimatedhrs + "</p>"
-            + "</br><p><b> Estimated Cost:</b> " + data.planecostperhr + "</p>"
-            + "</br><p><b> Estimated Cost:</b> " + data.estimatedcost + "</p>"
+            + "</br><p><b> Estimated Cost:</b> " + estimatedcostfromUSD +"-"+estimatedcosttoUSD + "</p>"
             + "</br><p><b></p>"
             + "</br><p><b> Return:</b> " + data.returnboolen + "</p>"
             + "</br><p><b> Return Date:</b> " + data.returndate + "</p>"
-            + "</br><p><b> Total Cost:</b> " +  data.estimatedcosttotalUSD + "</p>"
+            + "</br><p><b> Total Cost:</b> " +  returnestimatedcostfromUSD +"-"+ returnestimatedcosttoUSD + "</p>"
             + "</br><p><b></p>"
             + "</br><p><b> Name:</b> " + data.name + "</p>"
             + "</br><p><b> Email:</b> " + data.email + "</p>"
@@ -438,6 +444,7 @@ io.on( 'connection', function ( socket ) {
           //ifunctions.insertquotereq(data);
 
 //insert
+         var estimatedrange = data.estimatedcostfromUSD+"-"+data.estimatedcosttoUSD ;
          var quote_data = {
             to_country: data.whereto,
             to_airport: data.toairport,
@@ -450,7 +457,7 @@ io.on( 'connection', function ( socket ) {
             estimatedhrs:data.estimatedhrs,
             estimatedcost: data.estimatedcost,
             returndate:  data.returndate,
-            estimatedcosttotalUSD: data.estimatedcosttotalUSD,
+            estimatedcosttotalUSD: estimatedrange,
             email: data.email,
             name: data.name,
             phone: data.name

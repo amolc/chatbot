@@ -256,7 +256,7 @@ io.on( 'connection', function ( socket ) {
             + "<b> Depart: </b> " + data.fromwhere + "</br>"
             + "<b> Destination: </b> " + data.whereto + "</br>"
             + "<b> Departure Date: </b> " + data.startdate + "</br>"
-            + "<b>" + data.planetype + "</br>"
+            + "<b> Plane: </b>" + data.planetype + "</br>"
             + "<b> Distance: </b> " + data.distance + " Miles</br>"
             + "<b> Flight Time Hours: </b> " + data.estimatedhrs + "</br>"
             + "<b> Estimated Cost: </b> " + data.estimatedcostfrom + "-"+ data.estimatedcostto + "</br>";
@@ -314,7 +314,7 @@ io.on( 'connection', function ( socket ) {
             + "<b> Destination: </b> " + data.whereto + "</br>"
             + "<b> Departure Date: </b> " + data.startdate + "</br>"
             + "<b> Return Date: </b> " + data.returndate + "</br>"
-            + "<b>" + data.planetype + "</br>"
+            + "<b> Plane: </b>" + data.planetype + "</br>"
             + "<b> Distance: </b> " + data.distance + " Miles</br>"
             + "<b> Flight Time Hours: </b> " + data.estimatedhrs + "</br>"
             + "<b> Estimated Cost/Each: </b> " + data.estimatedcostfrom +"-"+ data.estimatedcostto + "</br>"
@@ -405,8 +405,8 @@ io.on( 'connection', function ( socket ) {
           var estimatedcostUSD = formatter.format(estimatedcost) ;
           var estimatedcostfromUSD = formatter.format(estimatedcostfrom) ;
           var estimatedcosttoUSD = formatter.format(estimatedcostto) ;
-          var returnestimatedcostfromUSD = formatter.format(estimatedcostfrom) ;
-          var returnestimatedcosttoUSD = formatter.format(estimatedcostto) ;
+          var returnestimatedcostfromUSD = formatter.format(estimatedcostfrom*2) ;
+          var returnestimatedcosttoUSD = formatter.format(estimatedcostto*2) ;
           var estimatedcosttotalUSD = formatter.format(estimatedcost*2) ;
            data.distance = distanceMiles ;
            data.estimatedhrs = estimatedhrs ;

@@ -199,14 +199,20 @@ exports.distancefunc = function ( data, callback ) {
         estimatedhrs = estimatedhrs.toFixed(2);
     var estimatedcost = (estimatedhrs)*data.planecostperhr ;
         estimatedcost = estimatedcost.toFixed(2);
+    var estimatedcostfrom = (estimatedhrs)*data.planecostperhrfrom ;
+        estimatedcostfrom = estimatedcostfrom.toFixed(2);
+    var estimatedcostto = (estimatedhrs)*data.planecostperhrto ;
+        estimatedcostto = estimatedcostto.toFixed(2);
     console.log('estimatedhrs' ,estimatedhrs);
     console.log('estimatedcost' ,estimatedcost);
+    console.log('estimatedcostfrom' ,estimatedcostfrom);
+    console.log('estimatedcostto' ,estimatedcostto);
 
    // var startdate = chrono.parseDate(data.startdate) ;
     var startdate = data.startdate ;
     console.log('startdate',startdate);
 
-    callback(null,distanceMiles,estimatedhrs,estimatedcost,startdate);
+    callback(null,distanceMiles,estimatedhrs,estimatedcost,startdate,estimatedcostfrom,estimatedcostto);
 
 
 

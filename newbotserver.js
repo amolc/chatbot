@@ -402,6 +402,7 @@ io.on( 'connection', function ( socket ) {
       if(error){
           console.log(error)
       }else{
+          var estimatedcostUSD = formatter.format(estimatedcost) ;
           var estimatedcostfromUSD = formatter.format(estimatedcostfrom) ;
           var estimatedcosttoUSD = formatter.format(estimatedcostto) ;
           var returnestimatedcostfromUSD = formatter.format(estimatedcostfrom) ;

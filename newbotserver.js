@@ -321,7 +321,7 @@ io.on( 'connection', function ( socket ) {
             + "<b> Plane: </b>" + data.planetype + "</br>"
             + "<b> Distance: </b> " + data.distance + " Miles</br>"
             + "<b> Flight Time Hours: </b> " + data.estimatedhrs + "</br>"
-            + "<b> Estimated Cost/Each: </b> " + data.estimatedcostfrom +"-"+ data.estimatedcostto + "</br>"
+            + "<b> Estimated Cost/Each: </b> " + data.estimatedcost + "</br>"
             + "<b> Total Cost: </b> " + estimatedcosttotalUSD + "</br>";
 
                 var quotesummary = ""

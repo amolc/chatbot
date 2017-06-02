@@ -263,7 +263,7 @@ io.on( 'connection', function ( socket ) {
             + "<b> Plane: </b>" + data.planetype + "</br>"
             + "<b> Distance: </b> " + data.distance + " Miles</br>"
             + "<b> Flight Time Hours: </b> " + data.estimatedhrs + "</br>"
-            + "<b> Estimated Cost: </b> " + data.estimatedcostfrom + "-"+ data.estimatedcostto + "</br>";
+            + "<b> Estimated Cost: </b> " + data.estimatedcost +"</br>";
 
                 var quotesummary = ""
                 var response = {};
@@ -322,7 +322,7 @@ io.on( 'connection', function ( socket ) {
             + "<b> Distance: </b> " + data.distance + " Miles</br>"
             + "<b> Flight Time Hours: </b> " + data.estimatedhrs + "</br>"
             + "<b> Estimated Cost/Each: </b> " + data.estimatedcostfrom +"-"+ data.estimatedcostto + "</br>"
-            + "<b> Total Cost: </b> " + estimatedcosttotalfromUSD + "-"+ estimatedcosttotaltoUSD  +"</br>";
+            + "<b> Total Cost: </b> " + estimatedcosttotalUSD + "</br>";
 
                 var quotesummary = ""
                 var response = {};
@@ -411,15 +411,16 @@ io.on( 'connection', function ( socket ) {
           var estimatedcosttoUSD = formatter.format(estimatedcostto) ;
           var returnestimatedcostfromUSD = formatter.format(estimatedcostfrom*2) ;
           var returnestimatedcosttoUSD = formatter.format(estimatedcostto*2) ;
-          var estimatedcosttotalUSD = formatter.format(estimatedcost*2) ;
+          var returnestimatedcosttotalUSD = formatter.format(estimatedcost*2) ;
            data.distance = distanceMiles ;
            data.estimatedhrs = estimatedhrs ;
            data.estimatedcost = estimatedcostUSD ;
-           data.estimatedcosttotalUSD = estimatedcosttotalUSD ;
+           data.estimatedcosttotalUSD = returnestimatedcosttotalUSD ;
            data.estimatedcostfromUSD = estimatedcostfromUSD ;
            data.estimatedcosttoUSD = estimatedcosttoUSD ;
            data.returnestimatedcostfromUSD = returnestimatedcostfromUSD ;
            data.returnestimatedcosttoUSD = returnestimatedcosttoUSD ;
+           data.returnestimatedcostUSD = returnestimatedcosttotalUSD ;
            data.startdate = startdate ;
            console.log('data.distance', distanceMiles);
            console.log('data.estimatedhrs', estimatedhrs);
@@ -434,11 +435,11 @@ io.on( 'connection', function ( socket ) {
             + "</br><p><b> Plane Type:</b> " + data.planetype + "</p>"
             + "</br><p><b> Distance:</b> " + data.distance + "Miles</p>"
             + "</br><p><b> Flight Time Hours:</b> " + data.estimatedhrs + "</p>"
-            + "</br><p><b> Estimated Cost:</b> " + estimatedcostfromUSD +"-"+estimatedcosttoUSD + "</p>"
+            + "</br><p><b> Estimated Cost:</b> " + estimatedcostUSD + "</p>"
             + "</br><p><b></p>"
             + "</br><p><b> Return:</b> " + data.returnboolen + "</p>"
             + "</br><p><b> Return Date:</b> " + data.returndate + "</p>"
-            + "</br><p><b> Total Cost:</b> " +  returnestimatedcostfromUSD +"-"+ returnestimatedcosttoUSD + "</p>"
+            + "</br><p><b> Total Cost:</b> " +  data.returnestimatedcostUSD + "</p>"
             + "</br><p><b></p>"
             + "</br><p><b> Name:</b> " + data.name + "</p>"
             + "</br><p><b> Email:</b> " + data.email + "</p>"
@@ -449,7 +450,7 @@ io.on( 'connection', function ( socket ) {
           //ifunctions.insertquotereq(data);
 
 //insert
-         var estimatedrange = data.estimatedcostfromUSD+"-"+data.estimatedcosttoUSD ;
+         //var estimatedrange = data.estimatedcostfromUSD+"-"+data.estimatedcosttoUSD ;
          var quote_data = {
             to_country: data.whereto,
             to_airport: data.toairport,
@@ -462,7 +463,7 @@ io.on( 'connection', function ( socket ) {
             estimatedhrs:data.estimatedhrs,
             estimatedcost: data.estimatedcost,
             returndate:  data.returndate,
-            estimatedcosttotalUSD: estimatedrange,
+            estimatedcosttotalUSD: data.returnestimatedcostUSD,
             email: data.email,
             name: data.name,
             phone: data.name

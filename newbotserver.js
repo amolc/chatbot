@@ -484,7 +484,7 @@ io.on( 'connection', function ( socket ) {
           var response = {};
           response.sessionId = data.sessionId;
           response.nextlabel = "end";
-          response.msg = "Thanks, we would get back to you shortly." ;
+          response.msg = "Thanks, we will get back to you shortly." ;
           io.sockets.connected[socket.id].emit( 'getresponse', response );
       }
 

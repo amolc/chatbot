@@ -767,6 +767,8 @@ $scope.selectplanefunc = function() {
             store.set('plane-speed', planes.results[msg].speed);
             store.set('plane-range', planes.results[msg].range);
             store.set('plane-costperhr', planes.results[msg].costperhr);
+            store.set('plane-costperhrfrom', planes.results[msg].costperhrfrom);
+            store.set('plane-costperhrto', planes.results[msg].costperhrto);
             console.log('planes', planes);
             console.log(data.msg);
             console.log('Matched Plane', planes.results[msg].name);
@@ -788,6 +790,8 @@ $scope.selectplanefunc = function() {
             data.planespeed = store.get('plane-speed');
             data.planerange = store.get('plane-range');
             data.planecostperhr = store.get('plane-costperhr');
+            data.planecostperhrfrom = store.get('plane-costperhrfrom');
+            data.planecostperhrto = store.get('plane-costperhrto');
             data.returnboolen = store.get('returnboolen');
             console.log('data', data);
             socket.emit('apicall', data);
@@ -807,6 +811,8 @@ $scope.selectplanefunc = function() {
             data.planespeed = store.get('plane-speed');
             data.planerange = store.get('plane-range');
             data.planecostperhr = store.get('plane-costperhr');
+            data.planecostperhrfrom = store.get('plane-costperhrfrom');
+            data.planecostperhrto = store.get('plane-costperhrto');
             data.returnboolen = store.get('returnboolen');
             console.log('data', data);
             socket.emit('apicall', data);
@@ -843,6 +849,8 @@ $scope.selectplanefunc = function() {
             data.planespeed = store.get('plane-speed');
             data.planerange = store.get('plane-range');
             data.planecostperhr = store.get('plane-costperhr');
+            data.planecostperhrfrom = store.get('plane-costperhrfrom');
+            data.planecostperhrto = store.get('plane-costperhrto');
             data.returnboolen = store.get('returnboolen');
             data.returndate = store.get('returndate');
             data.name = store.get('name');

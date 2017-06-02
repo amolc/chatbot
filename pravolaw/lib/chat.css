@@ -723,3 +723,45 @@
           transform: translateY(-10px);
         }
       }
+
+      @media screen and (max-width: 420px) {
+
+              .chat {
+                border-color: 2px solid red;
+                position: fixed;
+                bottom: 18%;
+                left: 50%;
+                top:52%;
+                width: 360px;
+                height: 80vh;
+                max-height: 500px;
+                z-index: 2000;
+                overflow: hidden;
+                box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+                background: #303030;
+                border-radius: 20px;
+                display: flex;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                transform: translate(-50%, -50%);
+                -webkit-transform: translate(-50%, -50%);
+              }
+              input {
+                background: transparent;
+                color: white;
+                border: none;
+              }
+              select {
+                background: transparent;
+                color: white;
+                border: none;
+              }
+
+      }

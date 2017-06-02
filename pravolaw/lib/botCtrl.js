@@ -26,7 +26,8 @@ app.config(['storeProvider', function (storeProvider) {
     storeProvider.setStore('sessionStorage');
 }]);
 app.factory('socket', ['$rootScope', function ($rootScope) {
-    var socket = io.connect('http://atlanta.fountaintechies.com:2001');
+    //var socket = io.connect('http://atlanta.fountaintechies.com:2001');
+    var socket = io.connect();
     return {
         on: function (eventName, callback) {
             socket.on(eventName, callback);
@@ -995,7 +996,7 @@ $scope.selectplanefunc = function() {
             function chatwindowopen(){
                  console.log("openwindow");
                 // $('.chat').show('slow');
-                $('#chatwindow').show('show');
+                $('#chatwindow').show();
               }
 
             function chatwindowclose(){

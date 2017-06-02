@@ -15,6 +15,10 @@ var web = connect();
 web.use( serveStatic( 'web' ) );
 app.use( '/web', web );
 
+var pravolaw = connect();
+pravolaw.use( serveStatic( 'pravolaw' ) );
+app.use( '/pravolaw', pravolaw );
+
 var systemadmin = connect();
 systemadmin.use( serveStatic( 'systemadmin' ) );
 app.use( '/systemadmin', systemadmin );

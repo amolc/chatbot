@@ -26,8 +26,8 @@ app.config(['storeProvider', function (storeProvider) {
     storeProvider.setStore('sessionStorage');
 }]);
 app.factory('socket', ['$rootScope', function ($rootScope) {
-    //var socket = io.connect('http://atlanta.fountaintechies.com:2001');
-    var socket = io.connect();
+    var socket = io.connect('http://atlanta.fountaintechies.com:2001');
+    //var socket = io.connect();
     return {
         on: function (eventName, callback) {
             socket.on(eventName, callback);
@@ -495,7 +495,51 @@ $scope.selectplanefunc = function() {
                 updateScrollbar();
             }, 4000);
 
-        } else if (response.nextlabel == "formalquote") {
+        }else if (response.nextlabel == "specialneedreq") {
+            label = response.nextlabel;
+            console.log('label', response.nextlabel);
+            store.set('label', response.nextlabel);
+            console.log(response);
+            loadgif();
+            typing();
+            setTimeout(function () {
+                 $('.loadchattype').remove();
+                if (response.status == 'success') {
+                    console.log('success msg', response.msg);
+                    $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                }
+                else {
+                    $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+
+                }
+                updateScrollbar();
+                showtextfield();
+            }, 3000);
+
+        }
+        else if (response.nextlabel == "specialneed") {
+            label = response.nextlabel;
+            console.log('label', response.nextlabel);
+            store.set('label', response.nextlabel);
+            console.log(response);
+            typing();
+            $('.loadchattype').remove();
+            setTimeout(function () {
+                if (response.status == 'success') {
+                    $('.loadchattype').remove();
+                    console.log('success msg', response.msg);
+                        $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new').delay(1000);
+                }
+                else {
+                    $('<div class="message new"><figure class="avatar"><img src="lib/img/profile.png" /></figure>' + response.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                }
+                updateScrollbar();
+                $scope.yesnoboolenId = "Yes";
+               showyesnofield();
+            }, 6000);
+
+        }
+        else if (response.nextlabel == "formalquote") {
             label = response.nextlabel;
             console.log('label', response.nextlabel);
             store.set('label', response.nextlabel);
@@ -794,6 +838,8 @@ $scope.selectplanefunc = function() {
             data.planecostperhrfrom = store.get('plane-costperhrfrom');
             data.planecostperhrto = store.get('plane-costperhrto');
             data.returnboolen = store.get('returnboolen');
+            data.specialneed = store.get('specialneed');
+            data.specialneedreq = store.get('specialneedreq');
             console.log('data', data);
             socket.emit('apicall', data);
         } else if (data.label == "returndate") {
@@ -815,11 +861,25 @@ $scope.selectplanefunc = function() {
             data.planecostperhrfrom = store.get('plane-costperhrfrom');
             data.planecostperhrto = store.get('plane-costperhrto');
             data.returnboolen = store.get('returnboolen');
+            data.specialneed = store.get('specialneed');
+            data.specialneedreq = store.get('specialneedreq');
             console.log('data', data);
             socket.emit('apicall', data);
         }else if (data.label == "formalquote") {
             store.set('formalquote', msg);
             data.formalquote = store.get('formalquote');
+            console.log('data', data);
+            socket.emit('apicall', data);
+        }
+        else if (data.label == "specialneedreq") {
+            store.set('specialneedreq', msg);
+            data.specialneedreq = store.get('specialneedreq');
+            console.log('data', data);
+            socket.emit('apicall', data);
+        }
+        else if (data.label == "specialneed") {
+            store.set('specialneed', msg);
+            data.specialneed = store.get('specialneed');
             console.log('data', data);
             socket.emit('apicall', data);
         }
@@ -857,6 +917,8 @@ $scope.selectplanefunc = function() {
             data.name = store.get('name');
             data.email = store.get('email');
             data.phone = store.get('phone');
+            data.specialneed = store.get('specialneed');
+            data.specialneedreq = store.get('specialneedreq');
             console.log('data', data);
             socket.emit('apicall', data);
         }else if (data.label == "summary") {

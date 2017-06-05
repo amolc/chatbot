@@ -352,12 +352,55 @@ io.on( 'connection', function ( socket ) {
             var response = {};
             response.sessionId = data.sessionId;
             response.status = "success";
-            response.nextlabel = "name";
-            response.msg = "Can I get your name?";
+            response.nextlabel = "specialneed";
+            response.msg = "Do you have any specific criteria for your aircraft or special requests?";
             io.sockets.connected[socket.id].emit( 'getresponse', response );
       }
 
     }
+    else if ( data.label == "specialneed" ) {
+    console.log(data.label);
+    console.log('specialneed',data.specialneed);
+    var specialneed = data.specialneed ;
+        specialneed = specialneed.toUpperCase();
+    if (specialneed == "NO") {
+           var response = {};
+          response.sessionId = data.sessionId;
+          response.status = "success";
+          response.nextlabel = "name";
+          response.msg = "Can I get your name?";
+          io.sockets.connected[socket.id].emit( 'getresponse', response );
+    }
+    else{
+          var response = {};
+          response.sessionId = data.sessionId;
+          response.status = "success";
+          response.nextlabel = "specialneedreq";
+          response.msg = "Please explain:";
+          io.sockets.connected[socket.id].emit( 'getresponse', response );
+    }
+
+    }
+    else if ( data.label == "specialneedreq" ) {
+     console.log(data.label);
+     console.log('specialneedreq',data.specialneedreq);
+           var response = {};
+           response.sessionId = data.sessionId;
+           response.status = "success";
+           response.nextlabel = "name";
+           response.msg = "Can I get your name?";
+           io.sockets.connected[socket.id].emit( 'getresponse', response );
+   }
+    else if ( data.label == "specialneed" ) {
+     console.log(data.label);
+     console.log('name',data.name);
+           var response = {};
+           response.sessionId = data.sessionId;
+           response.status = "success";
+           response.nextlabel = "name";
+           response.msg = "Can I get your name?";
+           io.sockets.connected[socket.id].emit( 'getresponse', response );
+   }
      else if ( data.label == "name" ) {
       console.log(data.label);
       console.log('name',data.name);
@@ -436,6 +479,7 @@ io.on( 'connection', function ( socket ) {
             + "</br><p><b> Distance:</b> " + data.distance + "Miles</p>"
             + "</br><p><b> Flight Time Hours:</b> " + data.estimatedhrs + "</p>"
             + "</br><p><b> Estimated Cost:</b> " + estimatedcostUSD + "</p>"
+            + "</br><p><b> Special Needs:</b> " + data.specialneedreq + "</p>"
             + "</br><p><b></p>"
             + "</br><p><b> Return:</b> " + data.returnboolen + "</p>"
             + "</br><p><b> Return Date:</b> " + data.returndate + "</p>"
@@ -466,7 +510,8 @@ io.on( 'connection', function ( socket ) {
             estimatedcosttotalUSD: data.returnestimatedcostUSD,
             email: data.email,
             name: data.name,
-            phone: data.name
+            phone: data.phone,
+            specialneeds : data.specialneedreq
         };
 
         connection.query("INSERT INTO quote SET ?", quote_data, function(err, res){
